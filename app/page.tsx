@@ -1,4 +1,5 @@
 import LineClampAutoPage from "@/components/LineClampAutoPage";
+import ResponsiveImagesDemo from "@/components/ResponsiveImageDemo";
 
 export default function Home() {
   return (
@@ -31,7 +32,8 @@ export default function Home() {
   </p>
   <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-green-400"></div>
 </div> */}
-      <LineClampAutoPage />
+      {/* <LineClampAutoPage /> */}
+      <ResponsiveImagesDemo />
     </>
   );
 }

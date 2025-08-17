@@ -10,6 +10,7 @@ export default function Navbar() {
     { href: "/fluid-text", label: "Fluid Text" },
     { href: "/responsive-grid", label: "Responsive Grid" },
     { href: "/spacing", label: "Spacing" },
+    { href: "/responsive-image", label: "Responsive Image" },
   ];
 
   return (
