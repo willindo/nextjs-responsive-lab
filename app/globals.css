@@ -1,26 +1,65 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .acontainer {
+    container-type: inline-size;
+    container-name: acontainer;
+  }
+  .bcontainer {
+    container-type: inline-size;
+    container-name: bcontainer;
+  }
+  .ccontainer {
+    container-type: inline-size;
+    container-name: ccontainer;
   }
 }
+.cardp {
+  container-type: inline-size;
+  container-name: cardp;
+}
+.cardb {
+  container-type: inline-size;
+  container-name: cardb;
+}
+.cardi {
+  container-type: inline-size;
+  container-name: cardi;
+}
+
+@container cardp (min-width: 600px) {
+.cardp p {
+  background: rgb(130, 128, 0);
+  color: white;
+}
+}
+@container cardb (min-width: 600px) {
+.cardb p {
+  background: rgb(5, 99, 122);
+  color: white;
+}
+}
+@container cardi (min-width: 600px) {
+.cardi p {
+  background: rgb(9, 160, 29);
+  color: white;
+}
+}
+:root {
+  --step--1: clamp(0.8rem, 0.7rem + 0.3vw, 1rem);
+  --step-0: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  --step-1: clamp(1.25rem, 1.1rem + 0.9vw, 1.75rem);
+  --step-2: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+  --step-3: clamp(2rem, 1.8rem + 1.5vw, 3rem);
+}
+
+h1 { font-size: var(--step-3); font-weight: bolder; }
+h2 { font-size: var(--step-2); font-weight: bolder; }
+h3 { font-size: var(--step-1); font-weight: bolder; }
+
+p  { font-size: var(--step-0); }
+.tiny  { font-size: var(--step--1); }
+
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
