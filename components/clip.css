@@ -1,0 +1,22 @@
+.wrap{
+  position: relative;
+  width: min(90vw, 900px);
+  height: 420px;         /* layout space is fixed here */
+  overflow: visible;     /* allow overlays to spill if needed */
+}
+
+.clipped{
+  width: 100%; height: 100%; object-fit: cover;
+  /* show only a curved stripe of the image */
+  clip-path: path("M0,120 Q200,0 400,120 T800,120 V420 H0 Z");
+  /* ensure the path uses the element box */
+  transform-box: fill-box; transform-origin: center;
+}
+
+.fill-space{
+  position: absolute; inset: 0;
+  /* place content specifically in the “hidden” area */
+  display: grid; place-items: end start; padding: 24px;
+}
+
+.cta{ padding: 10px 16px; border-radius: 999px; }
