@@ -43,11 +43,14 @@ export default function ClippyImage({ src, alt = "", children }: Props) {
           <button
             key={s}
             onClick={() => setShape(s as keyof typeof CLIP_SHAPES)}
-            className={`px-3 py-1 text-sm rounded-lg shadow-md transition ${
-              shape === s
+            className={`px-3 py-1 text-sm rounded-lg shado-md 
+              transition ${shape === s
                 ? "bg-indigo-600 text-white"
-                : "bg-white/80 text-gray-700 hover:bg-gray-100"
-            }`}
+                : "bg-white/80 text-gray-700 hover:bg-gray-100" }`
+           } 
+           style={{
+             background: "radial-gradient(ellipse at center,  #87e0fd 1%,#05abe0 100%)"
+           }}
           >
             {s}
           </button>

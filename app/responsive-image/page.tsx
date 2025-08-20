@@ -2,6 +2,7 @@ import BackimageDemo from '@/components/BackimageDemo'
 import ClipImage from '@/components/ClipImage'
 import ClipItem from '@/components/ClipItem'
 import ClippyItem from '@/components/ClippyItem'
+import Intro  from '@/components/Intro'
 import MotionTextDemo from '@/components/MotionTextDemo'
 import ResponsiveImagesDemo from '@/components/ResponsiveImageDemo1'
 import ResponsiveImageDemo2 from '@/components/ResponsiveImageDemo2'
@@ -18,7 +19,8 @@ function ResponsiveImagePage() {
         {/* <ShadowDemo /> */}
         {/* <ClipItem /> */}
         {/* <MotionTextDemo /> */}
-        <ClippyItem />
+        {/* <ClippyItem /> */}
+        <Intro />               
     </div>
   )
 }
