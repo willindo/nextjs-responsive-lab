@@ -2,13 +2,14 @@ import BackimageDemo from '@/components/BackimageDemo'
 import ClipImage from '@/components/ClipImage'
 import ClipItem from '@/components/ClipItem'
 import ClippyItem from '@/components/ClippyItem'
+import Horiz from '@/components/Horiz'
+import HorizSmall from '@/components/HorizSmall'
 import Intro  from '@/components/Intro'
 import MotionTextDemo from '@/components/MotionTextDemo'
 import ResponsiveImagesDemo from '@/components/ResponsiveImageDemo1'
 import ResponsiveImageDemo2 from '@/components/ResponsiveImageDemo2'
 import ShadowDemo from '@/components/Shadowdemo'
 import React from 'react'
-
 function ResponsiveImagePage() {
   return (
     <div>
@@ -20,7 +21,9 @@ function ResponsiveImagePage() {
         {/* <ClipItem /> */}
         {/* <MotionTextDemo /> */}
         {/* <ClippyItem /> */}
-        <Intro />               
+        {/* <Intro />                */}
+        <Horiz />
+        <HorizSmall />  
     </div>
   )
 }
