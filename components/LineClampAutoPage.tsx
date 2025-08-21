@@ -1,3 +1,4 @@
+
 export default function LineClampAutoPage() {
   const sampleText =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in ligula nec ligula fermentum blandit. Morbi congue, sem ut aliquam fringilla, risus justo tincidunt magna, a aliquet massa turpis ut lorem. Etiam faucibus felis nec libero faucibus, ut sodales tortor tempus. Donec non ipsum ut turpis dapibus vulputate. Nulla facilisi. Suspendisse nec eros sit amet lorem varius tincidunt.";

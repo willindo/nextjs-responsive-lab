@@ -1,0 +1,42 @@
+| Prop / Category  | Type   | Default | Example                                                            |
+| ---------------- | ------ | ------- | ------------------------------------------------------------------ |
+| **Basic Motion** |        |         |                                                                    |
+| `animate`        | object | —       | `<motion.div animate={{ x: 100, opacity: 1 }} />`                  |
+| `initial`        | object | —       | `<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} />` |
+| `exit`           | object | —       | `<motion.div exit={{ opacity: 0 }} />`                             |
+| `whileHover`     | object | —       | `<motion.div whileHover={{ scale: 1.1 }} />`                       |
+| `whileTap`       | object | —       | `<motion.div whileTap={{ scale: 0.9 }} />`                         |
+| `whileDrag`      | object | —       | `<motion.div whileDrag={{ scale: 1.05 }} />`                       |
+| `variants`       | object | —       | `variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}`   |
+| `custom`         | any    | —       | `<motion.div custom={0.5} variants={variants} />`                  |
+
+| Transition Props | | | |
+| duration | number (s) | 0.3 | transition={{ duration: 1 }} |
+| delay | number (s) | 0 | transition={{ delay: 0.5 }} |
+| ease | string / array | "easeInOut" | transition={{ ease: "easeOut" }} |
+| type | string | "tween" | "tween" | "spring" | "keyframes" | "inertia" |
+| repeat | number | 0 | transition={{ repeat: Infinity }} |
+| repeatType | string | "loop" | "loop" | "reverse" | "mirror" |
+| repeatDelay | number (s) | 0 | transition={{ repeat: Infinity, repeatDelay: 0.5 }} |
+| stiffness | number | 100 | transition={{ type: "spring", stiffness: 150 }} |
+| damping | number | 10 | transition={{ type: "spring", damping: 20 }} |
+| mass | number | 1 | transition={{ type: "spring", mass: 0.8 }} |
+| velocity | number | 0 | transition={{ type: "spring", velocity: 5 }} |
+| bounce | number | 0.25 | transition={{ type: "spring", bounce: 0.5 }} |
+
+| Keyframes | | | |
+| animate={{ x: [0, 100, 50] }} | array | — | <motion.div animate={{ x: [0,100,50] }} /> |
+| repeatType | string | "loop" | "loop" | "reverse" | "mirror" |
+
+| Parent/Children | | | |
+| staggerChildren | number | 0 | transition={{ staggerChildren: 0.2 }} |
+| delayChildren | number | 0 | transition={{ delayChildren: 0.5 }} |
+| when | string | "afterChildren" | "beforeChildren" | "afterChildren" |
+
+| Custom Helpers | | | |
+| AnimatedScope | component | — | <AnimatedScope animation="fadeUp" stagger={0.2}>...</AnimatedScope> |
+| toggle(selector, keyframes, options) | function | — | toggle(".flash", [{ opacity: 0 }, { opacity: 1 }], { duration: 1, repeat: Infinity }) |
+
+| Path Animation | | | |
+| offsetPath | string | — | style={{ offsetPath: "path('M0,0 L100,100')" }} |
+| offsetRotate | string | "auto" | style={{ offsetRotate: "0deg" }} |

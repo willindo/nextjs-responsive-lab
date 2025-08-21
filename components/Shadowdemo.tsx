@@ -1,3 +1,4 @@
+'use client'
 export default function ShadowDemo() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-10 bg-gray-100 min-h-screen">

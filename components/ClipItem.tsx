@@ -1,3 +1,4 @@
+'use client'
 import ClipImage from "@/components/ClipImage";
 
 export default function ClipItem() {

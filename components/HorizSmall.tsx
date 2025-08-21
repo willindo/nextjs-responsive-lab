@@ -1,3 +1,4 @@
+'use client'
 import HorizontalBox from "./HorizontalBox";
 
 export default function HorizSmall() {

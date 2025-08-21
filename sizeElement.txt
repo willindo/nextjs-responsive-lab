@@ -1,0 +1,48 @@
+1. Window / Viewport Sizes
+
+These relate to the visible area of the browser (viewport):
+
+Property	Description
+window.innerWidth	Width of the viewport including scrollbars
+window.innerHeight	Height of the viewport including scrollbars
+window.outerWidth	Width of the browser window including UI (toolbars, scrollbars)
+window.outerHeight	Height of the browser window including UI
+document.documentElement.clientWidth	Width of the <html> viewport excluding scrollbars
+document.documentElement.clientHeight	Height of the <html> viewport excluding scrollbars
+window.screen.width	Width of the user’s screen
+window.screen.height	Height of the user’s screen
+window.screen.availWidth	Available screen width excluding OS taskbar/dock
+window.screen.availHeight	Available screen height excluding OS taskbar/dock
+2. Document / Page Sizes
+
+These relate to the full HTML document, including content not currently visible (scrollable area):
+
+Property	Description
+document.body.scrollWidth	Full width of body including overflow content
+document.body.scrollHeight	Full height of body including overflow content
+document.documentElement.scrollWidth	Full width of HTML document
+document.documentElement.scrollHeight	Full height of HTML document
+document.body.offsetWidth	Width of body including borders, padding, and visible content
+document.body.offsetHeight	Height of body including borders, padding, and visible content
+document.documentElement.offsetWidth	Width of HTML element including borders and padding
+document.documentElement.offsetHeight	Height of HTML element including borders and padding
+3. Element Sizes
+
+These relate to specific HTML elements:
+
+Property / Method	Description
+element.clientWidth	Width of element content + padding (excluding border & scrollbar)
+element.clientHeight	Height of element content + padding (excluding border & scrollbar)
+element.offsetWidth	Width including content + padding + border
+element.offsetHeight	Height including content + padding + border
+element.scrollWidth	Full width of content inside element, including hidden overflow
+element.scrollHeight	Full height of content inside element, including hidden overflow
+element.getBoundingClientRect()	Returns size & position of element relative to viewport (width, height, top, bottom, left, right)
+
+✅ Tips / Notes:
+
+clientWidth / clientHeight exclude scrollbars, offsetWidth / offsetHeight include borders, scrollWidth / scrollHeight include hidden overflow.
+
+getBoundingClientRect() is usually the most accurate for dynamic layouts because it accounts for transforms and fractional pixels.
+
+window.innerWidth vs document.documentElement.clientWidth: the first includes scrollbar width, the second doesn’t.

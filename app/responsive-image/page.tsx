@@ -21,8 +21,8 @@ function ResponsiveImagePage() {
         {/* <ClipItem /> */}
         {/* <MotionTextDemo /> */}
         {/* <ClippyItem /> */}
-        {/* <Intro />                */}
-        <Horiz />
+        <Intro />               
+        {/* <Horiz /> */}
         <HorizSmall />  
     </div>
   )

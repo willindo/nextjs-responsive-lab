@@ -35,7 +35,7 @@ export default function HorizontalBox({
         ease: "none",
         scrollTrigger: {
           trigger: section,
-          start: "top 25%", // parent pins when reaching viewport center
+          start: "top 20%", // parent pins when reaching viewport center
           end: () => `+=${scrollDistance}`, // scroll until last child fully enters
         // end: "top bottom", // scroll until last child fully enters
           scrub: true,

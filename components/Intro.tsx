@@ -1,4 +1,5 @@
 'use client';
+import { motion } from "framer-motion";
 import { AnimatedScope } from "./AnimatedScope";
 import { useAnimations } from "./useAnimations";
 import { useRef } from "react";

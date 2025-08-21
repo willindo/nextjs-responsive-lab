@@ -1,3 +1,4 @@
+'use client'
 import ClippyImage from "@/components/ClippyImage";
 
 export default function ClippyItem() {

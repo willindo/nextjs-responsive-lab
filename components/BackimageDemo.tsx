@@ -34,7 +34,7 @@ export default function BackimageDemo() {
           background-attachment: fixed;
         }
         .local {
-          background: url("https://picsum.photos/500/302") no-repeat center center / cover;
+          background: url("https://picsum.photos/800/400") no-repeat center center / cover;
           background-attachment: local;
         }
         .gradient {

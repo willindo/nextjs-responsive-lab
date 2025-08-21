@@ -70,4 +70,29 @@ export function useAnimations() {
   );
 
   return { trigger, stop, toggle };
+
 }
+//  <div className="box" data-state={state} />
+//             <button onClick={() => setState(!state)}>Toggle position</button>
+//  transition: transform ${spring(0.5, 0.8)};
+//                         transform: translateX(-100%);
+//                     }
+
+//                     .example-container .box[data-state="true"] {
+//                         transform: translateX(100%) rotate(180deg);
+//  <motion.div
+//                 drag
+//                 dragConstraints={constraintsRef}
+//                 dragElastic={0.2}
+//                 style={box}
+//             />
+//         </motion.div>
+// { AnimatePresence, motion, usePresenceData, wrap } 
+// const nextItem = wrap(1, items.length, selectedItem + newDirection)
+// initial={{ opacity: 0, scale: 0.5 }}
+//             animate={{ opacity: 1, scale: 1 }}
+//             transition={{
+//                 duration: 0.8,
+//                 delay: 0.5,
+//                 ease: [0, 0.71, 0.2, 1.01],
+//             }}
