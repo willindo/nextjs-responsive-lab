@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react"; // icons
 import { AnimatedScope } from "./AnimatedScope";
+import { MotionScopeMath } from "./MotionPlayground";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -24,13 +25,16 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className=" hidden  nav w-[80%] md:flex ">
-          <AnimatedScope className=" flex justify-end gap-6 w-full " animation="fadeUp" stagger={0.2}>
+          {/* <AnimatedScope className=" flex justify-end gap-6 w-full " animation="fadeUp" stagger={0.2}> */}
+          <MotionScopeMath pattern="breath" >
+
             {links.map((link) => (
               <a key={link.href} href={link.href} className="  hover:underline">
                 {link.label}
               </a>
             ))}
-          </AnimatedScope>
+            </MotionScopeMath>
+          {/* </AnimatedScope> */}
         </div>
 
         {/* Mobile Menu Button */}

@@ -2,12 +2,19 @@ import AnimatedGradientBg from "@/components/AnimatedGradientBg";
 import AnimatedSidebar from "@/components/AnimatedSidebar";
 import InterlockedGrid from "@/components/InterLockedGrid";
 import LineClampAutoPage from "@/components/LineClampAutoPage";
+import MotionDemo from "@/components/MotionDemo";
+import {MotionTextMath} from "@/components/MotionTextOrchestra";
 import ParticleBackground from "@/components/ParticleBackground";
 import ParticleItem from "@/components/ParticleItem";
+import Textual from "@/components/Textual";
+import WaveBoxes from "@/components/WaveBoxes";
 
 export default function Home() {
   return (
     <>
+    <MotionDemo />
+    <WaveBoxes />
+      <Textual />
     <AnimatedGradientBg mode="position" opacity={0.4} >
       <div className="">
         <ParticleBackground mode="confetti" />
