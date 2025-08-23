@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Menu, X } from "lucide-react"; // icons
+import AnimatedIntro from "./AnimatedIntro";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -15,9 +16,9 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gray-100 border-b border-gray-200">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-6xl font-normal text-[#335f33] mx-auto px-4 py-3 flex items-center justify-between">
         {/* Brand */}
-        <a href="/" className="text-xl font-bold">My Demo</a>
+        <a href="/" className="text-xl text-[#915333] font-bold">My Demo</a>
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-6">
@@ -33,25 +34,27 @@ export default function Navbar() {
           className="md:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
-        >
+          >
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Dropdown */}
       {open && (
+        <AnimatedIntro type="">
         <div className="md:hidden px-4 pb-3 space-y-2 bg-gray-50">
           {links.map((link) => (
             <a
-              key={link.href}
-              href={link.href}
-              className="block py-2 border-b border-gray-200 hover:underline"
-              onClick={() => setOpen(false)}
+            key={link.href}
+            href={link.href}
+            className="block py-2 border-b border-gray-200 hover:underline"
+            onClick={() => setOpen(false)}
             >
               {link.label}
             </a>
           ))}
         </div>
+          </AnimatedIntro>
       )}
     </nav>
   );

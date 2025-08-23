@@ -25,8 +25,8 @@ function useContainerSize() {
 
 export default function ResponsiveImagesDemo1() {
   return (
-    <div className="p-6 space-y-12">
-      <h1 className="text-2xl font-bold">📐 Responsive Images + Container Size Demo</h1>
+    <div className="@container/h1 p-6 space-y- max-sm:grid-cols-1 min-[641px]:max-md:grid-cols-2 grid grid-cols-3">
+      <h2 className=" text-center text-balance  font-bold">📐 Responsive Images + Container Size Demo</h2>
 
       {/* 1. layout=responsive (16:9 aspect ratio) */}
       <ResponsiveBox
@@ -63,7 +63,7 @@ export default function ResponsiveImagesDemo1() {
       {/* 5. background contain */}
       <BackgroundBox
         label="5️⃣ Background Image (contain)"
-        url="https://picsum.photos/600/1000"
+        url="https://picsum.photos/300/300"
         type="contain"
       />
 
@@ -91,7 +91,7 @@ function ResponsiveBox({
 }) {
   const { ref, size } = useContainerSize();
   return (
-    <div ref={ref} className="border-2 border-red-500 w-1/2 relative">
+    <div ref={ref} className="border-2 border-red-500  relative">
       <p className="bg-red-100 text-sm p-1">{label}</p>
       {type === "responsive" && width && height && (
         <Image src={src} alt={label} width={width} height={height} layout="responsive" />
@@ -113,7 +113,7 @@ function BackgroundBox({ label, url, type }: { label: string; url: string; type:
   return (
     <div
       ref={ref}
-      className={`w-1/2 h-64 border-2 border-blue-500 rounded-lg bg-${type} bg-center`}
+      className={` place-self-center h-64 bg-no-repeat border-2 border-blue-500 rounded-lg bg-${type} bg-center`}
       style={{ backgroundImage: `url(${url})` }}
     >
       <p className="bg-blue-100 text-sm p-1">{label}</p>
@@ -127,7 +127,7 @@ function BackgroundBox({ label, url, type }: { label: string; url: string; type:
 function PlainImgBox({ label, url }: { label: string; url: string }) {
   const { ref, size } = useContainerSize();
   return (
-    <div ref={ref} className="border-2 border-green-500 w-1/2">
+    <div ref={ref} className="border-2 border-green-500 ">
       <p className="bg-green-100 text-sm p-1">{label}</p>
       <img src={url} alt={label} className="max-w-full h-auto" />
       <p className="text-xs text-gray-700 p-1">

@@ -29,8 +29,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="p-6">{children}</main>
         
         {/* Persistent Overlay */}
-        <FontDebugger />
-        <FontSizeOverlay />
+        {/* <FontDebugger /> */}
+        {/* <FontSizeOverlay /> */}
         {/* <UnitCheatSheet /> */}
       </body>
     </html>

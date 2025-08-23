@@ -16,10 +16,10 @@ function ResponsiveImagePage() {
       
         {/* <ResponsiveImagesDemo /> */}
         {/* <ResponsiveImageDemo2 /> */}
-        {/* <BackimageDemo /> */}
-        {/* <ShadowDemo /> */}
+        <BackimageDemo />
+        <ShadowDemo />
         {/* <ClipItem /> */}
-        {/* <MotionTextDemo /> */}
+        <MotionTextDemo />
         {/* <ClippyItem /> */}
         <Intro />               
         {/* <Horiz /> */}
