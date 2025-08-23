@@ -1,8 +1,10 @@
+import ClippyItem from "@/components/ClippyItem";
 import GridFlex from "@/components/GridFlex";
 
 export default function SpacingPage() {
   return (
     <div>
+      <ClippyItem />
       <h1 className="text-3xl font-bold">Responsive Spacing Demo</h1>
       <p className="mt-[clamp(12px,4vw,48px)] p-[clamp(8px,2vw,32px)] bg-teal-200 rounded-lg">
         This box uses <code>clamp()</code> for margin and padding that scale
