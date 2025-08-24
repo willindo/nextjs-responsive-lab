@@ -5,6 +5,7 @@ import FontDebugger from "@/components/FontDebugger";
 import FontSizeOverlay from "@/components/FontSizeOverlay";
 import Navbar from "@/components/Navbar";
 import UnitCheatSheet from "@/components/UnitCheatSheet";
+import TransitionProvider from "@/components/TransitionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,7 +25,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" >
       <body>
-        
+        <TransitionProvider preset="cinematic" >
+
         <Navbar />
 
         <main className="p-6">{children}</main>
@@ -33,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* <FontDebugger /> */}
         {/* <FontSizeOverlay /> */}
         {/* <UnitCheatSheet /> */}
+        </TransitionProvider>
       </body>
     </html>
   );

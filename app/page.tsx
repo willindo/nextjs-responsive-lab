@@ -11,6 +11,7 @@ import MotionDemo from "@/components/MotionDemo";
 import { MotionTextMath } from "@/components/MotionTextOrchestra";
 import ParticleBackground from "@/components/ParticleBackground";
 import ParticleItem from "@/components/ParticleItem";
+import RippleBox from "@/components/RippleBox";
 import Textual from "@/components/Textual";
 import WaveBoxes from "@/components/WaveBoxes";
 import { useState } from "react";
@@ -26,6 +27,7 @@ export default function Home() {
 });
   return (
     <>
+    <RippleBox />
     <DevConfigPanel
   schema={[
     { type: "number", key: "radius", label: "Radius", min: 50, max: 300, step: 10 },

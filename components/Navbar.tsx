@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react"; // icons
 import { AnimatedScope } from "./AnimatedScope";
 import { MotionScopeMath } from "./MotionPlayground";
+import { TransitionLink } from "./TransitionProvider";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -52,9 +53,9 @@ export default function Navbar() {
         <div className="flex flex-col gap-6 md:hidden px-4 py-2">
           <AnimatedScope animation="fadeUp" stagger={0.2}>
             {links.map((link) => (
-              <a key={link.href} href={link.href} className="hover:underline">
+              <TransitionLink key={link.href} href={link.href} className="hover:underline">
                 {link.label}
-              </a>
+              </TransitionLink>
             ))}
           </AnimatedScope>
         </div>
