@@ -1,6 +1,6 @@
 "use client";
-import React, { ReactNode } from "react";
-import { MotionScopeMath } from "./MotionPlayground"; // reuse your core
+import React, { ReactNode, ElementType } from "react";
+import { MotionScopeMath } from "./MotionPlayground"; // adjust import
 
 // Utility: split text into spans
 function splitText(text: string): ReactNode[] {
@@ -9,6 +9,14 @@ function splitText(text: string): ReactNode[] {
       {char}
     </span>
   ));
+}
+
+interface MotionTextMathProps {
+  as?: ElementType; // <-- FIX: use ElementType instead of keyof JSX.IntrinsicElements
+  text: string;
+  pattern?: Parameters<typeof MotionScopeMath>[0]["pattern"];
+  params?: Parameters<typeof MotionScopeMath>[0]["params"];
+  className?: string;
 }
 
 /**
@@ -22,13 +30,7 @@ export function MotionTextMath({
   pattern = "waveY",
   params,
   className = "",
-}: {
-  as?: keyof JSX.IntrinsicElements;
-  text: string;
-  pattern?: Parameters<typeof MotionScopeMath>[0]["pattern"];
-  params?: Parameters<typeof MotionScopeMath>[0]["params"];
-  className?: string;
-}) {
+}: MotionTextMathProps) {
   const letters = splitText(text);
 
   return (
