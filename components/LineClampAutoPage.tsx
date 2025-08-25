@@ -10,12 +10,13 @@ export default function LineClampAutoPage() {
       {/* Fixed Responsive Line Clamp */}
         <h2 className="text-xl font-semibold">1️⃣ Fixed Responsive Line Clamp</h2>
       <div className=" ">
-        <p className="line-clamp-2 leading-relaxed text-base sm:line-clamp-3 lg:line-clamp-5 bg-blue-200 p-4 rounded-lg">
+        {/* <div className="max-w-lg h- overflow-hidden relativ bg-green-200 p-5 rounded-lg"> */}
+        <p className="line-clamp-2 text-base leading-relaxed sm:line-clamp-3 lg:line-clamp-5 bg-blue-200 p-4 rounded-lg">
           {sampleText}
         </p>
-        <p className="text-sm text-gray-600">
+        {/* <p className="text-sm text-gray-600">
           ➡ On small screens shows 2 lines, medium 3 lines, large 5 lines.
-        </p>
+        </p> */}
       </div>
 
       {/* Auto Height Clamp */}

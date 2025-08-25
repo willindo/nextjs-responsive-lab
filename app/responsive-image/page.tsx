@@ -7,17 +7,18 @@ import HorizSmall from '@/components/HorizSmall'
 import Intro  from '@/components/Intro'
 import ResponsiveImagesDemo from '@/components/ResponsiveImageDemo1'
 import ResponsiveImageDemo2 from '@/components/ResponsiveImageDemo2'
+import ResponsiveShowcase from '@/components/ResponsiveShowcase'
 import ShadowDemo from '@/components/Shadowdemo'
 import React from 'react'
 function ResponsiveImagePage() {
   return (
     <div>
-      
-        {/* <ResponsiveImagesDemo /> */}
-        {/* <ResponsiveImageDemo2 /> */}
-        <BackimageDemo />
-        <ShadowDemo />
-        {/* <ClipItem /> */}
+      <ResponsiveShowcase />
+      {/* <ResponsiveImagesDemo /> */}
+      {/* <ResponsiveImageDemo2 /> */}
+      <BackimageDemo />
+      <ShadowDemo />
+      {/* <ClipItem /> */}
         {/* <ClippyItem /> */}
         <Intro />               
         {/* <Horiz /> */}
