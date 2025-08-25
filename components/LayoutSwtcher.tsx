@@ -11,7 +11,7 @@ type Controlled =
   | { value: LayoutType; onChange: (next: LayoutType) => void; defaultValue?: never }
   | { value?: never; onChange?: (next: LayoutType) => void; defaultValue?: LayoutType };
 
-export interface LayoutSwitcherProps extends Controlled {
+export type LayoutSwitcherProps = Controlled & {
   /** Must be a LayoutOrchestra element */
   children: ReactElement<LayoutOrchestraProps>;
   /** Which layouts to expose in the UI */
@@ -38,8 +38,12 @@ export function LayoutSwitcher({
   ...ctrl
 }: LayoutSwitcherProps) {
   // Controlled vs uncontrolled
-  const [inner, setInner] = useState<LayoutType>(("defaultValue" in ctrl && ctrl.defaultValue) || "row");
-  const current = ("value" in ctrl && ctrl.value) || inner;
+  const [inner, setInner] = useState<LayoutType>(
+    "defaultValue" in ctrl && ctrl.defaultValue ? ctrl.defaultValue : "row"
+  );
+
+  const current: LayoutType = "value" in ctrl && ctrl.value ? ctrl.value : inner;
+
   const setCurrent = (l: LayoutType) => {
     if ("onChange" in ctrl && ctrl.onChange) ctrl.onChange(l);
     if (!("value" in ctrl)) setInner(l);
@@ -49,7 +53,6 @@ export function LayoutSwitcher({
   const childCfg = keepChildConfig ? ((children.props as LayoutOrchestraProps).config ?? {}) : {};
   const mergedCfg = useMemo(
     () => ({ ...childCfg, ...(overrides?.[current] ?? {}) }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [JSON.stringify(childCfg), JSON.stringify(overrides?.[current]), current]
   );
 
@@ -88,7 +91,9 @@ export function LayoutSwitcherButtons({
           key={l}
           onClick={() => onSelect(l)}
           className={`px-3 py-1 rounded-md border transition ${
-            current === l ? "bg-teal-600 text-white border-teal-600" : "bg-white text-teal-600 border-teal-600 hover:bg-teal-50"
+            current === l
+              ? "bg-teal-600 text-white border-teal-600"
+              : "bg-white text-teal-600 border-teal-600 hover:bg-teal-50"
           }`}
         >
           {l}
@@ -97,5 +102,3 @@ export function LayoutSwitcherButtons({
     </div>
   );
 }
-
-export { type LayoutOverrideMap };
