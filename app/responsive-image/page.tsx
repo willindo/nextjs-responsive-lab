@@ -5,7 +5,6 @@ import ClippyItem from '@/components/ClippyItem'
 import Horiz from '@/components/Horiz'
 import HorizSmall from '@/components/HorizSmall'
 import Intro  from '@/components/Intro'
-import MotionTextDemo from '@/components/MotionTextDemo'
 import ResponsiveImagesDemo from '@/components/ResponsiveImageDemo1'
 import ResponsiveImageDemo2 from '@/components/ResponsiveImageDemo2'
 import ShadowDemo from '@/components/Shadowdemo'
@@ -19,7 +18,6 @@ function ResponsiveImagePage() {
         <BackimageDemo />
         <ShadowDemo />
         {/* <ClipItem /> */}
-        <MotionTextDemo />
         {/* <ClippyItem /> */}
         <Intro />               
         {/* <Horiz /> */}
