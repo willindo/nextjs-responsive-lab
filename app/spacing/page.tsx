@@ -1,9 +1,17 @@
+import CircleCarousel from "@/components/CircleCarousel";
 import ClippyItem from "@/components/ClippyItem";
 import GridFlex from "@/components/GridFlex";
+import PageTurnCarousel from "@/components/PageTurnCarousel";
+import { Circle } from "lucide-react";
 
 export default function SpacingPage() {
   return (
     <div>
+      <PageTurnCarousel
+        images={["https://picsum.photos/300/300", "https://picsum.photos/1200/600", "https://picsum.photos/1200/600"]}
+        width={720}
+        height={480}
+      />
       <ClippyItem />
       <h1 className="text-3xl font-bold">Responsive Spacing Demo</h1>
       <p className="mt-[clamp(12px,4vw,48px)] p-[clamp(8px,2vw,32px)] bg-teal-200 rounded-lg">
@@ -29,7 +37,7 @@ export default function SpacingPage() {
           Clean sugar syntax 🚀
         </p>
       </div>
-
+<CircleCarousel/> 
         <GridFlex />
         </div>
   );

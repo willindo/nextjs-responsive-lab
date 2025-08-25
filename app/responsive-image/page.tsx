@@ -21,7 +21,7 @@ function ResponsiveImagePage() {
       {/* <ClipItem /> */}
         {/* <ClippyItem /> */}
         <Intro />               
-        {/* <Horiz /> */}
+        <Horiz />
         <HorizSmall />  
     </div>
   )

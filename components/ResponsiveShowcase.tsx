@@ -6,9 +6,9 @@ export default function ResponsiveShowcase() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section className="mx-auto max-w-7xl p-4 md:p-8">
+    <section className="mx-auto max-w-7xl  p-4 md:p-8">
       <header className="mb-8">
-        <h1 className="text-balance text-3xl md:text-5xl font-semibold leading-tight">
+        <h1 className="text-balance text-center  text-3xl md:text-5xl font-semibold leading-tight">
           Elevate your product with a clean, responsive surface
         </h1>
         <p className="mt-3 text-pretty text-sm md:text-base text-gray-600">
