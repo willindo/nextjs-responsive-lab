@@ -1,7 +1,7 @@
 "use client";
 import AnimatedGradientBg from "@/components/AnimatedGradientBg";
 import AnimatedSidebar from "@/components/AnimatedSidebar";
-import { DevConfigPanel } from "@/components/DevConfiPanel";
+import { DevConfigPanel } from "@/components/dev-tools/DevConfigPanel";
 import InterlockedGrid from "@/components/InterLockedGrid";
 import Intro from "@/components/Intro";
 import {LayoutOrchestra} from "@/components/LayoutOrchestra";
@@ -15,9 +15,11 @@ import RippleBox from "@/components/RippleBox";
 import Textual from "@/components/Textual";
 import WaveBoxes from "@/components/WaveBoxes";
 import { useState } from "react";
+import SpacingPage from "./spacing/page";
 export default function Home() {
   const [config, setConfig] = useState({
   radius: 160,
+  spacing: 100,
   angleStart: -90,
   sweep: 120,
   spiralA: 24,
@@ -36,6 +38,7 @@ export default function Home() {
     { type: "number", key: "spiralA", label: "Spiral A", min: -180, max: 180 },
     { type: "number", key: "spiralB", label: "Spiral B", min: -180, max: 180 },
     { type: "number", key: "spiralStepDeg", label: "Spiral Step Deg", min: -180, max: 180, step: 5 },
+    { type: "number", key: "spacing", label: "Spacing", min: 0, max: 100, step: 1 },
     { type: "boolean", key: "rotateWithTangent", label: "Rotate With Tangent" },
   ]}
   values={config}
