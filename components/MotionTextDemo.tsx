@@ -1,50 +1,43 @@
 "use client";
+import React, { ReactNode, ElementType } from "react";
+import { MotionScopeMath } from "./MotionPlayground"; // adjust import
 
-import { motion } from "framer-motion";
+// Utility: split text into spans
+function splitText(text: string): ReactNode[] {
+  return text.split("").map((char, i) => (
+    <span key={i} className="inline-block whitespace-pre">
+      {char}
+    </span>
+  ));
+}
 
-export default function MotionTextDemo() {
+interface MotionTextMathProps {
+  as?: ElementType; 
+  text: string;
+  pattern?: Parameters<typeof MotionScopeMath>[0]["pattern"];
+  params?: Parameters<typeof MotionScopeMath>[0]["params"];
+  className?: string;
+}
+
+/**
+ * MotionTextMath
+ * - For inline/heading text (span, p, h1, h2, etc.)
+ * - Splits text into letters and applies MotionScopeMath animations
+ */
+export function MotionTextMath({
+  as: Tag = "span", // Default to span (safe inline element)
+  text,
+  pattern = "waveY",
+  params,
+  className = "",
+}: MotionTextMathProps) {
+  const letters = splitText(text);
+
   return (
-    <div className="relative h-[400px] w-full bg-gray-100 overflow-hidden flex items-center justify-center">
-      {/* Circular Path */}
-      <motion.h2
-        className="absolute text-2xl font-bold text-blue-600"
-        animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-        style={{
-          offsetPath: "path('M200,200 m-100,0 a100,100 0 1,1 200,0 a100,100 0 1,1 -200,0')",
-          offsetRotate: "0deg",
-        }}
-      >
-        Circle Path
-      </motion.h2>
-
-      {/* Wave Path */}
-      <motion.h2
-        className="absolute text-2xl font-bold text-green-600"
-        animate={{ offsetDistance: ["0%", "100%"] }}
-        transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
-        style={{
-          offsetPath: "path('M0,200 Q150,100 300,200 T600,200')",
-          offsetRotate: "0deg",
-          offsetDistance: "0%",
-        }}
-      >
-        Wave Path
-      </motion.h2>
-
-      {/* Diagonal Path */}
-      <motion.h2
-        className="absolute text-2xl font-bold text-red-600"
-        animate={{ offsetDistance: ["0%", "100%"] }}
-        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-        style={{
-          offsetPath: "path('M0,0 L400,400')",
-          offsetRotate: "auto",
-          offsetDistance: "0%",
-        }}
-      >
-        Diagonal Path
-      </motion.h2>
-    </div>
+    <Tag className={`inline-block ${className}`}>
+      <MotionScopeMath pattern={pattern} params={params}>
+        {letters}
+      </MotionScopeMath>
+    </Tag>
   );
 }
