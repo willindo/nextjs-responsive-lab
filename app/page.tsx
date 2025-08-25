@@ -1,11 +1,8 @@
 "use client";
 import AnimatedGradientBg from "@/components/AnimatedGradientBg";
 import AnimatedSidebar from "@/components/AnimatedSidebar";
-import { DevConfigPanel } from "@/components/dev-tools/DevConfigPanel";
 import InterlockedGrid from "@/components/InterLockedGrid";
 import Intro from "@/components/Intro";
-import {LayoutOrchestra} from "@/components/LayoutOrchestra";
-import { LayoutSwitcher } from "@/components/LayoutSwtcher";
 import LineClampAutoPage from "@/components/LineClampAutoPage";
 import MotionDemo from "@/components/MotionDemo";
 import { MotionTextMath } from "@/components/MotionTextOrchestra";
@@ -16,35 +13,39 @@ import Textual from "@/components/Textual";
 import WaveBoxes from "@/components/WaveBoxes";
 import { useState } from "react";
 import SpacingPage from "./spacing/page";
+import { DevConfigPanel } from "./old/DevConfigPanel";
+import { LayoutOrchestra } from "@/components/LayoutOrchestra";
+import { LayoutSwitcher } from "@/components/LayoutSwitcher";
+
 export default function Home() {
-  const [config, setConfig] = useState({
-  radius: 160,
-  spacing: 100,
-  angleStart: -90,
-  sweep: 120,
-  spiralA: 24,
-  spiralB: 32,
-  spiralStepDeg: 40,
-  rotateWithTangent: true,
-});
+   const [config, setConfig] = useState({
+    radius: 160,
+    spacing: 100,
+    angleStart: -90,
+    sweep: 120,
+    spiralA: 24,
+    spiralB: 32,
+    spiralStepDeg: 40,
+    rotateWithTangent: true,
+  });
   return (
     <>
-    <RippleBox />
-    <DevConfigPanel
-  schema={[
-    { type: "number", key: "radius", label: "Radius", min: 50, max: 300, step: 10 },
-    { type: "number", key: "angleStart", label: "Angle Start", min: -180, max: 180, step: 5 },
-    { type: "number", key: "sweep", label: "Sweep", min: -180, max: 180, step: 5 },
-    { type: "number", key: "spiralA", label: "Spiral A", min: -180, max: 180 },
-    { type: "number", key: "spiralB", label: "Spiral B", min: -180, max: 180 },
-    { type: "number", key: "spiralStepDeg", label: "Spiral Step Deg", min: -180, max: 180, step: 5 },
-    { type: "number", key: "spacing", label: "Spacing", min: 0, max: 100, step: 1 },
-    { type: "boolean", key: "rotateWithTangent", label: "Rotate With Tangent" },
-  ]}
-  values={config}
-  onChange={setConfig}
-/>
-      <LayoutSwitcher overrides={{ circle: config }} {...config} >
+      <RippleBox />
+       <DevConfigPanel
+          schema={[
+            { type: "number", key: "radius", label: "Radius", min: 50, max: 300, step: 10 },
+            { type: "number", key: "angleStart", label: "Angle Start", min: -180, max: 180, step: 5 },
+            { type: "number", key: "sweep", label: "Sweep", min: -180, max: 180, step: 5 },
+            { type: "number", key: "spiralA", label: "Spiral A", min: -180, max: 180 },
+            { type: "number", key: "spiralB", label: "Spiral B", min: -180, max: 180 },
+            { type: "number", key: "spiralStepDeg", label: "Spiral Step Deg", min: -180, max: 180, step: 5 },
+            { type: "number", key: "spacing", label: "Spacing", min: 0, max: 100, step: 1 },
+            { type: "boolean", key: "rotateWithTangent", label: "Rotate With Tangent" },
+          ]}
+          values={config}
+          onChange={setConfig}
+          />
+       <LayoutSwitcher overrides={{ circle: config }} {...config} >
         <LayoutOrchestra
           layout="circle"
           config={config}
@@ -61,6 +62,7 @@ export default function Home() {
           ))}
         </LayoutOrchestra>
       </LayoutSwitcher>
+
       <LayoutSwitcher overrides={{ spiral: config }} {...config} >
         <LayoutOrchestra
           layout="spiral"

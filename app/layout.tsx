@@ -6,7 +6,8 @@ import FontSizeOverlay from "@/components/dev-tools/FontSizeOverlay";
 import Navbar from "@/components/Navbar";
 import UnitCheatSheet from "@/components/UnitCheatSheet";
 import TransitionProvider from "@/components/TransitionProvider";
-
+import { DevProviders } from "@/components/providers/DevProviders";
+// import { DevConfigPanel } from "@/components/dev-tools/DevConfigPanel";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -21,23 +22,32 @@ export const metadata: Metadata = {
   title: "Responsive",
   description: "responsive design, animation and layout examples",
 };
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" >
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+   
+return (
+  <html lang="en">
+     
       <body>
-        <TransitionProvider preset="cinematic" >
+        <TransitionProvider preset="cinematic">
+          <Navbar />
+          {/* <DevProviders> */}
+             {/* {process.env.NODE_ENV === "development" && <DevConfigPanel />} */}
+            {children}
+            {/* <DevConfigPanel /> */}
+          {/* </DevProviders> */}
 
-        <Navbar />
+          {/* <main className="p-6">{children}</main> */}
 
-        <main className="p-6">{children}</main>
-        
-        {/* Persistent Overlay */}
-        {/* <FontDebugger /> */}
-        {/* <FontSizeOverlay /> */}
-        {/* <UnitCheatSheet /> */}
+          {/* Persistent Overlay */}
+          {/* <FontDebugger /> */}
+          {/* <FontSizeOverlay /> */}
+          {/* <UnitCheatSheet /> */}
         </TransitionProvider>
       </body>
     </html>
   );
 }
-
