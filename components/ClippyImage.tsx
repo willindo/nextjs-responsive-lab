@@ -38,7 +38,7 @@ export default function ClippyImage({ src, alt = "", children }: Props) {
       </div>
 
       {/* shape selector */}
-      <div className="absolute top-3 right-3 flex gap-2">
+      <div className="absolute z-1 top-3 right-3 flex gap-2">
         {Object.keys(CLIP_SHAPES).map((s) => (
           <button
             key={s}

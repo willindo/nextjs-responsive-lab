@@ -8,41 +8,41 @@ export default function ResponsiveGridPage() {
   return (
     <>
       {/* <RoundFoldList/>  */}
-      <ExplodeStack>
-        Hello
-        <span>World</span>
-        <div>Nice to meet you</div>
-      </ExplodeStack>
 
       <ExplodeStack>
-        {/* Block 1 */}
         <>
-          <h1 className="text-3xl font-bold text-purple-600">Hello</h1>
-          <p className="text-white">World</p>
-          <h1 className="text-3xl font-bold text-purple-600">Hello</h1>
-          <p className="text-white">World</p>
-        </>
-
-        {/* Block 2 */}
-        <>
-          <img src="/logo.png" alt="Logo" className="w-12 h-12" />
-          <span className="text-xl text-green-400">Logo Text</span>
-          <span className="text-xl text-green-400">Logo Text</span>
+          <div>🍎</div>
+          <div>🍌</div>
+          <div>🍇</div>
+          <div>🍉</div>
         </>
         <>
-          <img src="/logo.png" alt="Logo" className="w-12 h-12" />
+          <img
+            src="https://picsum.photos/300/300"
+            alt="Logo"
+            className="w-12 h-12"
+          />
+          <p className="tex text-green-400">Logo Text</p>
+          <p className="text-xl text-green-400">Logo Text</p>
+        </>
+        <>
+          <img
+            src="https://picsum.photos/300/300"
+            alt="Logo"
+            className="w-12 h-12"
+          />
           <span className="text-xl text-green-400">Logo Text</span>
           <span className="text-xl text-green-400">Logo Text</span>
         </>
-      </ExplodeStack>
-      <ExplodeStack>
-        <div>
-          <h1>Title</h1>
-          <p>Subtitle here</p>
-        </div>
-        <div>
-          <button>Click Me</button>
-        </div>
+        <>
+          <img
+            src="https://picsum.photos/300/300"
+            alt="Logo"
+            className="w-22 h-22"
+          />
+          <span className="text-xl text-green-400">Logo Text</span>
+          <span className="text-xl text-green-400">Logo Text</span>
+        </>
       </ExplodeStack>
 
       <div>

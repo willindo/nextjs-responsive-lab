@@ -3,6 +3,7 @@ import ClippyItem from "@/components/ClippyItem";
 import GridFlex from "@/components/GridFlex";
 import PageTurnCarousel from "@/components/PageTurnCarousel";
 import ThreeStepNestedCards from "@/components/ThreeStepNestedCards";
+import MediaAnimate from "@/components/ui-tools/MediaAnimate";
 import { Circle } from "lucide-react";
 
 export default function SpacingPage() {
@@ -13,6 +14,7 @@ export default function SpacingPage() {
         width={720}
         height={480}
         /> */}
+        {/* <MediaAnimate /> */}
       <ClippyItem />
       <h1 className="text-3xl font-bold">Responsive Spacing Demo</h1>
       <p className="mt-[clamp(12px,4vw,48px)] p-[clamp(8px,2vw,32px)] bg-teal-200 rounded-lg">

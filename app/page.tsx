@@ -102,8 +102,8 @@ export default function Home() {
         <LayoutOrchestra
           layout="circle"
           config={config}
-          width={500}
-          height={500}
+          width={200}
+          height={200}
         >
           {Array.from({ length: 6 }).map((_, i) => (
             <div
@@ -120,8 +120,8 @@ export default function Home() {
         <LayoutOrchestra
           layout="spiral"
           config={config}
-          width={500}
-          height={500}
+          width={200}
+          height={200}
           className="bg-[teal] z-0"
         >
           <MotionScopeMath
