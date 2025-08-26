@@ -1,0 +1,7 @@
+| Pattern  | speed | freq | amp | radius | phaseGap | angle | growth |
+| -------- | ----- | ---- | --- | ------ | -------- | ----- | ------ |
+| linearX  | ✅     | ❌    | ❌   | ❌      | ✅        | ❌     | ❌      |
+| waveY    | ❌     | ✅    | ✅   | ❌      | ✅        | ❌     | ❌      |
+| spiral   | ❌     | ✅    | ❌   | ✅      | ✅        | ❌     | ✅      |
+| pendulum | ❌     | ✅    | ❌   | ❌      | ✅        | ✅     | ❌      |
+| breath   | ❌     | ✅    | ✅   | ❌      | ✅        | ❌     | ❌      |
