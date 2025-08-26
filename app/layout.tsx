@@ -6,8 +6,6 @@ import FontSizeOverlay from "@/components/dev-tools/FontSizeOverlay";
 import Navbar from "@/components/Navbar";
 import UnitCheatSheet from "@/components/UnitCheatSheet";
 import TransitionProvider from "@/components/TransitionProvider";
-import { DevProviders } from "@/components/providers/DevProviders";
-// import { DevConfigPanel } from "@/components/dev-tools/DevConfigPanel";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,11 +32,7 @@ return (
       <body>
         <TransitionProvider preset="cinematic">
           <Navbar />
-          {/* <DevProviders> */}
-             {/* {process.env.NODE_ENV === "development" && <DevConfigPanel />} */}
             {children}
-            {/* <DevConfigPanel /> */}
-          {/* </DevProviders> */}
 
           {/* <main className="p-6">{children}</main> */}
 
