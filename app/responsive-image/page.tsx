@@ -18,7 +18,7 @@ function ResponsiveImagePage() {
       {/* <ResponsiveImageDemo2 /> */}
       <BackimageDemo />
       <ShadowDemo />
-      {/* <ClipItem /> */}
+      <ClipItem />
         {/* <ClippyItem /> */}
         <Intro />               
         <Horiz />

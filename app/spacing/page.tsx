@@ -2,16 +2,17 @@ import CircleCarousel from "@/components/CircleCarousel";
 import ClippyItem from "@/components/ClippyItem";
 import GridFlex from "@/components/GridFlex";
 import PageTurnCarousel from "@/components/PageTurnCarousel";
+import ThreeStepNestedCards from "@/components/ThreeStepNestedCards";
 import { Circle } from "lucide-react";
 
 export default function SpacingPage() {
   return (
     <div>
-      <PageTurnCarousel
-        images={["https://picsum.photos/300/300", "https://picsum.photos/1200/600", "https://picsum.photos/1200/600"]}
+      {/* <PageTurnCarousel
+        images={["https://picsum.photos/800/450", "https://picsum.photos/1200/600", "https://picsum.photos/1200/600"]}
         width={720}
         height={480}
-      />
+        /> */}
       <ClippyItem />
       <h1 className="text-3xl font-bold">Responsive Spacing Demo</h1>
       <p className="mt-[clamp(12px,4vw,48px)] p-[clamp(8px,2vw,32px)] bg-teal-200 rounded-lg">
@@ -27,18 +28,17 @@ export default function SpacingPage() {
       <div className="@container">
         <div
           className=" h-20 bg-amber-600 
-           @md:mt-[max(18px,2vw)] @xl:mt-[min(30px,2.5vw)] @md:bg-green-700  @md:p-[clamp(8px,2.5vw,16px)] @lg:p-[clamp(18px,2.5vw,33px)]"
-           >
-           Card content container expertise
+          @md:mt-[max(18px,2vw)] @xl:mt-[min(30px,2.5vw)] @md:bg-green-700  @md:p-[clamp(8px,2.5vw,16px)] @lg:p-[clamp(18px,2.5vw,33px)]"
+        >
+          Card content container expertise
         </div>
       </div>
       <div className="cardi">
-        <p className="mt-2 bg-lime-800">
-          Clean sugar syntax 🚀
-        </p>
+        <p className="mt-2 bg-lime-800">Clean sugar syntax 🚀</p>
       </div>
-<CircleCarousel/> 
-        <GridFlex />
-        </div>
+      <CircleCarousel />
+      <ThreeStepNestedCards />
+      <GridFlex />
+    </div>
   );
 }

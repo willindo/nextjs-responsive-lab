@@ -101,7 +101,9 @@ export default function CircleCarousel({
               height: "100%",
               borderRadius: "9999px",
               // create a semicircle mask by overlaying a radial-gradient that fades
-              background: `conic-gradient(from ${-visibleArcDeg / 2}deg at 50% 50%, rgba(255,255,255,0.06) 0 ${visibleArcDeg}deg, transparent ${visibleArcDeg}deg 360deg)`,
+              background: `conic-gradient(from ${
+                -visibleArcDeg / 2
+              }deg at 50% 50%, rgba(255,255,255,0.06) 0 ${visibleArcDeg}deg, transparent ${visibleArcDeg}deg 360deg)`,
             }}
           />
 
@@ -139,7 +141,10 @@ export default function CircleCarousel({
                     WebkitTapHighlightColor: "transparent",
                   }}
                   initial={false}
-                  animate={{ scale: i === index ? 1.16 : scale, opacity: i === index ? 1 : opacity }}
+                  animate={{
+                    scale: i === index ? 1.16 : scale,
+                    opacity: i === index ? 1 : opacity,
+                  }}
                   whileHover={{ scale: 1.18 }}
                   transition={{ type: "spring", stiffness: 160, damping: 18 }}
                 >
@@ -161,13 +166,15 @@ export default function CircleCarousel({
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                className="w-full h-full rounded-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-white/6 to-white/3 border border-white/6"
+                className="w-full h-full rounded-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-blue/6 to-red/3 border border-green/6"
               >
                 <div className="text-xs opacity-80">Selected</div>
                 <div className="text-lg font-bold mt-1 text-center">
                   {typeof list[index] === "string" ? list[index] : list[index]}
                 </div>
-                <div className="text-[12px] opacity-60 mt-1">Item {index + 1} of {n}</div>
+                <div className="text-[12px] opacity-60 mt-1">
+                  Item {index + 1} of {n}
+                </div>
               </motion.div>
             </div>
           </motion.div>
@@ -176,27 +183,30 @@ export default function CircleCarousel({
         {/* subtle ring */}
         <div className="absolute inset-0 rounded-full pointer-events-none ring-1 ring-white/3" />
       </div>
-{/* Wireframe orbit ring */}
-<motion.div
-  className="absolute inset-0 rounded-full border border-white/20 pointer-events-none"
-  style={{ borderStyle: "dashed" }}
-  animate={{ rotate: 360 }}
-  transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-/>
+      {/* Wireframe orbit ring */}
+      <motion.div
+        className="absolute inset-0 rounded-full border border-white/20 pointer-events-none"
+        style={{ borderStyle: "dashed" }}
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+      />
 
-{/* Inner pulsating wire circle */}
-<motion.div
-  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/30"
-  style={{ width: "50%", height: "60%" }}
-  animate={{ scale: [1, 1.05, 1] }}
-  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-/>
+      {/* Inner pulsating wire circle */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/30"
+        style={{ width: "50%", height: "60%" }}
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+      />
 
       {/* controls: dots + next/prev */}
       <div className="flex items-center gap-4">
         <button
           className="px-3 py-2 rounded-md bg-white/6 text-sm hover:bg-white/8"
-          onClick={() => { lastInteractionRef.current = Date.now(); setIndex((s) => (s - 1 + n) % n); }}
+          onClick={() => {
+            lastInteractionRef.current = Date.now();
+            setIndex((s) => (s - 1 + n) % n);
+          }}
         >
           Prev
         </button>
@@ -207,20 +217,27 @@ export default function CircleCarousel({
               key={i}
               onClick={() => pickIndex(i)}
               aria-label={`Select ${i + 1}`}
-              className={`w-3 h-3 rounded-full transition-all ${i === index ? "scale-125 w-3.5 h-3.5 bg-white" : "bg-white/30"}`}
+              className={`w-3 h-3 rounded-full transition-all ${
+                i === index ? "scale-125 w-3.5 h-3.5 bg-white" : "bg-white/30"
+              }`}
             />
           ))}
         </div>
 
         <button
           className="px-3 py-2 rounded-md bg-white/6 text-sm hover:bg-white/8"
-          onClick={() => { lastInteractionRef.current = Date.now(); setIndex((s) => (s + 1) % n); }}
+          onClick={() => {
+            lastInteractionRef.current = Date.now();
+            setIndex((s) => (s + 1) % n);
+          }}
         >
           Next
         </button>
       </div>
 
-      <div className="text-xs opacity-60">Hover to pause • Click dots to select • Auto-rotates when idle</div>
+      <div className="text-xs opacity-60">
+        Hover to pause • Click dots to select • Auto-rotates when idle
+      </div>
     </div>
   );
 }
