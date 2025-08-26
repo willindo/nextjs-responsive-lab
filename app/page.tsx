@@ -15,7 +15,7 @@ import { useState } from "react";
 import SpacingPage from "./spacing/page";
 import { LayoutOrchestra } from "@/components/LayoutOrchestra";
 import { LayoutSwitcher } from "@/components/LayoutSwitcher";
-import { DevConfigPanel1 } from "@/components/dev-tools/DevConfigPanel1";
+import { DevConfigPanel1 } from "@/components/ui-tools/DevConfigPanel1";
 
 export default function Home() {
    const [config, setConfig] = useState({

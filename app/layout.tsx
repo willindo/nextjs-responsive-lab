@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import FontDebugger from "@/components/dev-tools/FontDebugger";
-import FontSizeOverlay from "@/components/dev-tools/FontSizeOverlay";
+import FontDebugger from "@/components/ui-tools/FontDebugger";
+import FontSizeOverlay from "@/components/ui-tools/FontSizeOverlay";
 import Navbar from "@/components/Navbar";
 import UnitCheatSheet from "@/components/UnitCheatSheet";
 import TransitionProvider from "@/components/TransitionProvider";
