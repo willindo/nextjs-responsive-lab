@@ -13,9 +13,9 @@ import Textual from "@/components/Textual";
 import WaveBoxes from "@/components/WaveBoxes";
 import { useState } from "react";
 import SpacingPage from "./spacing/page";
-import { DevConfigPanel } from "./old/DevConfigPanel";
 import { LayoutOrchestra } from "@/components/LayoutOrchestra";
 import { LayoutSwitcher } from "@/components/LayoutSwitcher";
+import { DevConfigPanel1 } from "@/components/dev-tools/DevConfigPanel1";
 
 export default function Home() {
    const [config, setConfig] = useState({
@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <>
       <RippleBox />
-       <DevConfigPanel
+       <DevConfigPanel1
           schema={[
             { type: "number", key: "radius", label: "Radius", min: 50, max: 300, step: 10 },
             { type: "number", key: "angleStart", label: "Angle Start", min: -180, max: 180, step: 5 },
