@@ -1,7 +1,7 @@
 // components/DevConfigPanelWrapper.tsx
 "use client";
 import { useConfig } from "@/components/contexts/ConfigContext";
-import { DevConfigPanel } from "@/components/dev-tools/DevConfigPanel";
+// import { DevConfigPanel } from "@/components/dev-tools/DevConfigPanel";
 // import { Children } from "react";
 
 export default function DevConfigPanelWrapper({ children }: { children: React.ReactNode }) {
