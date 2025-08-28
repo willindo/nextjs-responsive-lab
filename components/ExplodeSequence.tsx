@@ -11,6 +11,7 @@ export default function ExplodeStack({
 }) {
   const [explode, setExplode] = useState(false);
 
+  // arc destinations for each block
   const arcs = [
     { x: 250, y: -80 },
     { x: -250, y: -60 },
@@ -28,11 +29,14 @@ export default function ExplodeStack({
   }) {
     const raw = Array.isArray(children) ? children : [children];
 
-    // auto-split plain text
+    // auto-split plain text into characters
     const items = raw.flatMap((el, i) => {
       if (typeof el === "string") {
         return el.split("").map((ch, j) => (
-          <span key={`${i}-${j}`} className="text-2xl font-bold text-purple-600">
+          <span
+            key={`${i}-${j}`}
+            className="text-2xl font-bold text-purple-600"
+          >
             {ch}
           </span>
         ));
@@ -55,17 +59,17 @@ export default function ExplodeStack({
               animate={
                 explode
                   ? {
-                    x: [0, 0, offsetX],
-                    y: [0, -40, offsetY],
-                    scale: [0, 1.2, 1],
-                    opacity: [0, 1, 1],
-                  }
+                      x: [0, 0, offsetX],
+                      y: [0, -40, offsetY],
+                      scale: [0, 1.2, 1],
+                      opacity: [0, 1, 1],
+                    }
                   : {
-                    x: [offsetX, 0],
-                    y: [offsetY, 0],
-                    scale: [1, 0],
-                    opacity: [1, 0],
-                  }
+                      x: [offsetX, 0],
+                      y: [offsetY, 0],
+                      scale: [1, 0],
+                      opacity: [1, 0],
+                    }
               }
               transition={{
                 duration: explode ? 1.2 : 0.6,
@@ -85,6 +89,11 @@ export default function ExplodeStack({
 
   const childBlocks = Array.isArray(children) ? children : [children];
 
+  // timings
+  const blockDuration = 1; // how long block itself animates
+  const childrenDuration = 1.2; // how long children scatter
+  const totalPerBlock = blockDuration + childrenDuration;
+
   return (
     <div className="relative z-20 mx-auto w-80 h-80 flex items-center justify-center overflow-visible">
       {/* toggle button */}
@@ -95,29 +104,38 @@ export default function ExplodeStack({
         {explode ? "×" : "+"}
       </button>
 
-      {childBlocks.map((block, i) => (
-        <motion.div
-          key={i}
-          className="absolute z-0 w-48 h-48 bg-purple-800 border-amber-500 border flex items-center justify-center font-bold rounded-lg shadow-lg overflow-visible"
-          style={{ top: i * 20, left: i * 20 }}
-          initial={{ x: 0, y: 0, rotate: 0, opacity: 0 }}
-          animate={
-            explode
-              ? { ...arcs[i % arcs.length], opacity: 1 }
-              : { x: 0, y: 0, rotate: 0, opacity: 0 }
-          }
-          transition={{
-            delay: i * 0.3,
-            duration: 1,
-          }}
-        >
-          {/* scatter block’s own children */}
-          {explode && <ExplodeChildren delayBase={i * 0.4}>{block}</ExplodeChildren>}
+      {childBlocks.map((block, i) => {
+        const baseDelay = i * totalPerBlock; // sequential timing
 
-          {/* show block normally before explosion */}
-          {!explode && block}
-        </motion.div>
-      ))}
+        return (
+          <motion.div
+            key={i}
+            className="absolute z-0 w-48 h-48 border-amber-500 border flex items-center justify-center font-bold rounded-lg shadow-lg overflow-visible"
+            style={{ top: i * 20, left: i * 20 }}
+            initial={{ x: 0, y: 0, rotate: 0, opacity: 0 }}
+            animate={
+              explode
+                ? { ...arcs[i % arcs.length], opacity: 1 }
+                : { x: 0, y: 0, rotate: 0, opacity: 0 }
+            }
+            transition={{
+              delay: baseDelay,
+              duration: blockDuration,
+              ease: "easeOut",
+            }}
+          >
+            {/* scatter block’s own children after block finishes */}
+            {explode && (
+              <ExplodeChildren delayBase={baseDelay + blockDuration}>
+                {block}
+              </ExplodeChildren>
+            )}
+
+            {/* show block normally before explosion */}
+            {!explode && block}
+          </motion.div>
+        );
+      })}
     </div>
   );
 }

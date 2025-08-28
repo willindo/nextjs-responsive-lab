@@ -1,5 +1,16 @@
 @import "tailwindcss";
 @layer utilities {
+  @import url("https://fonts.googleapis.com/css2?family=Sora&display=swap");
+
+@font-face {
+  font-family: "Bandeins Strange Variable";
+  src: url("https://res.cloudinary.com/dldmpwpcp/raw/upload/v1566406079/BandeinsStrangeVariable_esetvq.ttf");
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
   .acontainer {
     container-type: inline-size;
     container-name: acontainer;
@@ -133,3 +144,39 @@ body {
   gap: var(--space);
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 }
+.img-group div {
+  position: relative;
+  width: 20%;
+  aspect-ratio: 1/1;
+  max-width: 140px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.img-group div:nth-child(1) {
+  background-image: url("https://assets.codepen.io/16327/scroll-flair-1.png");
+}
+.img-group div:nth-child(2) {
+  background-image: url("https://assets.codepen.io/16327/scroll-flair-2.png");
+}
+.img-group div:nth-child(3) {
+  background-image: url("https://assets.codepen.io/16327/scroll-flair-3.png");
+}
+.img-group div:nth-child(4) {
+  background-image: url("https://assets.codepen.io/16327/scroll-flair-4.png");
+}
+.img-group div:nth-child(5) {
+  background-image: url("https://assets.codepen.io/16327/flair.png");
+}
+
+.img-group div::before {
+  content: attr(data-speed);
+  position: absolute;
+  color: #fffce1;
+  top: -2rem;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.7;
+}
+

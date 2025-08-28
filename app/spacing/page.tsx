@@ -2,12 +2,17 @@ import CircleCarousel from "@/components/CircleCarousel";
 import ClippyItem from "@/components/ClippyItem";
 import GridFlex from "@/components/GridFlex";
 import PageTurnCarousel from "@/components/PageTurnCarousel";
+import ParallaxGroup from "@/components/ParallaxGroup";
 import ThreeStepNestedCards from "@/components/ThreeStepNestedCards";
 import MediaAnimate from "@/components/ui-tools/MediaAnimate";
 import { Circle } from "lucide-react";
 
 export default function SpacingPage() {
   return (
+    <>
+      {/* <div>
+      <ParallaxGroup />
+      </div> */}
     <div>
       {/* <PageTurnCarousel
         images={["https://picsum.photos/800/450", "https://picsum.photos/1200/600", "https://picsum.photos/1200/600"]}
@@ -42,5 +47,6 @@ export default function SpacingPage() {
       <ThreeStepNestedCards />
       <GridFlex />
     </div>
+    </>
   );
 }
