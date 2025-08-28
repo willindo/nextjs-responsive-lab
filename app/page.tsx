@@ -1,169 +1,84 @@
 "use client";
-import AnimatedGradientBg from "@/components/AnimatedGradientBg";
-import AnimatedSidebar from "@/components/AnimatedSidebar";
-import InterlockedGrid from "@/components/InterLockedGrid";
-import Intro from "@/components/Intro";
-import LineClampAutoPage from "@/components/LineClampAutoPage";
-import MotionDemo from "@/components/MotionDemo";
-import { MotionTextMath } from "@/components/MotionTextOrchestra";
-import ParticleBackground from "@/components/ParticleBackground";
-import ParticleItem from "@/components/ParticleItem";
-import RippleBox from "@/components/RippleBox";
-import Textual from "@/components/Textual";
-import WaveBoxes from "@/components/WaveBoxes";
-import { useState } from "react";
-import SpacingPage from "./spacing/page";
-import { LayoutOrchestra } from "@/components/LayoutOrchestra";
-import { LayoutSwitcher } from "@/components/LayoutSwitcher";
-import { DevConfigPanel1 } from "@/components/ui-tools/DevConfigPanel1";
-import { AnimatedScope } from "@/components/AnimatedScope";
-import { MotionScopeMath } from "@/components/MotionPlayground";
 
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Github, Linkedin, Mail } from "lucide-react";
+import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
+import Experience from "@/components/Experience";
 export default function Home() {
-  const [config, setConfig] = useState({
-    radius: 160,
-    spacing: 100,
-    angleStart: -90,
-    sweep: 120,
-    spiralA: 24,
-    spiralB: 32,
-    spiralStepDeg: 40,
-    rotateWithTangent: true,
-  });
   return (
-    <>
-      <RippleBox />
-      <DevConfigPanel1
-        schema={[
-          {
-            type: "number",
-            key: "radius",
-            label: "Radius",
-            min: 50,
-            max: 300,
-            step: 10,
-          },
-          {
-            type: "number",
-            key: "angleStart",
-            label: "Angle Start",
-            min: -180,
-            max: 180,
-            step: 5,
-          },
-          {
-            type: "number",
-            key: "sweep",
-            label: "Sweep",
-            min: -180,
-            max: 180,
-            step: 5,
-          },
-          {
-            type: "number",
-            key: "spiralA",
-            label: "Spiral A",
-            min: -180,
-            max: 180,
-          },
-          {
-            type: "number",
-            key: "spiralB",
-            label: "Spiral B",
-            min: -180,
-            max: 180,
-          },
-          {
-            type: "number",
-            key: "spiralStepDeg",
-            label: "Spiral Step Deg",
-            min: -180,
-            max: 180,
-            step: 5,
-          },
-          {
-            type: "number",
-            key: "spacing",
-            label: "Spacing",
-            min: 0,
-            max: 100,
-            step: 1,
-          },
-          {
-            type: "boolean",
-            key: "rotateWithTangent",
-            label: "Rotate With Tangent",
-          },
-        ]}
-        values={config}
-        onChange={setConfig}
-      />
-      <LayoutSwitcher overrides={{ circle: config }} {...config}>
-        <LayoutOrchestra
-          layout="circle"
-          config={config}
-          width={200}
-          height={200}
+    <main className="min-h-screen bg-gray-50 text-gray-900">
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center h-screen text-center px-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-4xl md:text-6xl font-bold"
         >
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="h-16 w-16 bg-amber-400 rounded-full flex items-center justify-center"
-            >
-              {i + 1}
-            </div>
-          ))}
-        </LayoutOrchestra>
-      </LayoutSwitcher>
-      {/* <AnimatedScope animation="zoomIn" stagger={0.3} > */}
-      <LayoutSwitcher overrides={{ spiral: config }} {...config}>
-        <LayoutOrchestra
-          layout="spiral"
-          config={config}
-          width={200}
-          height={200}
-          className="bg-[teal] z-0"
-        >
-          <MotionScopeMath
-            pattern="breath"
-            params={{ freq: 1, growth: 1, phaseGap: 0.5 }}
+          Badsha K N
+        </motion.h1>
+        <p className="mt-4 text-lg md:text-xl text-gray-600">
+          Full-Stack Web Developer & DevOps Engineer
+        </p>
+        <div className="flex gap-4 mt-6">
+          <Link href="mailto:badshanoordeen@gmail.com">
+            <Mail className="w-6 h-6 hover:text-blue-500 transition" />
+          </Link>
+          <Link href="https://github.com/willindo" target="_blank">
+            <Github className="w-6 h-6 hover:text-blue-500 transition" />
+          </Link>
+          <Link
+            href="https://linkedin.com/in/badsha-noordeen-20b328305"
+            target="_blank"
           >
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-          </MotionScopeMath>
-        </LayoutOrchestra>
-        {/* </AnimatedScope> */}
-      </LayoutSwitcher>
-      <MotionDemo />
-      <WaveBoxes />
-      <Textual />
-      <AnimatedGradientBg mode="position" opacity={0.4}>
-        <div className="">
-          <ParticleBackground mode="confetti" />
-          <h1 className="font-size-(--step-2) text-[#5f3322] font-bold">
-            🏠 Home Page
-          </h1>
-          <p>
-            Welcome! Use the nav links above to explore responsive experiments.
-          </p>
+            <Linkedin className="w-6 h-6 hover:text-blue-500 transition" />
+          </Link>
         </div>
-      </AnimatedGradientBg>
-      <div className=" flex aspect-video overflow-hidden ">
-        <AnimatedSidebar />
-        <div className="cbox">
-          <div className="left-shape">
-            <div className="content">Left</div>
-          </div>
-          <div className="right-shape"></div>
-        </div>
-      </div>
-      {/* <ParticleItem /> */}
-      <LineClampAutoPage />
-    </>
+        <Link
+          href="#projects"
+          className="mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+        >
+          View My Work
+        </Link>
+      </section>
+
+      {/* About */}
+      <section id="about" className="px-6 py-20 max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl font-semibold mb-4">About Me</h2>
+        <p className="text-gray-700 leading-relaxed">
+          DevOps Engineer with deep full-stack awareness, specializing in scalable
+          infrastructure using Kubernetes, Docker, Helm, ArgoCD, GitHub Actions,
+          and Terraform. Experienced in building backend systems (NestJS, Fastify)
+          and responsive frontends (React, Next.js) with secure authentication
+          flows. Also explore 3D integration with r3f and Three.js.
+        </p>
+      </section>
+
+      {/* Skills */}
+      <Skills />
+
+      {/* Projects */}
+      <Projects />
+
+      {/* Experience */}
+      <Experience />
+
+      {/* Contact */}
+      <section id="contact" className="px-6 py-20 text-center bg-gray-100">
+        <h2 className="text-3xl font-semibold mb-4">Get In Touch</h2>
+        <p className="text-gray-600">
+          Feel free to reach out for collaboration, freelance projects, or hiring
+          discussions.
+        </p>
+        <Link
+          href="mailto:badshanoordeen@gmail.com"
+          className="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        >
+          Contact Me
+        </Link>
+      </section>
+    </main>
   );
 }
