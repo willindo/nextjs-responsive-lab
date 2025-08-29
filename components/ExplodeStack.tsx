@@ -98,13 +98,13 @@ export default function ExplodeStack({
       {childBlocks.map((block, i) => (
         <motion.div
           key={i}
-          className="absolute z-0 w-48 h-48 bg-purple-800 border-amber-500 border flex items-center justify-center font-bold rounded-lg shadow-lg overflow-visible"
+          className="absolute  z-0 w-48 h-48 bg-purple-800 border-amber-500 border flex items-center justify-center font-bold rounded-lg shadow-lg overflow-visible"
           style={{ top: i * 20, left: i * 20 }}
           initial={{ x: 0, y: 0, rotate: 0, opacity: 0 }}
           animate={
             explode
               ? { ...arcs[i % arcs.length], opacity: 1 }
-              : { x: 0, y: 0, rotate: 0, opacity: 0 }
+              : { x: 0, y: 0, rotate: 0, opacity: 1 }
           }
           transition={{
             delay: i * 0.3,

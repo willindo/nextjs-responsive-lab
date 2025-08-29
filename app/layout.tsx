@@ -6,6 +6,8 @@ import FontSizeOverlay from "@/components/ui-tools/FontSizeOverlay";
 import Navbar from "@/components/Navbar";
 import UnitCheatSheet from "@/components/UnitCheatSheet";
 import TransitionProvider from "@/components/TransitionProvider";
+import PlaygroundSidebar from "@/components/PlaygroundSidebar";
+import Navbar1 from "@/components/Navbar1";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,7 +34,9 @@ return (
       <body>
         <TransitionProvider preset="cinematic">
           <Navbar />
-            {children}
+          {/* <Navbar1/> */}
+          {/* <PlaygroundSidebar /> */}
+          <main className="p-6">{children}</main>
 
           {/* <main className="p-6">{children}</main> */}
 

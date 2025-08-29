@@ -149,7 +149,7 @@ export default function CircleCarousel({
                   transition={{ type: "spring", stiffness: 160, damping: 18 }}
                 >
                   <div className="flex flex-col items-center gap-1 px-2 text-center">
-                    <div className="text-sm font-semibold leading-tight select-none">
+                    <div className="text-sm font-semibold leading-tight ">
                       {typeof it === "string" ? it : it}
                     </div>
                     <div className="text-[11px] opacity-70">#{i + 1}</div>

@@ -317,7 +317,7 @@ function applyGroups(base: Point[], groups?: GroupTransform[]): Point[] {
 
           if (!animate) {
             return (
-              <div key={i} style={baseStyle} className={"select-none " + itemClassName}>
+              <div key={i} style={baseStyle} className={" " + itemClassName}>
                 {child}
               </div>
             );

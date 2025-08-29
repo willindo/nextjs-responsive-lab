@@ -141,7 +141,7 @@ export default function InterlockedGrid({
                   key={it.id}
                   variants={tile}
                   exit="exit"
-                  className={`rounded-lg p-3 shadow-md cursor-pointer select-none overflow-hidden border border-slate-200 bg-white`}
+                  className={`rounded-lg p-3 shadow-md cursor-pointer overflow-hidden border border-slate-200 bg-white`}
                   style={gridStyle}
                   onClick={() => {
                     // click behavior: toggle hidden flag for demo if noswap is false

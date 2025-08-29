@@ -2,15 +2,14 @@
 @layer utilities {
   @import url("https://fonts.googleapis.com/css2?family=Sora&display=swap");
 
-@font-face {
-  font-family: "Bandeins Strange Variable";
-  src: url("https://res.cloudinary.com/dldmpwpcp/raw/upload/v1566406079/BandeinsStrangeVariable_esetvq.ttf");
-}
+  @font-face {
+    font-family: "Bandeins Strange Variable";
+    src: url("https://res.cloudinary.com/dldmpwpcp/raw/upload/v1566406079/BandeinsStrangeVariable_esetvq.ttf");
+  }
 
-* {
-  box-sizing: border-box;
-  user-select: none;
-}
+  * {
+    box-sizing: border-box;
+  }
   .acontainer {
     container-type: inline-size;
     container-name: acontainer;
@@ -56,36 +55,40 @@
   }
 }
 :root {
-  /* --step--1: clamp(0.8rem, 0.7rem + 0.3vw, 1rem);
-  --step-0: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
-  --step-1: clamp(1.25rem, 1.1rem + 0.9vw, 1.75rem);
-  --step-2: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
-  --step-3: clamp(2rem, 1.8rem + 1.5vw, 3rem); */
- --step-0: clamp(14px, 1.2vw + 10px, 16px);
+  --step--10: clamp(0.8rem, 0.7rem + 0.3vw, 1rem);
+  --step-11: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  --step-12: clamp(1.25rem, 1.1rem + 0.9vw, 1.75rem);
+  --step-13: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+  --step-14: clamp(2rem, 1.8rem + 1.5vw, 3rem);
+  --step-0: clamp(14px, 1.2vw + 10px, 16px);
   --step-3: clamp(24px, 2.5vw + 14px, 36px);
   --space: clamp(12px, 1.5vw, 24px);
 }
-h1 { font-size: var(--step-3); }
-section { padding: var(--space); }
+h1 {
+  font-size: var(--step-3);
+}
+section {
+  padding: var(--space);
+}
 
 /* h1 {
   font-size: var(--step-3);
   font-weight: bolder;
 } */
-h2 {
-  font-size: var(--step-2);
+h3 {
+  font-size: var(--step-12);
   font-weight: bolder;
 }
-h3 {
-  font-size: var(--step-1);
+h2 {
+  font-size: var(--step-13);
   font-weight: bolder;
 }
 
 p {
-  font-size: var(--step-0);
+  font-size: var(--step-11);
 }
 .tiny {
-  font-size: var(--step--1);
+  font-size: var(--step--10);
 }
 
 body {
@@ -135,9 +138,13 @@ body {
   align-items: center;
   justify-content: center;
 }
-.card-grid { container-type: inline-size; }
+.card-grid {
+  container-type: inline-size;
+}
 @container (min-width: 42rem) {
-  .card-grid { grid-template-columns: repeat(3, 1fr); }
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .card-grid {
   display: grid;
@@ -179,4 +186,3 @@ body {
   font-size: 14px;
   opacity: 0.7;
 }
-

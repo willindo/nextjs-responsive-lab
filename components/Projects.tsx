@@ -21,8 +21,8 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="px-6 py-20 bg-gray-50">
-      <h2 className="text-3xl font-semibold text-center mb-12">Projects</h2>
+    <section id="projects" className="px-6 py-20 ">
+      <h2 className=" text-[#154114] font-semibold text-center mb-12">Projects</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {projects.map((p) => (
           <a
@@ -32,9 +32,9 @@ export default function Projects() {
             rel="noopener noreferrer"
             className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition flex flex-col"
           >
-            <h3 className="text-xl font-semibold mb-2">{p.name}</h3>
+            <h3 className=" text-[#154114] font-semibold mb-2">{p.name}</h3>
             <p className="text-gray-600 flex-grow">{p.desc}</p>
-            <p className="text-sm text-gray-500 mt-4">{p.tech}</p>
+            <p className=" text-gray-500 mt-4">{p.tech}</p>
           </a>
         ))}
       </div>
