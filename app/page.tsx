@@ -10,12 +10,13 @@ import ExplodeSequence from "@/components/ExplodeSequence";
 import ExplodeStack from "@/components/ExplodeStack";
 import AnimatedGradientBg from "@/components/AnimatedGradientBg";
 import ContactSection from "@/components/Contact";
+import TechStack from "@/components/TechStack";
 export default function Home() {
   return (
     <AnimatedGradientBg>
-    <main className="min-h-screen bg-gray-50 text-gray-900">
+    <main className="min-h-screen pt-0 sm:px-0 ">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center h-screen text-center px-6">
+      <section className=" h-[75vh] flex flex-col items-center justify-center  text-center px-6 sm:px-0">
           {/* <ExplodeStack> */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -44,15 +45,16 @@ export default function Home() {
         </div>
         <Link
           href="#projects"
-          className="mt-8 px-6 py-3 bg-[#4f1113] text-white rounded-lg shadow hover:bg-blue-700 transition"
+          className="mt-8 px-6  py-3 bg-[#4f1113] text-white rounded-lg shadow hover:bg-blue-700 transition"
           >
           View My Work
         </Link>
         {/* </ExplodeStack> */}
       </section>
+          <TechStack />
 
       {/* About */}
-      <section className="max-w-3xl mx-auto px-6 py-12">
+      <section className="max-w-3xl mx-auto px-6 sm:px-0 py-12">
       <h2 className=" text-[#154114] font-bold mb-6">About Me</h2>
 
       <p className="text-lg leading-relaxed mb-4 select-text">
@@ -88,7 +90,7 @@ export default function Home() {
       <Experience />
 
       {/* Contact */}
-      <section id="contact" className="px-6 py-20 text-center bg-gray-100">
+      <section id="contact" className="px-6 sm:px-0 py-20 text-center bg-gray-100">
         <h2 className=" text-[#154114] font-semibold mb-4">Get In Touch</h2>
         <p className="text-gray-600 mb-5">
           Feel free to reach out for collaboration, freelance projects, or hiring
