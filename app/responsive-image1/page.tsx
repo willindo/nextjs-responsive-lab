@@ -17,9 +17,11 @@ import { LayoutOrchestra } from "@/components/LayoutOrchestra";
 import { LayoutSwitcher } from "@/components/LayoutSwitcher";
 import { DevConfigPanel1 } from "@/components/ui-tools/DevConfigPanel1";
 import { AnimatedScope } from "@/components/AnimatedScope";
-import { MotionScopeMath } from "@/components/MotionPlayground";
+import MotionPlayground, { MotionScopeMath } from "@/components/MotionPlayground";
 import { arcSpiralSchema, ConfigField } from "@/configs/panelSchemas";
 import { useLayoutConfig } from "@/configs/useLayoutConfig";
+import { techStack } from "@/data/techStack";
+import Image from "next/image";
 
 export default function Home() {
   const { config, setConfig } = useLayoutConfig("circle");
@@ -38,40 +40,55 @@ export default function Home() {
           width={200}
           height={200}
         >
-          {Array.from({ length: 6 }).map((_, i) => (
+          {techStack.map((item, i) => (
             <div
               key={i}
-              className="h-16 w-16 bg-amber-400 rounded-full flex items-center justify-center"
+              className="h-16 w-16  rounded-full flex items-center justify-center"
             >
-              {i + 1}
+              <Image
+                src={item.src}
+                alt={""}
+                width={30}
+                height={30}
+                // className="transition-transform duration-300 group-hover:scale-110"
+                className="object-contain place-self-center"
+              />
             </div>
           ))}
         </LayoutOrchestra>
       </LayoutSwitcher>
       {/* <AnimatedScope animation="zoomIn" stagger={0.3} > */}
-      <LayoutSwitcher overrides={{ spiral: config }} {...config}>
+      {/* <LayoutSwitcher overrides={{ spiral: config }} {...config}>
         <LayoutOrchestra
           layout="spiral"
           config={config}
           width={200}
           height={200}
           className="bg-[teal] z-0"
-        >
-          <MotionScopeMath
-            pattern="breath"
-            params={{ freq: 1, growth: 1, phaseGap: 0.5 }}
+        > */}
+          <MotionPlayground
+            // pattern="breath"
+            // params={{ freq: 1, growth: 1, phaseGap: 0.5, }}
           >
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-            <h3 className=" locate">ok</h3>
-          </MotionScopeMath>
-        </LayoutOrchestra>
+            {techStack.map((item, i) => (
+            <div
+              key={i}
+              className="h-16 w-16  rounded-full flex items-center justify-center"
+            >
+              <Image
+                src={item.src}
+                alt={""}
+                width={30}
+                height={30}
+                // className="transition-transform duration-300 group-hover:scale-110"
+                className="object-contain place-self-center"
+              />
+            </div>
+          ))}
+          </MotionPlayground>
+        {/* </LayoutOrchestra> */}
         {/* </AnimatedScope> */}
-      </LayoutSwitcher>
+      {/* </LayoutSwitcher> */}
       <MotionDemo />
       <WaveBoxes />
       <Textual />

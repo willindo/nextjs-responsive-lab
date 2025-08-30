@@ -114,7 +114,7 @@ export function MotionScopeMath({
 
 /* ------------------------------- playground ------------------------------- */
 
-export default function MotionPlayground() {
+export default function MotionPlayground({ children }: { children?: ReactNode }) {
   const [pattern, setPattern] = useState<PatternId>("waveY");
   const [count, setCount] = useState(5);
   const [freq, setFreq] = useState(1.5);
@@ -192,12 +192,13 @@ export default function MotionPlayground() {
       <div className="relative h-40 border rounded-lg overflow-hidden p-4">
         <div className="flex items-center gap-3 h-full">
           <MotionScopeMath pattern={pattern} params={params}>
-            {Array.from({ length: count }).map((_, i) => (
+            {/* {Array.from({ length: count }).map((_, i) => (
               <div
                 key={i}
                 className="h-10 w-10 rounded-xl bg-blue-500/90"
               />
-            ))}
+            ))} */}
+            {children}
           </MotionScopeMath>
         </div>
       </div>
