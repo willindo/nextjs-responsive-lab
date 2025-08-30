@@ -11,6 +11,7 @@ import ExplodeStack from "@/components/ExplodeStack";
 import AnimatedGradientBg from "@/components/AnimatedGradientBg";
 import ContactSection from "@/components/Contact";
 import TechStack from "@/components/TechStack";
+import { techStack } from "@/data/techStack";
 export default function Home() {
   return (
     <AnimatedGradientBg>
@@ -31,14 +32,14 @@ export default function Home() {
         </h1>
         <div className="flex gap-4 mt-6">
           <Link href="mailto:badshanoordeen@gmail.com">
-            <Mail className="w-6 h-6 hover:text-blue-500 transition" />
+            <Mail className="w-6 h-6 text-[#811770] hover:text-blue-500 transition" />
           </Link>
           <Link href="https://github.com/willindo" target="_blank">
-            <Github className="w-6 h-6 hover:text-blue-500 transition" />
+            <Github className="w-6 h-6 text-[#83410b] hover:text-blue-500 transition" />
           </Link>
           <Link
             href="https://linkedin.com/in/badsha-noordeen-20b328305"
-            target="_blank"
+            target="_blank" className="text-[#0e009f] hover:text-blue-500 transition"
             >
             <Linkedin className="w-6 h-6 hover:text-blue-500 transition" />
           </Link>
@@ -51,7 +52,7 @@ export default function Home() {
         </Link>
         {/* </ExplodeStack> */}
       </section>
-          <TechStack />
+          <TechStack items={techStack} />
 
       {/* About */}
       <section className="max-w-3xl mx-auto px-6 sm:px-0 py-12">

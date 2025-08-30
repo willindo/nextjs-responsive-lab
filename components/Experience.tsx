@@ -1,7 +1,7 @@
 export default function Experience() {
   return (
     <section id="experience" className="px-6 py-20 max-w-4xl mx-auto">
-      <h2 className=" text-[#154114] font-semibold text-center mb-12">Experience</h2>
+      <h2 className=" text-[#154114] font-semibold text-center mb-">Experience</h2>
       <div className="space-y-6">
         <div className="p-6  rounded-2xl shadow">
           <h3 className=" text-[#412214] font-semibold mb-2">
