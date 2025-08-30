@@ -16,7 +16,7 @@ export default function Projects() {
       name: "Playground",
       desc: "Responsive UI demos and 3D integration using React Three Fiber.",
       tech: "React, r3f, Three.js",
-      link: "http://localhost:3000/spacing", // replace with actual playground link
+      link: "https://nextjs-responsive-lab.vercel.app/responsive-image1", // replace with actual playground link
     },
   ];
 
