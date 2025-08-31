@@ -5,12 +5,13 @@ import GridFlex from "@/components/GridFlex";
 import PageTurnCarousel from "@/components/PageTurnCarousel";
 import ParallaxGroup from "@/components/ParallaxGroup";
 import { PathDrivenMotionGroup } from "@/components/PathDrivenMotionGroup";
+import { ShapeControlPanel, ShapeProvider, useShapePath } from "@/components/ShapecontrolPanel";
 import ThreeStepNestedCards from "@/components/ThreeStepNestedCards";
 import { PathControllerPanel, PathProvider } from "@/components/ui-tools/PathControls";
-
+import { motion } from "framer-motion";
 
 export default function SpacingPage() {
-
+// const useShape = useShapePath();
   return (
     <>
       <PathProvider>
