@@ -1,16 +1,25 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-    images: {
-    domains: ["picsum.photos"], // ✅ allow external images
-     remotePatterns: [
+  images: {
+    // domains: ["picsum.photos", "images.unsplash.com"], // <- list multiple domains here
+    remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.jsdelivr.net",
+        hostname: "picsum.photos", // <- only one string
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.jsdelivr.net", // <- only one string
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com", // <- second one as a new object
+        pathname: "**",
       },
     ],
   },
 };
-
 export default nextConfig;

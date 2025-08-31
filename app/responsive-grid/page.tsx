@@ -1,18 +1,22 @@
-import ExplodeSequence from "@/components/ExplodeSequence";
-import ExplodeStack from "@/components/ExplodeStack";
-import ExplodeAnimation from "@/components/ExplodeStack";
+"use client"
 import GridFlex from "@/components/GridFlex";
 import ResponsiveImagesDemo from "@/components/ResponsiveImageDemo2";
 import RoundFoldList from "@/components/RoundFoldList";
 import SlideDeck from "@/components/SlideDeck";
 import StoryScroller from "@/components/StoryScroller";
+import { useState } from "react";
 
 export default function ResponsiveGridPage() {
+
   return (
     <>
+    <main className="p-10 space-y-10">
+    </main>
+
+    <SlideDeck/>
       {/* <RoundFoldList/>  */}
       {/* <StoryScroller /> */}
-      <div>
+      {/* <div>
         <ExplodeSequence>
           <>
             <div>🍎</div>
@@ -52,7 +56,6 @@ export default function ResponsiveGridPage() {
       </div>
 
       <div>
-        {/* <ResponsiveImagesDemo /> */}
         <h1 className="text-3xl font-bold">Responsive Grid Demo</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -63,7 +66,7 @@ export default function ResponsiveGridPage() {
           <GridFlex />
         </div>
         <GridFlex />
-      </div>
+      </div> */}
     </>
   );
 }

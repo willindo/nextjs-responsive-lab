@@ -4,20 +4,17 @@ import AnimatedSidebar from "@/components/AnimatedSidebar";
 import InterlockedGrid from "@/components/InterLockedGrid";
 import Intro from "@/components/Intro";
 import LineClampAutoPage from "@/components/LineClampAutoPage";
-import MotionDemo from "@/components/MotionDemo";
 import { MotionTextMath } from "@/components/MotionTextOrchestra";
 import ParticleBackground from "@/components/ParticleBackground";
 import ParticleItem from "@/components/ParticleItem";
 import RippleBox from "@/components/RippleBox";
 import Textual from "@/components/Textual";
-import WaveBoxes from "@/components/WaveBoxes";
 import { useState } from "react";
 import SpacingPage from "../spacing/page";
 import { LayoutOrchestra } from "@/components/LayoutOrchestra";
 import { LayoutSwitcher } from "@/components/LayoutSwitcher";
 import { DevConfigPanel1 } from "@/components/ui-tools/DevConfigPanel1";
-import { AnimatedScope } from "@/components/AnimatedScope";
-import MotionPlayground, { MotionScopeMath } from "@/components/MotionPlayground";
+import MotionPlayground from "@/components/MotionPlayground";
 import { arcSpiralSchema, ConfigField } from "@/configs/panelSchemas";
 import { useLayoutConfig } from "@/configs/useLayoutConfig";
 import { techStack } from "@/data/techStack";
@@ -57,40 +54,23 @@ export default function Home() {
           ))}
         </LayoutOrchestra>
       </LayoutSwitcher>
-      {/* <AnimatedScope animation="zoomIn" stagger={0.3} > */}
-      {/* <LayoutSwitcher overrides={{ spiral: config }} {...config}>
-        <LayoutOrchestra
-          layout="spiral"
-          config={config}
-          width={200}
-          height={200}
-          className="bg-[teal] z-0"
-        > */}
-          <MotionPlayground
-            // pattern="breath"
-            // params={{ freq: 1, growth: 1, phaseGap: 0.5, }}
+      <MotionPlayground>
+        {techStack.map((item, i) => (
+          <div
+            key={i}
+            className="h-16 w-16  rounded-full flex items-center justify-center"
           >
-            {techStack.map((item, i) => (
-            <div
-              key={i}
-              className="h-16 w-16  rounded-full flex items-center justify-center"
-            >
-              <Image
-                src={item.src}
-                alt={""}
-                width={30}
-                height={30}
-                // className="transition-transform duration-300 group-hover:scale-110"
-                className="object-contain place-self-center"
-              />
-            </div>
-          ))}
-          </MotionPlayground>
-        {/* </LayoutOrchestra> */}
-        {/* </AnimatedScope> */}
-      {/* </LayoutSwitcher> */}
-      <MotionDemo />
-      <WaveBoxes />
+            <Image
+              src={item.src}
+              alt={""}
+              width={30}
+              height={30}
+              // className="transition-transform duration-300 group-hover:scale-110"
+              className="object-contain place-self-center"
+            />
+          </div>
+        ))}
+      </MotionPlayground>
       <Textual />
       <AnimatedGradientBg mode="position" opacity={0.4}>
         <div className="">

@@ -139,12 +139,12 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="h-screen w-screen overflow-hidden bg-[#4361ee] text-white font-sora">
+    <main className="h-screen inset-10 w-screen overflow-hidden bg-[#4361ee] text-white font-sora">
       {/* Slides */}
       {slides.map((s, i) => (
         <section
           key={i}
-          className={`slide fixed inset-0 invisible first:visible`}
+          className={`slide fixed inset-10 invisible first:visible`}
         >
           <div className="slide-outer w-full h-full overflow-hidden">
             <div className="slide-inner w-full h-full overflow-hidden">
@@ -170,7 +170,7 @@ export default function Home() {
       ))}
 
       {/* Overlay */}
-      <section className="overlay fixed inset-0 z-10">
+      <section className="overlay fixed inset-10 z-10">
         <div className="overlay-content mx-auto mb-[10vh] grid h-[90vh] w-screen max-w-[1400px] grid-cols-10 grid-rows-10 gap-0 px-4 md:px-12 md:mt-[10vh] md:h-[80vh]">
           <p className="overlay-count col-start-10 row-start-3 border-b-4 border-white text-right text-[clamp(3rem,4vw,15rem)]">
             0<span ref={countRef}>1</span>

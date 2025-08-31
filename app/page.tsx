@@ -15,6 +15,7 @@ import { techStack } from "@/data/techStack";
 export default function Home() {
   return (
     <AnimatedGradientBg>
+      
     <main className="min-h-screen pt-0 sm:px-0 ">
       {/* Hero Section */}
       <section className=" h-[75vh] flex flex-col items-center justify-center  text-center px-6 sm:px-0">
