@@ -57,7 +57,7 @@ export default function MotionGroup({
   const items = Array.isArray(children) ? children : [children];
 
   return (
-    <div className="relative w-full h-[400px] border border-gray-300 bg-white">
+    <div className="relative w-[50vw] h-[300px] border border-green-500 bg-white">
       {items.map((child, i) => (
         <MotionPath
           key={i}
@@ -70,7 +70,7 @@ export default function MotionGroup({
       ))}
 
       {showPath && (
-        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+        <svg className="absolute inset-0 w-[50vw] h-[50vh] pointer-events-none">
           <path d={path} stroke="black" strokeWidth="2" fill="none" />
         </svg>
       )}

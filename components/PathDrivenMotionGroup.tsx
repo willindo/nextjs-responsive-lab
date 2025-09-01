@@ -17,7 +17,7 @@ export function PathDrivenMotionGroup({
   // const { path, transform } = useShapePath();
   const { path } = useShapePath();
   return (
-    <MotionGroup path={path} duration={duration ?? 8} gap={gap ?? 1.5}>
+    <MotionGroup  path={path} duration={duration ?? 8} gap={gap ?? 1.5}>
       {children}
     </MotionGroup>
     //  <svg width={400} height={200} className="border bg-white">

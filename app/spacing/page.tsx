@@ -1,4 +1,5 @@
 "use client";
+import AnimatedElements from "@/components/AnimatedElements";
 import CircleCarousel from "@/components/CircleCarousel";
 import ClippyItem from "@/components/ClippyItem";
 import GridFlex from "@/components/GridFlex";
@@ -17,13 +18,13 @@ export default function SpacingPage() {
       <PathProvider>
         <main className="p-8 space-y-8">
           <PathControllerPanel />
-          <PathDrivenMotionGroup duration={8} gap={1.5}>
+          <PathDrivenMotionGroup  duration={8} gap={1.5}>
             {/* {[...Array(8)].map((_, i) => (
           <span key={i} className="text-2xl">❤️</span>
-        ))} */}
+          ))} */}
             {/* {[...Array(6)].map((_, i) => (
           <span key={i} className="text-2xl">🌟</span>
-        ))} */}
+          ))} */}
             {/* <div className="w-6 h-6 bg-red-500 rounded-full" />
           <div className="w-6 h-6 bg-blue-500 rounded-full" /> */}
             {["🚗", "🚙", "🚌", "🚛", "🚓"].map((car, i) => (
@@ -32,6 +33,7 @@ export default function SpacingPage() {
           </PathDrivenMotionGroup>
         </main>
       </PathProvider>
+            <AnimatedElements />
       {/* <div>
       <ParallaxGroup />
       </div> */}

@@ -6,6 +6,7 @@ import { DevConfigPanel1 } from "./ui-tools/DevConfigPanel1";
 import ExplodeStack from "./ExplodeSequence";
 import ExplodeSequence from "./ExplodeSequence";
 import { arcSpiralSchema, ConfigField } from "@/configs/panelSchemas";
+import { AnimatedScope } from "./AnimatedScope";
 export default function Skills() {
     const [config, setConfig] = useState({
         radius: 160,
@@ -36,33 +37,36 @@ export default function Skills() {
 
             <section id="skills" className="px-6 py-2 max-w-5xl mx-auto">
                 <h2 className=" font-semibold text-[#154114] text-center mb-12">Skills</h2>
-                <div className="grid md:grid-cols-2 gap-10">
-
-                    {Object.entries(skills).map(([category, list]) => (
-                        <div key={category}>
-                            <h3 className=" text-[#195119] font-semibold mb-3">{category}</h3>
-                            <ul className=" tech flex flex-wrap text-[#4f2832] font-bold gap-2">
-                                {/* <LayoutSwitcher overrides={{ circle: config }} {...config}>
+                    <div className="grid md:grid-cols-2 auto-rows-[200px] gap-x-10 gap-y-1.5 ">
+                {/* <AnimatedScope className="grid md:grid-cols-2 gap-10" animation="zoomIn" once={false} stagger={0.5} > */}
+                        {Object.entries(skills).map(([category, list]) => (
+                            <div key={category}>
+                                <h3 className=" text-[#195119] font-semibold mb-3">{category}</h3>
+                                <ul className=" tech h-[60%] flex flex-wrap text-[#4f2832] font-bold gap-2">
+                                        {/* <LayoutSwitcher overrides={{ circle: config }} {...config}>
                                     <LayoutOrchestra
-                                        layout="circle"
-                                        config={config}
-                                        width={200}
-                                        height={200}
+                                    layout="circle"
+                                    config={config}
+                                    width={200}
+                                    height={200}
                                     > */}
+
+                                    <AnimatedScope className=" flex flex-wrap items-center" animation="slideRight" once={false} stagger={0.3} >
                                             {list.map((skill) => (
-                                                <li
-                                                    key={skill}
-                                                    className="px-3 py-1 rounded-full text-sm"
+                                                <span key={skill}
+                                                    className="px-3 py-1 rounded-full "
                                                 >
                                                     {skill}
-                                                </li>
+                                                </span>
                                             ))}
-                                    {/* </LayoutOrchestra>
+                                        </AnimatedScope>
+                                        {/* </LayoutOrchestra>
                                 </LayoutSwitcher> */}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
+                                </ul>
+                            </div>
+                        ))}
+                {/* </AnimatedScope> */}
+                    </div>
             </section>
         </>
     );

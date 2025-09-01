@@ -30,7 +30,7 @@ export function AnimatedScope({
       ref={ref}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className={`fle gap- ${className ?? ""}`}
+      className={`fle flex-wra gap- ${className ?? ""}`}
     >
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return child;

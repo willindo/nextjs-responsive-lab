@@ -86,7 +86,10 @@ export default function Home() {
       {/* Skills */}
       <Skills />
       {/* Projects */}
-      <Projects />
+      <div className=" ">
+        <h2 className="mb-12 text-center">Projects</h2>
+        <Projects />
+      </div>
 
       {/* Experience */}
       <Experience />
