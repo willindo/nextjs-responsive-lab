@@ -61,19 +61,19 @@ export default function RippleBox() {
   }, []);
 
   return (
-    <div className=" w-[300px]  bg-gray-400">
-      <svg width={240} height={200} className=" mx-2 block pt-3 pl-4 " >
+    <div className="  w-[230px]  b-gray-400">
+      <svg width={220} height={130}  viewBox="-10 -10 260 220" className=" mx-2 block pt-3 pl-4 " >
         {/* The box itself */}
         <rect
-          x={0}
-          y={0}
+          x={10}
+          y={10}
           width={200}
           height={120}
           rx={12}
           ry={12}
           fill="white"
-          stroke="lightgray"
-          strokeWidth={2}
+          // stroke="lightgray"
+          // strokeWidth={2}
         />
         {/* Ripple path hugging the rect */}
         <path

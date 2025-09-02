@@ -8,6 +8,7 @@ import UnitCheatSheet from "@/components/UnitCheatSheet";
 import TransitionProvider from "@/components/TransitionProvider";
 import PlaygroundSidebar from "@/components/PlaygroundSidebar";
 import Navbar1 from "@/components/Navbar1";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

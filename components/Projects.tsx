@@ -1,6 +1,17 @@
+"use client";
+import { useEffect, useState } from "react";
 import Circle3D from "./Circle3d";
 
 export default function Projects() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640); // Tailwind sm
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const projects = [
     {
       name: "Reload-Ops",
@@ -23,37 +34,59 @@ export default function Projects() {
   ];
 
   return (
-    <div id="projects" className="px-6 py-20">
-      <Circle3D
-        className="h-auto w-auto relative max-w-5xl  mx-auto bg-blue-500"
-        radius={100}
-        perspective={800}
-        // rotateX={0}
-        real3D={false}
-        // bend={true}
-        autoRotate={true}   // enable carousel spin
-        speed={0.2}         // lower = slower, higher = faster
-      >
-        {projects.map((p) => (
-          <div key={p.name} className=" w-[30vw] grid bg-amber-600 ">
-          <a
-            key={p.name}
-            href={p.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w p-6 bg-white rounded-2xl shadow hover:shadow-xl transition transform hover:scale-105"
-          />
-            <h3 className="text-[#154114] font-semibold mb-2">{p.name}</h3>
-            <p className="text-gray-600">{p.desc}</p>
-            <p className="text-gray-500 mt-4 text-sm">{p.tech}</p>
-          </div>
-        ))}
-       {/* <div className="3d h-[200px] w-[100px] bg-violet-700  ">one</div>
-       <div className="3d h-[200px] w-[100px] bg-violet-700  ">two</div>
-       <div className="3d h-[200px] w-[100px] bg-violet-700  ">three</div>
-       <div className="3d h-[200px] w-[100px] bg-violet-700  ">four</div> */}
-      </Circle3D>
-
+    <div id="projects" className="px-6 py-10">
+      {isMobile ? (
+        // ✅ Mobile view: stacked cards
+        <div className="grid gap-6">
+          {projects.map((p) => (
+            <div
+              key={p.name}
+              className="p-4 -[7rem] bg-white rounded-2xl shadow hover:shadow-xl transition"
+            >
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mb-2 px-3 py-1 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600"
+              >
+                VISIT
+              </a>
+              <h3 className="text-[#154114] font-semibold mb-2">{p.name}</h3>
+              <p className="text-gray-600 text-sm">{p.desc}</p>
+              <p className="text-gray-500 mt-3 text-xs">{p.tech}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        // ✅ Desktop view: 3D circle
+        <Circle3D
+          className="h-[40vh] w-auto relative max-w-5xl mx-auto"
+          radius={120}
+          perspective={800}
+          autoRotate={true}
+          speed={0.2}
+          real3D={false}
+        >
+          {projects.map((p) => (
+            <div
+              key={p.name}
+              className="w-[30vw] max-w-[280px] grid justify-items-center backface-hidden bg-amber-100 rounded-xl p-3"
+            >
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full p-2 bg-white rounded-2xl shadow hover:shadow-xl transition transform hover:scale-105 text-center"
+              >
+                VISIT
+              </a>
+              <h3 className="text-[#154114] font-semibold mb-2">{p.name}</h3>
+              <p className="text-gray-600 text-sm">{p.desc}</p>
+              <p className="text-gray-500 mt-4 text-xs">{p.tech}</p>
+            </div>
+          ))}
+        </Circle3D>
+      )}
     </div>
   );
 }

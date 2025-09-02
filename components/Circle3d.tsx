@@ -82,7 +82,7 @@ const Circle3D: React.FC<Circle3DProps> = ({
       onMouseDown={onMouseDown}
       onMouseMove={onMouseMove}
       onMouseUp={onMouseUp}
-      onMouseLeaveCapture={onMouseUp}
+      // onMouseLeaveCapture={onMouseUp}
     >
       {React.Children.map(children, (child, i) => {
         const itemAngle = (i / count) * 360;

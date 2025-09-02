@@ -37,6 +37,7 @@ export default function Home() {
           width={200}
           height={200}
         >
+
           {techStack.map((item, i) => (
             <div
               key={i}
@@ -49,7 +50,7 @@ export default function Home() {
                 height={30}
                 // className="transition-transform duration-300 group-hover:scale-110"
                 className="object-contain place-self-center"
-              />
+                />
             </div>
           ))}
         </LayoutOrchestra>

@@ -29,11 +29,11 @@ export default function Skills() {
     };
     return (
         <>
-            <DevConfigPanel1
+            {/* <DevConfigPanel1
                 schema={arcSpiralSchema as ConfigField[]}
                 values={config}
                 onChange={setConfig}
-            />
+            /> */}
 
             <section id="skills" className="px-6 py-2 max-w-5xl mx-auto">
                 <h2 className=" font-semibold text-[#154114] text-center mb-12">Skills</h2>
