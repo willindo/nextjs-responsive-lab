@@ -91,7 +91,7 @@ function ResponsiveBox({
 }) {
   const { ref, size } = useContainerSize();
   return (
-    <div ref={ref} className="border-2 border-red-500  relative">
+    <div ref={ref} className="   relative">
       <p className="bg-red-100 text-sm p-1">{label}</p>
       {type === "responsive" && width && height && (
         <Image src={src} alt={label} width={width} height={height} layout="responsive" />
@@ -113,7 +113,7 @@ function BackgroundBox({ label, url, type }: { label: string; url: string; type:
   return (
     <div
       ref={ref}
-      className={` place-self-center h-64 bg-no-repeat border-2 border-blue-500 rounded-lg bg-${type} bg-center`}
+      className={` place-self-center h-64 bg-no-repeat   rounded-lg bg-${type} bg-center`}
       style={{ backgroundImage: `url(${url})` }}
     >
       <p className="bg-blue-100 text-sm p-1">{label}</p>
@@ -127,7 +127,7 @@ function BackgroundBox({ label, url, type }: { label: string; url: string; type:
 function PlainImgBox({ label, url }: { label: string; url: string }) {
   const { ref, size } = useContainerSize();
   return (
-    <div ref={ref} className="border-2 border-green-500 ">
+    <div ref={ref} className="  ">
       <p className="bg-green-100 text-sm p-1">{label}</p>
       <img src={url} alt={label} className="max-w-full h-auto" />
       <p className="text-xs text-gray-700 p-1">

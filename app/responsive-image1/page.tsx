@@ -22,15 +22,15 @@ import LineClampAutoPage from "@/components/LineClampAutoPage";
 import Ripples from "@/components/ui-tools/Ripples";
 
 export default function Home() {
-  const { config, setConfig } = useLayoutConfig("circle");
+  const { config, setConfig } = useLayoutConfig("circle")
   return (
     <>
-    <div className=" flex flex-wrap space-x-4 " >
-    <Ripples variant="zigzag" shape="box"  size={150} className=" bg-[#444444] " />
-    <Ripples variant="zigzag" shape="triangle" size={150}  className=" bg-[#444444] " />
-    <Ripples variant="zigzag" shape="circle" size={150}  className=" bg-[#444444] " />
-    <Ripples variant="ripple" shape="circle" size={150}  className=" bg-[#444444] " />
-    </div>
+      <div className=" flex space-x-4 " >
+        <Ripples variant="zigzag" shape="box" className=" bg-[#444444] aspect-square w-full h-full" />
+        <Ripples variant="zigzag" shape="triangle" className=" bg-[#444444] aspect-[1/1] w-[90%] h-[90%] " />
+        <Ripples variant="zigzag" shape="circle" className=" bg-[#444444] aspec-[1/1] w-[90%] h-[90%] " />
+        <Ripples variant="ripple" shape="circle" className=" bg-[#ddda2a] aspec-[1/1] w-[90%] h-[90%] " />
+      </div>
       <DevConfigPanel1
         schema={arcSpiralSchema as ConfigField[]}
         values={config}
@@ -42,6 +42,8 @@ export default function Home() {
           config={config}
           width={200}
           height={200}
+          // config={{ spacing: 56, responsive: true }} 
+          className=" overflow-hidden"
         >
 
           {techStack.map((item, i) => (
@@ -56,7 +58,7 @@ export default function Home() {
                 height={30}
                 // className="transition-transform duration-300 group-hover:scale-110"
                 className="object-contain place-self-center"
-                />
+              />
             </div>
           ))}
         </LayoutOrchestra>

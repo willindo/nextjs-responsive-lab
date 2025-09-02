@@ -1,13 +1,14 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface RippleBoxProps {
   shape?: "box" | "circle" | "triangle";
   variant?: "ripple" | "zigzag";
   animate?: boolean;
-  size?: number; // size of the shape
+  size?: number; // initial size (fallback)
   color?: string;
-  className?: string
+  className?: string;
+  padding?: number;
 }
 
 export default function Ripples({
@@ -16,9 +17,12 @@ export default function Ripples({
   animate = true,
   size = 200,
   color = "dodgerblue",
+  padding = 6, // default padding if not provided
   className,
 }: RippleBoxProps) {
   const pathRef = useRef<SVGPathElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dims, setDims] = useState({ w: size, h: size });
 
   const generatePath = (
     w: number,
@@ -30,32 +34,27 @@ export default function Ripples({
     const steps = 80;
     const points: string[] = [];
 
-    // helper: wave offset
     const offset = (pos: number) =>
       variant === "ripple"
         ? amp * Math.sin(freq * pos + phase)
         : amp * Math.sign(Math.sin(freq * pos + phase));
 
     if (shape === "box") {
-      // top edge
       for (let i = 0; i <= steps; i++) {
         const x = (i / steps) * w;
         const y = 0 + offset(x);
         points.push(`${x},${y}`);
       }
-      // right edge
       for (let i = 0; i <= steps; i++) {
         const y = (i / steps) * h;
         const x = w + offset(y);
         points.push(`${x},${y}`);
       }
-      // bottom edge
       for (let i = 0; i <= steps; i++) {
         const x = w - (i / steps) * w;
         const y = h + offset(x);
         points.push(`${x},${y}`);
       }
-      // left edge
       for (let i = 0; i <= steps; i++) {
         const y = h - (i / steps) * h;
         const x = 0 + offset(y);
@@ -64,7 +63,7 @@ export default function Ripples({
     }
 
     if (shape === "circle") {
-      const r = w / 2;
+      const r = Math.min(w, h) / 2;
       for (let i = 0; i <= steps; i++) {
         const angle = (i / steps) * 2 * Math.PI;
         const radius = r + offset(i * 5);
@@ -75,20 +74,17 @@ export default function Ripples({
     }
 
     if (shape === "triangle") {
-      const side = w; // treat width as triangle side length
-      const h = (Math.sqrt(3) / 2) * side; // equilateral triangle height
-
-      // vertices: centered horizontally
+      const side = w;
+      const hTri = (Math.sqrt(3) / 2) * side;
       const basePoints = [
-        [side / 2, 0],     // top vertex
-        [side, h],         // bottom-right
-        [0, h],            // bottom-left
+        [side / 2, 0],
+        [side, hTri],
+        [0, hTri],
       ];
 
       for (let i = 0; i < basePoints.length; i++) {
         const [x1, y1] = basePoints[i];
         const [x2, y2] = basePoints[(i + 1) % basePoints.length];
-
         for (let j = 0; j <= steps; j++) {
           const t = j / steps;
           const x = x1 + (x2 - x1) * t + offset(j * 5);
@@ -97,21 +93,21 @@ export default function Ripples({
         }
       }
     }
+
     return "M" + points.join(" L") + " Z";
   };
-  const getViewBox = (shape: string, size: number, pad: number = 20) => {
-    switch (shape) {
-      case "circle":
-      case "box":
-        return `-${pad} -${pad} ${size + pad * 2} ${size + pad * 2}`;
-      case "triangle":
-        const h = (Math.sqrt(3) / 2) * size;
-        return `-${pad} -${pad} ${size + pad * 2} ${h + pad * 2}`;
-      default:
-        return `-${pad} -${pad} ${size + pad * 2} ${size + pad * 2}`;
-    }
-  };
 
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        setDims({ w: width, h: height });
+      }
+    });
+    ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     let frame = 0;
@@ -121,19 +117,24 @@ export default function Ripples({
       if (pathRef.current) {
         pathRef.current.setAttribute(
           "d",
-          generatePath(size, size * 0.6, 6, 0.12, frame)
+          generatePath(dims.w, dims.h, 6, 0.12, frame)
         );
       }
       raf = requestAnimationFrame(animatePath);
     };
     if (animate) animatePath();
     return () => cancelAnimationFrame(raf);
-  }, [animate, shape, variant, size]);
+  }, [animate, shape, variant, dims]);
 
   return (
-    <div className={`${className} p-4 max-w-fit`}>
-      <svg width={size + 40} height={size + 40} viewBox={getViewBox(shape, size)}>
-        <path ref={pathRef} fill="none" stroke={color} strokeWidth={2} />
+    <div ref={containerRef} className={`${className} p-4 w-full h-full`}>
+      <svg
+        width="100%"
+        height="100%"
+         viewBox={`${-padding} ${-padding} ${dims.w + padding * 2} ${dims.h + padding * 2}`}
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <path ref={pathRef} fill="white" stroke={color} strokeWidth={2} />
       </svg>
     </div>
   );

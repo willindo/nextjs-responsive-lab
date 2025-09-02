@@ -12,13 +12,13 @@ import { PathControllerPanel, PathProvider } from "@/components/ui-tools/PathCon
 import { motion } from "framer-motion";
 
 export default function SpacingPage() {
-// const useShape = useShapePath();
+  // const useShape = useShapePath();
   return (
     <>
       <PathProvider>
         <main className="p-8 space-y-8">
           <PathControllerPanel />
-          <PathDrivenMotionGroup  duration={8} gap={1.5}>
+          <PathDrivenMotionGroup duration={8} gap={1.5}>
             {/* {[...Array(8)].map((_, i) => (
           <span key={i} className="text-2xl">❤️</span>
           ))} */}
@@ -33,7 +33,6 @@ export default function SpacingPage() {
           </PathDrivenMotionGroup>
         </main>
       </PathProvider>
-            <AnimatedElements />
       {/* <div>
       <ParallaxGroup />
       </div> */}
