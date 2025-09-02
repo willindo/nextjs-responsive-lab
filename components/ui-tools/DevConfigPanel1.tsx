@@ -17,7 +17,7 @@ export function DevConfigPanel1<T extends Record<string, any>>({
   schema,
   values,
   onChange,
-  position = "bottom-right",
+  position = "bottom-left",
 }: DevConfigPanelProps<T>) {
   const [open, setOpen] = useState(true);
 

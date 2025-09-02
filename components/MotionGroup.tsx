@@ -70,7 +70,7 @@ export default function MotionGroup({
       ))}
 
       {showPath && (
-        <svg className="absolute inset-0 w-[50vw] h-[50vh] pointer-events-none">
+        <svg className="absolute overflow-hidden inset-0 w-[50vw] h-[50vh] pointer-events-none">
           <path d={path} stroke="black" strokeWidth="2" fill="none" />
         </svg>
       )}

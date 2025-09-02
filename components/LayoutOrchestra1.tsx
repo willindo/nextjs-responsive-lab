@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, useMemo } from "react";
+import React, { ReactNode, useMemo,useEffect,useState } from "react";
 import { motion } from "framer-motion";
 
 /**
@@ -73,6 +73,17 @@ export type LayoutConfig = {
   // custom
   custom?: (i: number, count: number) => Point;
 };
+function useWindowWidth() {
+  const [w, setW] = useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 1200
+  );
+  useEffect(() => {
+    const onResize = () => setW(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return w;
+}
 
 export type LayoutOrchestraProps = {
   children: ReactNode[] | ReactNode;
@@ -245,6 +256,7 @@ export function usePositions(
   }, [count, layout, JSON.stringify(cfg)]);
 }
 
+
 function applyGroups(base: Point[], groups?: GroupTransform[]): Point[] {
   if (!groups?.length) return base;
   const map = new Map<number, Point>();
@@ -267,7 +279,7 @@ function applyGroups(base: Point[], groups?: GroupTransform[]): Point[] {
   return Array.from(map.values());
 }
 
- function LayoutOrchestra({
+ function LayoutOrchestra1({
   children,
   layout = "row",
   config,
@@ -282,11 +294,27 @@ function applyGroups(base: Point[], groups?: GroupTransform[]): Point[] {
   className = "",
 }: LayoutOrchestraProps) {
   const items = React.Children.toArray(children);
+  const windowW = useWindowWidth();
 
+  // --- Responsive defaults ---
+  let responsiveKind = layout;
+  let responsiveConfig: Partial<LayoutConfig> = { ...(config ?? {}) };
+
+  if (windowW <= 425) {
+    responsiveKind = "grid"; // force grid on tiny screens
+  }
+  if (windowW <= 768) {
+    responsiveConfig.spacing = responsiveConfig.spacing ?? 40;
+  }
+
+  // merge preset + responsive
   const mergedConfig: Partial<LayoutConfig> = useMemo(() => {
-    const presetCfg = (preset && { ...(defaultRegistry[preset] ?? {}), ...((registry ?? {})[preset] ?? {}) }) || {};
-    return { kind: layout, ...presetCfg, ...(config ?? {}) } as Partial<LayoutConfig>;
-  }, [layout, preset, registry, config]);
+    const presetCfg =
+      (preset &&
+        { ...(defaultRegistry[preset] ?? {}), ...((registry ?? {})[preset] ?? {}) }) ||
+      {};
+    return { kind: responsiveKind, ...presetCfg, ...responsiveConfig } as Partial<LayoutConfig>;
+  }, [responsiveKind, preset, registry, responsiveConfig]);
 
   const positionsBase = usePositions(items.length, mergedConfig.kind as LayoutKind, mergedConfig);
   const positions = applyGroups(positionsBase, groups);
@@ -301,7 +329,7 @@ function applyGroups(base: Point[], groups?: GroupTransform[]): Point[] {
   const originClass = center ? "flex items-center justify-center" : "relative";
 
   return (
-    <div className={`w-full ${originClass} ${className}`} style={stageStyle}>
+    <div className={`w-full  ${originClass} ${className}`} style={stageStyle}>
       <div className="absolute left-1/2 top-1/2" style={{ transform: "translate(-50%, -50%)" }}>
         {items.map((child, i) => {
           const p = positions[i];
@@ -353,7 +381,7 @@ export const LayoutPresets = {
     return { ...defaultRegistry };
   },
 };
-export { LayoutOrchestra };
+export { LayoutOrchestra1 };
 // ---------- Tiny Demo (remove in prod) ---------- //
 // Example usage (paste in a page/component):
 //

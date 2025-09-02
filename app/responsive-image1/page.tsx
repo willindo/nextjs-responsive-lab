@@ -10,7 +10,6 @@ import RippleBox from "@/components/RippleBox";
 import Textual from "@/components/Textual";
 import { useState } from "react";
 import SpacingPage from "../spacing/page";
-import { LayoutOrchestra } from "@/components/LayoutOrchestra";
 import { LayoutSwitcher } from "@/components/LayoutSwitcher";
 import { DevConfigPanel1 } from "@/components/ui-tools/DevConfigPanel1";
 import MotionPlayground from "@/components/MotionPlayground";
@@ -20,6 +19,7 @@ import { techStack } from "@/data/techStack";
 import Image from "next/image";
 import LineClampAutoPage from "@/components/LineClampAutoPage";
 import Ripples from "@/components/ui-tools/Ripples";
+import { LayoutOrchestra1 } from "@/components/LayoutOrchestra1";
 
 export default function Home() {
   const { config, setConfig } = useLayoutConfig("circle")
@@ -37,7 +37,7 @@ export default function Home() {
         onChange={setConfig}
       />
       <LayoutSwitcher overrides={{ circle: config }} {...config}>
-        <LayoutOrchestra
+        <LayoutOrchestra1
           layout="spiral"
           config={config}
           width={200}
@@ -61,7 +61,7 @@ export default function Home() {
               />
             </div>
           ))}
-        </LayoutOrchestra>
+        </LayoutOrchestra1>
       </LayoutSwitcher>
       <MotionPlayground>
         {techStack.map((item, i) => (
