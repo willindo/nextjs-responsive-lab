@@ -3,7 +3,6 @@ import AnimatedGradientBg from "@/components/AnimatedGradientBg";
 import AnimatedSidebar from "@/components/AnimatedSidebar";
 import InterlockedGrid from "@/components/InterLockedGrid";
 import Intro from "@/components/Intro";
-import LineClampAutoPage from "@/components/LineClampAutoPage";
 import { MotionTextMath } from "@/components/MotionTextOrchestra";
 import ParticleBackground from "@/components/ParticleBackground";
 import ParticleItem from "@/components/ParticleItem";
@@ -19,12 +18,19 @@ import { arcSpiralSchema, ConfigField } from "@/configs/panelSchemas";
 import { useLayoutConfig } from "@/configs/useLayoutConfig";
 import { techStack } from "@/data/techStack";
 import Image from "next/image";
+import LineClampAutoPage from "@/components/LineClampAutoPage";
+import Ripples from "@/components/ui-tools/Ripples";
 
 export default function Home() {
   const { config, setConfig } = useLayoutConfig("circle");
   return (
     <>
-      <RippleBox />
+    <div className=" flex flex-wrap space-x-4 " >
+    <Ripples variant="zigzag" shape="box"  size={150} className=" bg-[#444444] " />
+    <Ripples variant="zigzag" shape="triangle" size={150}  className=" bg-[#444444] " />
+    <Ripples variant="zigzag" shape="circle" size={150}  className=" bg-[#444444] " />
+    <Ripples variant="ripple" shape="circle" size={150}  className=" bg-[#444444] " />
+    </div>
       <DevConfigPanel1
         schema={arcSpiralSchema as ConfigField[]}
         values={config}

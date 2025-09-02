@@ -1,7 +1,10 @@
 @import "tailwindcss";
-@layer utilities {
-  @import url("https://fonts.googleapis.com/css2?family=Sora&display=swap");
 
+@layer utilities {
+  @font-face {
+    font-family: "Sora";
+    src: url("https://fonts.googleapis.com/css2?family=Sora&display=swap");
+  }
   @font-face {
     font-family: "Bandeins Strange Variable";
     src: url("https://res.cloudinary.com/dldmpwpcp/raw/upload/v1566406079/BandeinsStrangeVariable_esetvq.ttf");
