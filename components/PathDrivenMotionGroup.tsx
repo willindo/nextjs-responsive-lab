@@ -1,27 +1,35 @@
 "use client";
 import { ReactNode } from "react";
 import MotionGroup from "./MotionGroup";
-// import { useShapePath } from "./ShapecontrolPanel";
-import { motion } from "framer-motion";
-import { useShapePath } from "./ui-tools/PathControls";
+import { useShapePath } from "./ui-tools/PathControls1";
 
-export function PathDrivenMotionGroup({
-  children,
-  duration,
-  gap,
-}: {
-  children: ReactNode;
+type PathDrivenMotionGroupProps = {
   duration?: number;
   gap?: number;
-}) {
-  // const { path, transform } = useShapePath();
-  const { path } = useShapePath();
+  children: ReactNode | ReactNode[];
+  showPath?: boolean;
+  className?: string;
+};
+
+export default function PathDrivenMotionGroup({
+  duration = 6,
+  gap = 1.2,
+  children,
+  showPath = true,
+  className,
+}: PathDrivenMotionGroupProps) {
+  const { path, transform } = useShapePath();
+
   return (
-    <MotionGroup  path={path} duration={duration ?? 8} gap={gap ?? 1.5}>
+    <MotionGroup
+      path={path}
+      transform={transform}
+      duration={duration}
+      gap={gap}
+      showPath={showPath}
+      className={className}
+    >
       {children}
     </MotionGroup>
-    //  <svg width={400} height={200} className="border bg-white">
-    //   <motion.path d={path} stroke="blue" fill="transparent" transform={transform} />
-    // </svg>
   );
 }

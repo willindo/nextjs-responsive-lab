@@ -1,26 +1,23 @@
 "use client";
-import { useEffect, useRef, ReactNode } from "react";
+import { ReactNode, useState, useRef, useEffect } from "react";
 
 type MotionPathProps = {
   path: string;
-  duration?: number;
-  delay?: number;
+  duration: number;
+  delay: number;
   children: ReactNode;
 };
 
-function MotionPath({ path, duration = 5, delay = 0, children }: MotionPathProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.style.setProperty("--motion-path", `path("${path}")`);
-      ref.current.style.setProperty("--duration", `${duration}s`);
-      ref.current.style.setProperty("--delay", `${delay}s`);
-    }
-  }, [path, duration, delay]);
-
+function MotionPath({ path, duration, delay, children }: MotionPathProps) {
   return (
-    <div ref={ref} className="absolute animate-motion">
+    <div
+      className="absolute animate-motion"
+      style={{
+        ["--motion-path" as any]: `path("${path}")`,
+        ["--duration" as any]: `${duration}s`,
+        ["--delay" as any]: `${delay}s`,
+      }}
+    >
       {children}
       <style jsx>{`
         .animate-motion {
@@ -45,40 +42,68 @@ type MotionGroupProps = {
   gap?: number;
   children: ReactNode | ReactNode[];
   showPath?: boolean;
+  transform?: string;
+  className?: string;
+  padding?: number;
 };
 
-/**
- * MotionGroup
- * - Scales given path into a normalized <svg viewBox>
- * - Fits full screen width/height responsively
- */
 export default function MotionGroup({
   path,
   duration = 6,
   gap = 1.2,
   children,
   showPath = true,
+  transform,
+  className,
+  padding = 0, // same idea as Ripples
 }: MotionGroupProps) {
   const items = Array.isArray(children) ? children : [children];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dims, setDims] = useState({ w: 100, h: 100 });
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const ro = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      setDims({ w: width, h: height });
+    });
+    ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, []);
 
   return (
-    <div className="relative w-full h-[50vh] overflow-hidden border border-green-500 bg-white">
+    <div
+      ref={containerRef}
+      className={`relative h-full w-full overflow-hidden ${className ?? ""}`}
+    >
+      {showPath && (
+        <svg
+          // width="100%"
+          // height="100%"
+          className="absolute  pointer-events-none "
+          viewBox={`${-padding} ${-padding} ${dims.w + padding * 2} ${dims.h + padding * 2}`}
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <path
+            d={path}
+            fill="none"
+            stroke="blue"
+            strokeWidth={2}
+            transform={transform}
+          />
+        </svg>
+      )}
+
       {items.map((child, i) => (
-        <MotionPath key={i} path={path} duration={duration} delay={i * gap}>
+        <MotionPath
+          key={i}
+          path={path}
+          duration={duration}
+          delay={i * gap}
+        >
           {child}
         </MotionPath>
       ))}
-
-      {showPath && (
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-        >
-          {/* 👇 Your path should use normalized coords (0–100 space) */}
-          <path d={path} stroke="black" strokeWidth="2" fill="none" />
-        </svg>
-      )}
     </div>
   );
 }

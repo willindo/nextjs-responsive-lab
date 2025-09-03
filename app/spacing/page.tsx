@@ -5,20 +5,18 @@ import ClippyItem from "@/components/ClippyItem";
 import GridFlex from "@/components/GridFlex";
 import PageTurnCarousel from "@/components/PageTurnCarousel";
 import ParallaxGroup from "@/components/ParallaxGroup";
-import { PathDrivenMotionGroup } from "@/components/PathDrivenMotionGroup";
-import { ShapeControlPanel, ShapeProvider, useShapePath } from "@/components/ShapecontrolPanel";
+import PathDrivenMotionGroup from "@/components/PathDrivenMotionGroup";
 import ThreeStepNestedCards from "@/components/ThreeStepNestedCards";
-import { PathControllerPanel, PathProvider } from "@/components/ui-tools/PathControls";
-import { motion } from "framer-motion";
+import { PathControllerPanel, PathProvider } from "@/components/ui-tools/PathControls1";
 
 export default function SpacingPage() {
-  // const useShape = useShapePath();
   return (
     <>
+    <ClippyItem />
       <PathProvider>
-        <main className="p-8 space-y-8">
           <PathControllerPanel />
-          <PathDrivenMotionGroup duration={8} gap={1.5}>
+        <div className="md:w-[50vw] h-[300px]  space-y-8">
+          <PathDrivenMotionGroup className="    " duration={8} gap={1.5} >
             {/* {[...Array(8)].map((_, i) => (
           <span key={i} className="text-2xl">❤️</span>
           ))} */}
@@ -31,7 +29,7 @@ export default function SpacingPage() {
               <span key={i} className="text-3xl">{car}</span>
             ))}
           </PathDrivenMotionGroup>
-        </main>
+        </div>
       </PathProvider>
       {/* <div>
       <ParallaxGroup />
@@ -43,7 +41,6 @@ export default function SpacingPage() {
         height={480}
         /> */}
         {/* <MediaAnimate /> */}
-        <ClippyItem />
         <h1 className="text-3xl font-bold">Responsive Spacing Demo</h1>
         <p className="mt-[clamp(12px,4vw,48px)] p-[clamp(8px,2vw,32px)] bg-teal-200 rounded-lg">
           This box uses <code>clamp()</code> for margin and padding that scale
@@ -66,7 +63,7 @@ export default function SpacingPage() {
         <div className="cardi">
           <p className="mt-2 bg-lime-800">Clean sugar syntax 🚀</p>
         </div>
-        {/* <CircleCarousel /> */}
+        <CircleCarousel />
         <ThreeStepNestedCards />
         <GridFlex />
       </div>

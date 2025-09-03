@@ -19,7 +19,6 @@ import { techStack } from "@/data/techStack";
 import Image from "next/image";
 import LineClampAutoPage from "@/components/LineClampAutoPage";
 import Ripples from "@/components/ui-tools/Ripples";
-import { LayoutOrchestra1 } from "@/components/LayoutOrchestra1";
 import { LayoutOrchestra } from "@/components/LayoutOrchestra";
 
 export default function Home() {

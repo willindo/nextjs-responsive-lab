@@ -2,6 +2,35 @@
 import { useState, useMemo, useContext, createContext, ReactNode } from "react";
 
 /* ---------------------- Generators ---------------------- */
+function normalizePath(path: string): string {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  const temp = document.createElementNS(svgNS, "path");
+  temp.setAttribute("d", path);
+  svg.appendChild(temp);
+
+  const bbox = temp.getBBox();
+  if (bbox.width === 0 || bbox.height === 0) return path;
+
+  const scaleX = 100 / bbox.width;
+  const scaleY = 100 / bbox.height;
+  const scale = Math.min(scaleX, scaleY);
+
+  const translateX = -bbox.x * scale;
+  const translateY = -bbox.y * scale;
+
+  let idx = 0;
+  const nums = path.match(/-?\d*\.?\d+/g)?.map(Number) ?? [];
+
+  return path.replace(/-?\d*\.?\d+/g, () => {
+    const n = nums[idx++];
+    const isX = idx % 2 === 1;
+    return isX
+      ? ((n - bbox.x) * scale + translateX).toFixed(2)
+      : ((n - bbox.y) * scale + translateY).toFixed(2);
+  });
+}
+
 function generateWave({
   width,
   amplitude,
@@ -241,27 +270,44 @@ export function useShapePath() {
 
   const {
     shape,
-    amplitude, frequency,
+    amplitude,
+    frequency,
     radius,
-    turns, spiralStep,
-    segments, zigzagAmp,
-    polySides, polyRadius, polyRotation, polyStar, polySpike,
+    turns,
+    spiralStep,
+    segments,
+    zigzagAmp,
+    polySides,
+    polyRadius,
+    polyRotation,
+    polyStar,
+    polySpike,
     customPath,
-    customScaleX, customScaleY, customOffsetX, customOffsetY, customRotate,
+    customScaleX,
+    customScaleY,
+    customOffsetX,
+    customOffsetY,
+    customRotate,
   } = ctx;
 
   const path = useMemo(() => {
+    let raw = "M0,0";
+
     switch (shape) {
       case "wave":
-        return generateWave({ width: 600, amplitude, frequency });
+        raw = generateWave({ width: 600, amplitude, frequency });
+        break;
       case "circle":
-        return generateCircle({ cx: 300, cy: 200, radius });
+        raw = generateCircle({ cx: 300, cy: 200, radius });
+        break;
       case "spiral":
-        return generateSpiral({ cx: 300, cy: 200, turns, step: spiralStep });
+        raw = generateSpiral({ cx: 300, cy: 200, turns, step: spiralStep });
+        break;
       case "zigzag":
-        return generateZigzag({ width: 600, segments, amplitude: zigzagAmp });
+        raw = generateZigzag({ width: 600, segments, amplitude: zigzagAmp });
+        break;
       case "polygon":
-        return generatePolygon({
+        raw = generatePolygon({
           cx: 300,
           cy: 200,
           sides: Math.max(3, Math.floor(polySides)),
@@ -270,27 +316,40 @@ export function useShapePath() {
           star: polyStar,
           spike: polySpike,
         });
-    case "custom":
-  return applyTransforms({
-    customPath,
-    scaleX: customScaleX,
-    scaleY: customScaleY,
-    offsetX: customOffsetX,
-    offsetY: customOffsetY,
-    rotate: customRotate,
-  });
-
-      default:
-        return "M0,0";
+        break;
+      case "custom":
+        raw = applyTransforms({
+          customPath,
+          scaleX: customScaleX,
+          scaleY: customScaleY,
+          offsetX: customOffsetX,
+          offsetY: customOffsetY,
+          rotate: customRotate,
+        });
+        break;
     }
+
+    return normalizePath(raw);
   }, [
     shape,
-    amplitude, frequency,
+    amplitude,
+    frequency,
     radius,
-    turns, spiralStep,
-    segments, zigzagAmp,
-    polySides, polyRadius, polyRotation, polyStar, polySpike,
+    turns,
+    spiralStep,
+    segments,
+    zigzagAmp,
+    polySides,
+    polyRadius,
+    polyRotation,
+    polyStar,
+    polySpike,
     customPath,
+    customScaleX,
+    customScaleY,
+    customOffsetX,
+    customOffsetY,
+    customRotate,
   ]);
 
   return { path };
