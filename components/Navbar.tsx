@@ -9,7 +9,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { href: "/", label: "Home" },
+    { href: "/", label: "Portfolio" },
     { href: "/fluid-text", label: "Fluid Text" },
     { href: "/responsive-grid", label: "Responsive Grid" },
     { href: "/spacing", label: "Spacing" },

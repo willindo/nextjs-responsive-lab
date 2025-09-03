@@ -20,6 +20,7 @@ import Image from "next/image";
 import LineClampAutoPage from "@/components/LineClampAutoPage";
 import Ripples from "@/components/ui-tools/Ripples";
 import { LayoutOrchestra1 } from "@/components/LayoutOrchestra1";
+import { LayoutOrchestra } from "@/components/LayoutOrchestra";
 
 export default function Home() {
   const { config, setConfig } = useLayoutConfig("circle")
@@ -37,12 +38,11 @@ export default function Home() {
         onChange={setConfig}
       />
       <LayoutSwitcher overrides={{ circle: config }} {...config}>
-        <LayoutOrchestra1
+        <LayoutOrchestra
           layout="spiral"
-          config={config}
+          config={{ ...config, spacing: 40, }}
           width={200}
           height={200}
-          // config={{ spacing: 56, responsive: true }} 
           className=" overflow-hidden"
         >
 
@@ -61,7 +61,7 @@ export default function Home() {
               />
             </div>
           ))}
-        </LayoutOrchestra1>
+        </LayoutOrchestra>
       </LayoutSwitcher>
       <MotionPlayground>
         {techStack.map((item, i) => (

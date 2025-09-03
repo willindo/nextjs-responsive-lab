@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, ReactNode } from "react";
 
 type MotionPathProps = {
   path: string;
   duration?: number;
   delay?: number;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 function MotionPath({ path, duration = 5, delay = 0, children }: MotionPathProps) {
@@ -25,7 +25,7 @@ function MotionPath({ path, duration = 5, delay = 0, children }: MotionPathProps
       <style jsx>{`
         .animate-motion {
           offset-path: var(--motion-path);
-          offset-rotate: auto; /* rotate element along path */
+          offset-rotate: auto;
           animation: move var(--duration) linear infinite;
           animation-delay: var(--delay);
         }
@@ -42,11 +42,16 @@ function MotionPath({ path, duration = 5, delay = 0, children }: MotionPathProps
 type MotionGroupProps = {
   path: string;
   duration?: number;
-  gap?: number; // time spacing between children
-  children: React.ReactNode | React.ReactNode[];
+  gap?: number;
+  children: ReactNode | ReactNode[];
   showPath?: boolean;
 };
 
+/**
+ * MotionGroup
+ * - Scales given path into a normalized <svg viewBox>
+ * - Fits full screen width/height responsively
+ */
 export default function MotionGroup({
   path,
   duration = 6,
@@ -57,20 +62,20 @@ export default function MotionGroup({
   const items = Array.isArray(children) ? children : [children];
 
   return (
-    <div className="relative w-[50vw] h-[300px] border border-green-500 bg-white">
+    <div className="relative w-full h-[50vh] overflow-hidden border border-green-500 bg-white">
       {items.map((child, i) => (
-        <MotionPath
-          key={i}
-          path={path}
-          duration={duration}
-          delay={i * gap}
-        >
+        <MotionPath key={i} path={path} duration={duration} delay={i * gap}>
           {child}
         </MotionPath>
       ))}
 
       {showPath && (
-        <svg className="absolute overflow-hidden inset-0 w-[50vw] h-[50vh] pointer-events-none">
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          {/* 👇 Your path should use normalized coords (0–100 space) */}
           <path d={path} stroke="black" strokeWidth="2" fill="none" />
         </svg>
       )}

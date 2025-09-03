@@ -256,7 +256,6 @@ export function usePositions(
   }, [count, layout, JSON.stringify(cfg)]);
 }
 
-
 function applyGroups(base: Point[], groups?: GroupTransform[]): Point[] {
   if (!groups?.length) return base;
   const map = new Map<number, Point>();
