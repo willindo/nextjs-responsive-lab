@@ -81,7 +81,7 @@ export default function CircleCarousel({
   const cy = size / 2;
 
   return (
-    <div className="w-full flex flex-col items-center gap-6">
+    <div className=" flex flex-col items-center gap-6">
       <div
         className="relative"
         style={{ width: size, height: size }}

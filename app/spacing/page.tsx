@@ -6,6 +6,7 @@ import GridFlex from "@/components/GridFlex";
 import PageTurnCarousel from "@/components/PageTurnCarousel";
 import ParallaxGroup from "@/components/ParallaxGroup";
 import PathDrivenMotionGroup from "@/components/PathDrivenMotionGroup";
+import Staircase from "@/components/Staircase";
 import ThreeStepNestedCards from "@/components/ThreeStepNestedCards";
 import { PathControllerPanel, PathProvider } from "@/components/ui-tools/PathControls1";
 
@@ -14,23 +15,26 @@ export default function SpacingPage() {
     <>
     <ClippyItem />
       <PathProvider>
-          <PathControllerPanel />
+          <PathControllerPanel className=" md:w-[50vw] " />
         <div className="md:w-[50vw] h-[300px]  space-y-8">
           <PathDrivenMotionGroup className="    " duration={8} gap={1.5} >
-            {/* {[...Array(8)].map((_, i) => (
-          <span key={i} className="text-2xl">❤️</span>
-          ))} */}
+           
             {/* {[...Array(6)].map((_, i) => (
           <span key={i} className="text-2xl">🌟</span>
           ))} */}
             {/* <div className="w-6 h-6 bg-red-500 rounded-full" />
           <div className="w-6 h-6 bg-blue-500 rounded-full" /> */}
-            {["🚗", "🚙", "🚌", "🚛", "🚓"].map((car, i) => (
+            {["🚗","h", "🚙","a", "🚌", "i","🚛", "🚓"].map((car, i) => (
               <span key={i} className="text-3xl">{car}</span>
             ))}
           </PathDrivenMotionGroup>
         </div>
       </PathProvider>
+      <Staircase mode="two-side" direction="down" stepY={10} stepX={10} className=" left-40">
+        {[...Array(20)].map((_, i) => (
+          <span key={i} className="text-2xl">❤️</span>
+          ))}
+      </Staircase>
       {/* <div>
       <ParallaxGroup />
       </div> */}

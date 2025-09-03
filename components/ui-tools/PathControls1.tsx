@@ -204,7 +204,7 @@ export function useShapePath() {
 }
 
 /* ---------------------- Panel ---------------------- */
-export function PathControllerPanel() {
+export function PathControllerPanel({className}: {className? : string}) {
   const ctx = useContext(PathContext);
   if (!ctx) throw new Error("Must be inside PathProvider");
   const { shape, setShape, amplitude, setAmplitude, frequency, setFrequency, radius, setRadius,
@@ -213,7 +213,7 @@ export function PathControllerPanel() {
     customPath, setCustomPath, customScaleX, setCustomScaleX, customScaleY, setCustomScaleY, customOffsetX, setCustomOffsetX, customOffsetY, setCustomOffsetY, customRotate, setCustomRotate } = ctx;
 
   return (
-    <div className="space-y-4 p-4 border rounded">
+    <div className={`space-y-4 p-4 border rounded ${className ?? ""}`}>
       <div className="flex items-center gap-3">
         <label className="font-medium">Shape:</label>
         <select value={shape} onChange={(e) => setShape(e.target.value as any)} className="border rounded px-2 py-1">

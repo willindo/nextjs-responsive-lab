@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Staircase from "./Staircase";
 
 export default function ClippyImage({ src, alt }: { src: string; alt: string }) {
   const [shape, setShape] = useState<"wave" | "triangle" | "circle">("wave");
@@ -32,10 +33,10 @@ export default function ClippyImage({ src, alt }: { src: string; alt: string }) 
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         />
-      </div>
-
       {/* Buttons to switch shapes */}
-      <div className="flex gap-3">
+
+      <div className="flex absolute top-0 right-30 gap-3">
+      <Staircase mode="one-side" direction="up" stepY={40} stepX={50} >
         <button
           onClick={() => setShape("wave")}
           className="px-4 py-2 rounded-xl bg-blue-500 text-white hover:bg-blue-600"
@@ -45,16 +46,19 @@ export default function ClippyImage({ src, alt }: { src: string; alt: string }) 
         <button
           onClick={() => setShape("triangle")}
           className="px-4 py-2 rounded-xl bg-green-500 text-white hover:bg-green-600"
-        >
+          >
           Triangle
         </button>
         <button
           onClick={() => setShape("circle")}
           className="px-4 py-2 rounded-xl bg-purple-500 text-white hover:bg-purple-600"
-        >
+          >
           Circle
         </button>
+          </Staircase>
       </div>
+      </div>
+
     </div>
   );
 }
