@@ -50,8 +50,8 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {open && (
-        <div className="flex flex-col gap-6 md:hidden px-4 py-2">
-          <AnimatedScope animation="fadeIn" stagger={0.2}>
+        <div className="flex z-11 flex-col gap-6 md:hidden px-4 py-2">
+          <AnimatedScope className="z-11" animation="fadeIn" stagger={0.2}>
             {links.map((link) => (
               <TransitionLink key={link.href} href={link.href} className="hover:underline">
                 {link.label}

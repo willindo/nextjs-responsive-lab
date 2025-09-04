@@ -1,21 +1,38 @@
 "use client"
+import BackimageDemo from "@/components/BackimageDemo";
+import BgImageFun from "@/components/BgImageFun";
 import GridFlex from "@/components/GridFlex";
 import ResponsiveImagesDemo from "@/components/ResponsiveImageDemo2";
 import RoundFoldList from "@/components/RoundFoldList";
 import SlideDeck from "@/components/SlideDeck";
 import StoryScroller from "@/components/StoryScroller";
+import UniqueClip from "@/components/UniqueClip";
 import { useState } from "react";
+const srcList = [
+  "https://picsum.photos/800/600",
+  "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=600&q=80",
+  "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=800&q=80",
+];
 
 export default function ResponsiveGridPage() {
 
   return (
     <>
-    <main className="p-10 space-y-10">
-    </main>
-
-    <SlideDeck/>
-      {/* <RoundFoldList/>  */}
-      {/* <StoryScroller /> */}
+    <UniqueClip />
+    <div className=" h-[300px] ">
+        <BgImageFun 
+         layers={[
+    { src: srcList[0],size:"200%",position: "top-left", direction: "horizontal", speed: 15 },
+    { src: srcList[1], position: "top-right", direction: "vertical", speed: 25 },
+    { src: srcList[1], position: "bottom-left", direction: "diagonal", speed: 20, reverse: true },
+    { src: srcList[0], size:"150%",position: "bottom-right", direction: "horizontal", speed: 30 },
+  ]}
+        >
+          <h1 className="text-4xl font-bold text-white">Responsive Background Image</h1>
+        </BgImageFun>
+      </div>
+      <BackimageDemo />
+      <StoryScroller />
       {/* <div>
         <ExplodeSequence>
           <>

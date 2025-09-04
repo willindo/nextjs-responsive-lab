@@ -144,14 +144,14 @@ export default function Home() {
       {slides.map((s, i) => (
         <section
           key={i}
-          className={`slide fixed inset-10 invisible first:visible`}
+          className={`slide  z-[-1] inset-10 invisible first:visible`}
         >
-          <div className="slide-outer w-full h-full overflow-hidden">
-            <div className="slide-inner w-full h-full overflow-hidden">
+          <div className="slide-outer w-full aspect-[16/9] overflow-hidden">
+            <div className="slide-inner w-full  overflow-hidden">
               <div
                 className={`slide-content absolute inset-0 flex items-center justify-center ${s.bg}`}
               >
-                <div className="slide-container relative grid h-[90vh] w-screen max-w-[1400px] grid-cols-10 grid-rows-10 gap-0 px-4 md:px-12 md:mt-[10vh] md:h-[80vh] mb-[10vh] mx-auto">
+                <div className="slide-container relative grid -[90vh] w-screen max-w-[1400px] grid-cols-10 grid-rows-10 gap-0 px-4 md:px-12 md:mt-[10vh] md:h-[80vh] mb-[10vh] mx-auto">
                   <h2 className="slide-heading z-[999] col-span-8 row-start-2 self-end font-bold text-[clamp(5rem,15vw,15rem)]  text-[#f2f1fc] mix-blend-difference [font-variation-settings:'wdth'_200] md:col-span-9 md:row-start-1 md:row-end-4">
                     {s.heading}
                   </h2>
@@ -171,7 +171,7 @@ export default function Home() {
 
       {/* Overlay */}
       <section className="overlay fixed inset-10 z-10">
-        <div className="overlay-content mx-auto mb-[10vh] grid h-[90vh] w-screen max-w-[1400px] grid-cols-10 grid-rows-10 gap-0 px-4 md:px-12 md:mt-[10vh] md:h-[80vh]">
+        <div className="overlay-content mx-auto mb-[10vh] grid aspect-square w-screen max-w-[1400px] grid-cols-10 grid-rows-10 gap-0 px-4 md:px-12 md:mt-[10vh] md:h-[80vh]">
           <p className="overlay-count col-start-10 row-start-3 border-b-4 border-white text-right text-[clamp(3rem,4vw,15rem)]">
             0<span ref={countRef}>1</span>
           </p>
@@ -194,15 +194,6 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="fixed bottom-0 flex h-28 w-full items-center justify-between px-8 font-sora text-[clamp(1.2rem,2vw,1rem)] z-[999]">
-        <a
-          href="https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.observe/"
-          className="text-white no-underline"
-        >
-          ScrollTrigger.observe()
-        </a>
-        <p>GSAP demo</p>
-      </footer>
     </main>
   );
 }
