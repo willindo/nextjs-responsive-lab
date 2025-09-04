@@ -12,30 +12,47 @@ export default function ReadMore({ children }: ReadMoreProps) {
     console.warn("⚠️ <ReadMore> child needs a className with line-clamp-*");
   }
 
-  // Extract clamp class from child
   const className: string = children.props?.className ?? "";
   const clampClass = (className.match(/line-clamp-\d+/) || [])[0] || "";
 
-  // New className depending on expanded state
-  const appliedClass = expanded
-    ? className.replace(clampClass, "") // remove clamp
-    : className; // keep clamp
-
-  // Clone the child with updated className
-  const cloned = cloneElement(children, {
-    className: appliedClass,
+  // Clone for collapsed state (with clamp intact)
+  const collapsed = cloneElement(children, {
+    className,
   });
 
   return (
     <div>
-      {cloned}
+      {/* Collapsed view */}
+      {!expanded && (
+        <>
+          {collapsed}
+          <button
+            onClick={() => setExpanded(true)}
+            className="mt-1 text-sm font-medium text-blue-600 hover:underline"
+          >
+            Read more
+          </button>
+        </>
+      )}
 
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="mt-1 text-sm font-medium text-blue-600 hover:underline"
-      >
-        {expanded ? "Read less" : "Read more"}
-      </button>
+      {/* Expanded full-screen overlay */}
+      {expanded && (
+        <div className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm overflow-y-auto p-6">
+          <div className="max-w-3xl mx-auto">
+            {/* Expanded child without line clamp */}
+            {cloneElement(children, {
+              className: className.replace(clampClass, ""), // unclamped
+            })}
+
+            <button
+              onClick={() => setExpanded(false)}
+              className="mt-4 text-sm font-medium text-blue-600 hover:underline"
+            >
+              Read less
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

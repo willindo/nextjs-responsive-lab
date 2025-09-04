@@ -1,40 +1,47 @@
 "use client"
 import BackimageDemo from "@/components/BackimageDemo";
 import BgImageFun from "@/components/BgImageFun";
+import ExplodeStack from "@/components/ExplodeTree";
 import GridFlex from "@/components/GridFlex";
 import ResponsiveImagesDemo from "@/components/ResponsiveImageDemo2";
 import RoundFoldList from "@/components/RoundFoldList";
 import SlideDeck from "@/components/SlideDeck";
 import StoryScroller from "@/components/StoryScroller";
-import UniqueClip from "@/components/UniqueClip";
+import ReadMore from "@/components/ui-tools/ReadMore";
+import UniqueClipChoice from "@/components/UniqueClipChoice";
+import { imageList } from "@/data/images";
 import { useState } from "react";
-const srcList = [
-  "https://picsum.photos/800/600",
-  "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=600&q=80",
-  "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=800&q=80",
-];
 
 export default function ResponsiveGridPage() {
 
   return (
     <>
-    <UniqueClip />
-    <div className=" h-[300px] ">
-        <BgImageFun 
-         layers={[
-    { src: srcList[0],size:"200%",position: "top-left", direction: "horizontal", speed: 15 },
-    { src: srcList[1], position: "top-right", direction: "vertical", speed: 25 },
-    { src: srcList[1], position: "bottom-left", direction: "diagonal", speed: 20, reverse: true },
-    { src: srcList[0], size:"150%",position: "bottom-right", direction: "horizontal", speed: 30 },
-  ]}
+      <div className=" mx-auto sm:grid sm:grid-rows-auto  sm:grid-cols-[70vw_30vw] md:grid-cols-[75vw_25vw] lg:grid-cols-[70vw_30vw] sm:place-items-center lg:justify-end">
+        <UniqueClipChoice speed={30} shape="circle"  className="max-sm:w-[90vw] min-sm:max-lg:w-[70vw] lg:w-[55vw]" />
+        <div className="max-sm:hidden max-w-prose text-center">
+          <h2 className="text-xl font-semibold mb-4">Balanced Responsive Block</h2>
+          <ReadMore>
+            <p className=" line-clamp-4 md:line-clamp-5 overflow-ellipsis" > These are some sample content throughout the pages manipulating responsive phase. On larger
+              screens it will take up proportion of viewport or container size. Aspect ratio scenario relevance .
+              On smaller screens, it will stay hidden.
+              </p>
+          </ReadMore>
+        </div>
+      </div>
+      <div className="mx-auto h-[300px] lg:w-[90vw] lg:aspect-[16/9] ">
+        <BgImageFun
+          layers={[
+            { src: imageList[6], size: "200%", position: "top-left", direction: "diagonal", speed: 15 },
+            { src: imageList[1], position: "top-right", direction: "vertical", speed: 25 },
+            { src: imageList[1], position: "bottom-left", direction: "diagonal", speed: 20, reverse: true },
+            { src: imageList[2], size: "150%", position: "bottom-right", direction: "horizontal", speed: 30 },
+          ]}
         >
           <h1 className="text-4xl font-bold text-white">Responsive Background Image</h1>
         </BgImageFun>
       </div>
       <BackimageDemo />
-      <StoryScroller />
-      {/* <div>
-        <ExplodeSequence>
+      {/* <ExplodeStack>
           <>
             <div>🍎</div>
             <div>🍌</div>
@@ -69,8 +76,7 @@ export default function ResponsiveGridPage() {
             <p className=" text-green-400">double</p>
             <p className="text-xl text-green-400">double</p>
           </>
-        </ExplodeSequence>
-      </div>
+        </ExplodeStack> */}
 
       <div>
         <h1 className="text-3xl font-bold">Responsive Grid Demo</h1>
@@ -83,7 +89,7 @@ export default function ResponsiveGridPage() {
           <GridFlex />
         </div>
         <GridFlex />
-      </div> */}
+      </div>
     </>
   );
 }

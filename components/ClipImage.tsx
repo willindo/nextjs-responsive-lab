@@ -41,28 +41,28 @@ export default function ClipImage({
     >
       {isFill ? (
         <div>
-      <h4 className="">text item</h4>
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          priority={aboveFold}
-          className="object-cover"
+          <h4 className="">text item</h4>
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            priority={aboveFold}
+            className="object-cover"
           />
-          </div>
+        </div>
       ) : (
         <div>
           <h4>text item</h4>
-        <h3>text item</h3>
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          priority={aboveFold}
-          className="object-cover w-full h-full"
+          <h3>text item</h3>
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            priority={aboveFold}
+            className="object-cover w-full h-full"
           />
-          </div>
+        </div>
       )}
     </div>
   );

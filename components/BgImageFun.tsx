@@ -112,7 +112,7 @@ export default function BgImageFun({
             {
               src: src ?? "",
               direction,
-              speed,
+              speed, 
               reverse,
               size,
               attachment,
