@@ -3,6 +3,7 @@ import { useState, useMemo, useContext, createContext, ReactNode } from "react";
 
 /* ---------------------- Generators ---------------------- */
 function normalizePath(path: string): string {
+   if (typeof document === "undefined") return path; // fallback during SSR
   const svgNS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(svgNS, "svg");
   const temp = document.createElementNS(svgNS, "path");
