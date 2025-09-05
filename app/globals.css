@@ -189,3 +189,15 @@ body {
   font-size: 14px;
   opacity: 0.7;
 }
+.multi-bg {
+  --x1: 0%;
+  --y1: 0%;
+  --x2: 0%;
+  --y2: 0%;
+
+  background: url("https://picsum.photos/800/450"), url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200");
+  background-position: var(--x1) var(--y1), var(--x2) var(--y2);
+  background-size: 40% 10%, 50%;  /* oversize images */
+  background-repeat: no-repeat, no-repeat;
+}
+
