@@ -20,6 +20,7 @@ import Image from "next/image";
 import LineClampAutoPage from "@/components/LineClampAutoPage";
 import Ripples from "@/components/ui-tools/Ripples";
 import { LayoutOrchestra } from "@/components/LayoutOrchestra";
+import PortionImage from "@/components/StickyPortion";
 
 export default function Home() {
   const { config, setConfig } = useLayoutConfig("circle")

@@ -7,33 +7,38 @@ import PageTurnCarousel from "@/components/PageTurnCarousel";
 import ParallaxGroup from "@/components/ParallaxGroup";
 import PathDrivenMotionGroup from "@/components/PathDrivenMotionGroup";
 import Staircase from "@/components/Staircase";
+import StickyPortion from "@/components/StickyPortion";
 import ThreeStepNestedCards from "@/components/ThreeStepNestedCards";
 import { PathControllerPanel, PathProvider } from "@/components/ui-tools/PathControls1";
 
 export default function SpacingPage() {
   return (
     <>
-    <ClippyItem />
-      <PathProvider>
+
+      <ClippyItem />
+        <PathProvider>
           <PathControllerPanel className=" md:w-[50vw] " />
-        <div className="md:w-[50vw] h-[300px]  space-y-8">
-          <PathDrivenMotionGroup className="    " duration={8} gap={1.5} >
-           
-            {/* {[...Array(6)].map((_, i) => (
+      <div className=" mx-auto grid lg:grid-cols-2 ">
+          <div className="md:w-[50vw] h-[300px]  space-y-8">
+            <PathDrivenMotionGroup className="    " duration={8} gap={1.5} >
+
+              {/* {[...Array(6)].map((_, i) => (
           <span key={i} className="text-2xl">🌟</span>
           ))} */}
-            {/* <div className="w-6 h-6 bg-red-500 rounded-full" />
+              {/* <div className="w-6 h-6 bg-red-500 rounded-full" />
           <div className="w-6 h-6 bg-blue-500 rounded-full" /> */}
-            {["🚗","h", "🚙","a", "🚌", "i","🚛", "🚓"].map((car, i) => (
-              <span key={i} className="text-3xl">{car}</span>
-            ))}
-          </PathDrivenMotionGroup>
-        </div>
-      </PathProvider>
-      <Staircase mode="two-side" direction="down" stepY={10} stepX={10} className=" left-40">
+              {["🚗", "h", "🚙", "a", "🚌", "i", "🚛", "🚓"].map((car, i) => (
+                <span key={i} className="text-3xl">{car}</span>
+              ))}
+            </PathDrivenMotionGroup>
+          </div>
+        <StickyPortion />
+      </div>
+        </PathProvider>
+      <Staircase mode="two-side" direction="down" stepY={10} stepX={7} className="   left-10">
         {[...Array(20)].map((_, i) => (
-          <span key={i} className="text-2xl">❤️</span>
-          ))}
+          <span key={i} className=" hover:opacity-50 text-2xl">❤️</span>
+        ))}
       </Staircase>
       {/* <div>
       <ParallaxGroup />
@@ -67,7 +72,7 @@ export default function SpacingPage() {
         <div className="cardi">
           <p className="mt-2 bg-lime-800">Clean sugar syntax 🚀</p>
         </div>
-        <CircleCarousel />
+        {/* <CircleCarousel  /> */}
         <ThreeStepNestedCards />
         <GridFlex />
       </div>

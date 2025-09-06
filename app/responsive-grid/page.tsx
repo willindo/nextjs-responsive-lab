@@ -4,6 +4,7 @@ import BgImageFun from "@/components/BgImageFun";
 import ExplodeStack from "@/components/ExplodeTree";
 import GridFlex from "@/components/GridFlex";
 import MultiBgAnim from "@/components/MultiBgAnim";
+import PortionImage from "@/components/StickyPortion";
 import ResponsiveImagesDemo from "@/components/ResponsiveImageDemo2";
 import RoundFoldList from "@/components/RoundFoldList";
 import SlideDeck from "@/components/SlideDeck";
@@ -12,21 +13,23 @@ import ReadMore from "@/components/ui-tools/ReadMore";
 import UniqueClipChoice from "@/components/UniqueClipChoice";
 import { imageList } from "@/data/images";
 import { useState } from "react";
+import StickyPortion from "@/components/StickyPortion";
 
 export default function ResponsiveGridPage() {
 
   return (
     <>
-    {/* <MultiBgAnim  /> */}
+      {/* <MultiBgAnim  /> */} 
+      
       <div className=" mx-auto sm:grid sm:grid-rows-auto  sm:grid-cols-[65vw_30vw] md:grid-cols-[70vw_25vw] lg:grid-cols-[60vw_30vw] sm:place-items-center ">
-        <UniqueClipChoice speed={30} shape="circle"  className="max-sm:w-[90vw] min-sm:max-lg:w-[70vw] lg:w-[60vw]" />
+        <UniqueClipChoice speed={30} shape="circle" className="max-sm:w-[90vw] min-sm:max-lg:w-[70vw] lg:w-[60vw]" />
         <div className="max-sm:hidden max-w-prose text-center">
           <h2 className="text-xl font-semibold mb-4">Balanced Responsive Block</h2>
           <ReadMore>
             <p className=" line-clamp-4 md:line-clamp-5 overflow-ellipsis" > These are some sample content throughout the pages manipulating responsive phase. On larger
               screens it will take up proportion of viewport or container size. Aspect ratio scenario relevance .
               On smaller screens, it will stay hidden.
-              </p>
+            </p>
           </ReadMore>
         </div>
       </div>
