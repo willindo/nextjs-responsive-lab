@@ -17,9 +17,9 @@ export default function SpacingPage() {
 
       <ClippyItem />
         <PathProvider>
-          <PathControllerPanel className=" md:w-[50vw] " />
+          <PathControllerPanel className="mx-auto md:w-[50vw] " />
       <div className=" mx-auto grid lg:grid-cols-2 ">
-          <div className="md:w-[50vw] h-[300px]  space-y-8">
+          <div className=" max-md:w-[50vw] h-[300px]  space-y-8">
             <PathDrivenMotionGroup className="    " duration={8} gap={1.5} >
 
               {/* {[...Array(6)].map((_, i) => (
@@ -55,9 +55,9 @@ export default function SpacingPage() {
           This box uses <code>clamp()</code> for margin and padding that scale
           with viewport.
         </p>
-        <p className="tiny">this use className 'tiny'</p>
-        <div className="@container">
-          <div className="mt-3 p-2 bg-teal-200 rounded-lg  @md:mt-6 @md:p-4 @lg:mt-12 @lg:p-8">
+        <p className="">this use className 'tiny'</p>
+        <div className="@container/varies">
+          <div className="mt-3 p-2  rounded-lg  @md/varies:bg-amber-600 @sm/varies:bg-green-600 @lg/varies:bg-blue-600 @2xl/varies:@max-5xl/varies:bg-purple-600 @lg:mt-12 @lg:p-8">
             Card content
           </div>
         </div>
@@ -68,9 +68,6 @@ export default function SpacingPage() {
           >
             Card content container expertise
           </div>
-        </div>
-        <div className="cardi">
-          <p className="mt-2 bg-lime-800">Clean sugar syntax 🚀</p>
         </div>
         {/* <CircleCarousel  /> */}
         <ThreeStepNestedCards />

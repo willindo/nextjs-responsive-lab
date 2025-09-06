@@ -13,50 +13,9 @@
   * {
     box-sizing: border-box;
   }
-  .acontainer {
-    container-type: inline-size;
-    container-name: acontainer;
-  }
-  .bcontainer {
-    container-type: inline-size;
-    container-name: bcontainer;
-  }
-  .ccontainer {
-    container-type: inline-size;
-    container-name: ccontainer;
-  }
-}
-.cardp {
-  container-type: inline-size;
-  container-name: cardp;
-}
-.cardb {
-  container-type: inline-size;
-  container-name: cardb;
-}
-.cardi {
-  container-type: inline-size;
-  container-name: cardi;
+  
 }
 
-@container cardp (min-width: 600px) {
-  .cardp p {
-    background: rgb(130, 128, 0);
-    color: white;
-  }
-}
-@container cardb (min-width: 600px) {
-  .cardb p {
-    background: rgb(5, 99, 122);
-    color: white;
-  }
-}
-@container cardi (min-width: 600px) {
-  .cardi p {
-    background: rgb(9, 160, 29);
-    color: white;
-  }
-}
 :root {
   --step--10: clamp(0.8rem, 0.7rem + 0.3vw, 1rem);
   --step-11: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
@@ -201,7 +160,6 @@ body {
   background-size: 40% 10%, 50%; /* oversize images */
   background-repeat: no-repeat, no-repeat;
 }
-/* use CSS variable to offset image while slot stays fixed */
 /* use CSS variable to offset image while slot stays fixed */
 .portion-bg {
   --offsetX: -50%;
