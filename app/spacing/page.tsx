@@ -1,24 +1,43 @@
 "use client";
 import AnimatedElements from "@/components/AnimatedElements";
 import CircleCarousel from "@/components/CircleCarousel";
+import CircleGallery from "@/components/CircleGallery";
 import ClippyItem from "@/components/ClippyItem";
 import GridFlex from "@/components/GridFlex";
 import PageTurnCarousel from "@/components/PageTurnCarousel";
 import ParallaxGroup from "@/components/ParallaxGroup";
 import PathDrivenMotionGroup from "@/components/PathDrivenMotionGroup";
+import ScrollGroupA from "@/components/ScrollGroupA";
 import Staircase from "@/components/Staircase";
 import StickyPortion from "@/components/StickyPortion";
 import ThreeStepNestedCards from "@/components/ThreeStepNestedCards";
+import ScrollGroup from "@/components/ui-tools/crollGroup";
 import { PathControllerPanel, PathProvider } from "@/components/ui-tools/PathControls1";
+import { tr } from "framer-motion/client";
 
 export default function SpacingPage() {
   return (
     <>
+        <ScrollGroupA autoFit itemsPerRow={5} yStep={0} scaleBase={2} xStep={0} className="bg-gray-100 p-4">
 
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+          <div className="w-12 h-12 bg-indigo-500 rounded-full" />
+        {/* </ScrollGroup> */}
+        </ScrollGroupA>
+      {/* </section> */}
+      {/* <CircleGallery  /> */}
       <ClippyItem />
-        <PathProvider>
-          <PathControllerPanel className="mx-auto md:w-[50vw] " />
-      <div className=" mx-auto grid lg:grid-cols-2 ">
+      <PathProvider>
+        <PathControllerPanel className="mx-auto md:w-[50vw] " />
+        <div className=" mx-auto grid lg:grid-cols-2 ">
           <div className=" max-md:w-[50vw] h-[300px]  space-y-8">
             <PathDrivenMotionGroup className="    " duration={8} gap={1.5} >
 
@@ -32,9 +51,9 @@ export default function SpacingPage() {
               ))}
             </PathDrivenMotionGroup>
           </div>
-        <StickyPortion />
-      </div>
-        </PathProvider>
+          <StickyPortion />
+        </div>
+      </PathProvider>
       <Staircase mode="two-side" direction="down" stepY={10} stepX={7} className="   left-10">
         {[...Array(20)].map((_, i) => (
           <span key={i} className=" hover:opacity-50 text-2xl">❤️</span>
@@ -76,3 +95,4 @@ export default function SpacingPage() {
     </>
   );
 }
+

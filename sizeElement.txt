@@ -46,3 +46,23 @@ clientWidth / clientHeight exclude scrollbars, offsetWidth / offsetHeight includ
 getBoundingClientRect() is usually the most accurate for dynamic layouts because it accounts for transforms and fractional pixels.
 
 window.innerWidth vs document.documentElement.clientWidth: the first includes scrollbar width, the second doesn’t.
+
+$source = "C:\Users\loki"              # Replace with your actual source path
+$destination = "E:\fromHP"     # Replace with your external disk path
+
+# Create destination folder if it doesn't exist
+if (!(Test-Path $destination)) {
+    New-Item -ItemType Directory -Path $destination | Out-Null
+}
+
+# Copy all files and folders, including hidden/system
+Copy-Item -Path $source\* -Destination $destination -Recurse -Force
+
+# Reapply hidden and system attributes to copied items
+Get-ChildItem -Path $source -Recurse -Force | ForEach-Object {
+    $targetPath = Join-Path $destination ($_.FullName.Substring($source.Length).TrimStart('\'))
+    if (Test-Path $targetPath) {
+        $attributes = $_.Attributes
+        Set-ItemProperty -Path $targetPath -Name Attributes -Value $attributes
+    }
+}
