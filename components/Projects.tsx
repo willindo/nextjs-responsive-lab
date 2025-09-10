@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import Circle3D from "./Circle3d";
+import { extraLinks } from "@/app/config/links";
+import Link from "next/link";
 
 export default function Projects() {
   const [isMobile, setIsMobile] = useState(false);
@@ -30,6 +32,12 @@ export default function Projects() {
       desc: "Responsive UI demos and 3D integration using React Three Fiber.",
       tech: "React, r3f, Three.js",
       link: "https://nextjs-responsive-lab.vercel.app/responsive-image1",
+    },
+    {
+      name: "Just Fun",
+      desc: "a buch of trials which may convince some stuff.",
+      tech: "React, r3f, Three.js",
+      link: "/somefun",
     },
   ];
 
@@ -84,7 +92,14 @@ export default function Projects() {
               <p className="text-gray-600 text-sm">{p.desc}</p>
               <p className="text-gray-500 mt-4 text-xs">{p.tech}</p>
             </div>
+
           ))}
+          <Link
+                href={extraLinks[0].href}
+                className="block p-3 rounded-lg border hover:bg-gray-50"
+              >
+                {extraLinks[0].label}
+              </Link>
         </Circle3D>
       )}
     </div>

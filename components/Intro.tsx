@@ -1,7 +1,7 @@
 'use client';
 import { motion } from "framer-motion";
 import { AnimatedScope } from "./AnimatedScope";
-import { useAnimations } from "./useAnimations";
+import { useAnimations } from "../configs/useAnimations";
 import { useRef } from "react";
 export default function Intro() {
   const { trigger, stop, toggle } = useAnimations();

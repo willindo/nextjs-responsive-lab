@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useScrollGroup } from "./useScrollGroup";
+import { useScrollGroup } from "../configs/useScrollGroup";
 import { AnimatedScope } from "./AnimatedScope";
 
 export default function CircleGallery() {

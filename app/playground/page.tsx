@@ -19,10 +19,10 @@ import { techStack } from "@/data/techStack";
 import Image from "next/image";
 import LineClampAutoPage from "@/components/LineClampAutoPage";
 import Ripples from "@/components/ui-tools/Ripples";
-import { LayoutOrchestra } from "@/components/LayoutOrchestra";
 import PortionImage from "@/components/StickyPortion";
+import LayoutOrchestra from "@/components/LayoutOrchestra";
 
-export default function Home() {
+export default function PlayGround() {
   const { config, setConfig } = useLayoutConfig("circle")
   return (
     <>
@@ -41,9 +41,9 @@ export default function Home() {
         <LayoutOrchestra
           layout="spiral"
           config={{ ...config, spacing: 40, }}
-          width={200}
-          height={200}
-          className=" overflow-hidden"
+          // width={200}
+          // height={200}
+          // className=" overflow-hidden"
         >
 
           {techStack.map((item, i) => (

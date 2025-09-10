@@ -10,10 +10,10 @@ export default function Navbar() {
 
   const links = [
     { href: "/", label: "Portfolio" },
-    { href: "/fluid-text", label: "Fluid Text" },
+    { href: "/shadowfun", label: "Shadow Fun" },
     { href: "/responsive-grid", label: "Responsive Grid" },
     { href: "/spacing", label: "Spacing" },
-    { href: "/responsive-image1", label: "Responsive Image" },
+    { href: "/playground", label: "Play Ground" },
   ];
 
   return (

@@ -12,6 +12,9 @@ import AnimatedGradientBg from "@/components/AnimatedGradientBg";
 import ContactSection from "@/components/Contact";
 import TechStack from "@/components/TechStack";
 import { techStack } from "@/data/techStack";
+import { extraLinks } from "./config/links";
+
+
 export default function Home() {
   return (
     <AnimatedGradientBg>

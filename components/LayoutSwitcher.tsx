@@ -39,7 +39,7 @@ export function LayoutSwitcher({
 }: LayoutSwitcherProps) {
   // Controlled vs uncontrolled
   const [inner, setInner] = useState<LayoutType>(
-    "defaultValue" in ctrl && ctrl.defaultValue ? ctrl.defaultValue : "row"
+    "defaultValue" in ctrl && ctrl.defaultValue ? ctrl.defaultValue : "grid"
   );
 
   const current: LayoutType = "value" in ctrl && ctrl.value ? ctrl.value : inner;

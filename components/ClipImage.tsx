@@ -40,7 +40,7 @@ export default function ClipImage({
       style={isFill ? { aspectRatio: "16/9" } : { width, height }} // keep aspect ratio if fill
     >
       {isFill ? (
-        <div>
+        <div className=" relative h-full " >
           <h4 className="">text item</h4>
           <Image
             src={src}
@@ -50,10 +50,10 @@ export default function ClipImage({
             className="object-cover"
           />
         </div>
-      ) : (
-        <div>
+      ) : (<>
           <h4>text item</h4>
           <h3>text item</h3>
+        <div>
           <Image
             src={src}
             alt={alt}
@@ -63,6 +63,7 @@ export default function ClipImage({
             className="object-cover w-full h-full"
           />
         </div>
+        </>
       )}
     </div>
   );

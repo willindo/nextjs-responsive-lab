@@ -8,6 +8,7 @@ import UnitCheatSheet from "@/components/UnitCheatSheet";
 import TransitionProvider from "@/components/TransitionProvider";
 import PlaygroundSidebar from "@/components/PlaygroundSidebar";
 import Navbar1 from "@/components/Navbar1";
+import { ResponsiveScaleProvider } from "@/configs/useResponsiveScale";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ return (
      
       <body>
         <TransitionProvider preset="cinematic">
+          <ResponsiveScaleProvider>
           <Navbar />
           {/* <Navbar1/> */}
           {/* <PlaygroundSidebar /> */}
@@ -45,6 +47,7 @@ return (
           {/* <FontDebugger /> */}
           {/* <FontSizeOverlay /> */}
           {/* <UnitCheatSheet /> */}
+          </ResponsiveScaleProvider>
         </TransitionProvider>
       </body>
     </html>
