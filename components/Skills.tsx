@@ -1,12 +1,13 @@
 "use client"
 import { useState } from "react";
 import { LayoutSwitcher } from "./LayoutSwitcher";
-import { LayoutOrchestra } from "./LayoutOrchestra";
 import { DevConfigPanel1 } from "./ui-tools/DevConfigPanel1";
 import ExplodeStack from "./ExplodeSequence";
 import ExplodeSequence from "./ExplodeSequence";
 import { arcSpiralSchema, ConfigField } from "@/configs/panelSchemas";
 import { AnimatedScope } from "./AnimatedScope";
+import LayoutOrchestra from "./LayoutOrchestra";
+
 export default function Skills() {
     const [config, setConfig] = useState({
         radius: 160,
