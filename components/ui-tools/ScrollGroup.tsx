@@ -210,7 +210,7 @@ export default function ScrollGroup(props: ScrollGroupProps) {
     const key = React.isValidElement(child) && (child as any).key != null ? (child as any).key : `sg-${i}`;
 
     const coreChild = React.isValidElement(child)
-      ? React.cloneElement(child as React.ReactElement, {
+      ? React.cloneElement(child as React.ReactElement | any, {
           key,
           className: `${(child as any).props?.className || ""} sg-item`.trim(),
           "data-sg-index": String(i),
