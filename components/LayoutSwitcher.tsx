@@ -2,9 +2,8 @@
 "use client";
 
 import React, { useMemo, useState, cloneElement, type ReactElement } from "react";
-import type { LayoutKind, LayoutConfig, LayoutOrchestraProps } from "./LayoutOrchestra";
+import type { LayoutType, LayoutConfig, LayoutOrchestraProps } from "./LayoutOrchestra";
 
-export type LayoutType = LayoutKind;
 export type LayoutOverrideMap = Partial<Record<LayoutType, Partial<LayoutConfig>>>;
 
 type Controlled =

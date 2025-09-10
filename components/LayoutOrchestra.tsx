@@ -3,8 +3,6 @@ import React, { ReactNode, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useResponsiveScale } from "@/configs/useResponsiveScale";
 
-
-useResponsiveScale
 export type LayoutType =
   | "row"
   | "column"
@@ -21,6 +19,7 @@ export interface LayoutConfig {
   angleStep?: number;
   spiralA?: number;
   spiralB?: number;
+  spiralStepDeg?: number; // ✅ added for correct spiral stepping
   controlPoints?: [number, number][];
   cols?: number;
   className?: string;
@@ -89,10 +88,11 @@ const LayoutOrchestra: React.FC<LayoutOrchestraProps> = ({
       case "spiral": {
         const a = cfg.spiralA ?? 4;
         const b = cfg.spiralB ?? 10;
+        const step = ((cfg.spiralStepDeg ?? 18) * Math.PI) / 180; // ✅ radian step
         for (let i = 0; i < count; i++) {
-          const angle = i * (cfg.angleStep ?? 12) * (Math.PI / 180);
-          const r = a + b * angle;
-          pos.push({ x: r * Math.cos(angle), y: r * Math.sin(angle) });
+          const t = i * step; // angle in radians
+          const r = a + b * t; // Archimedean spiral: r = a + bθ
+          pos.push({ x: r * Math.cos(t), y: r * Math.sin(t) });
         }
         break;
       }
@@ -103,9 +103,23 @@ const LayoutOrchestra: React.FC<LayoutOrchestraProps> = ({
           [200, 100],
           [300, 0],
         ];
-        const cubic = (t: number, p0: [number, number], p1: [number, number], p2: [number, number], p3: [number, number]) => {
-          const x = Math.pow(1 - t, 3) * p0[0] + 3 * Math.pow(1 - t, 2) * t * p1[0] + 3 * (1 - t) * Math.pow(t, 2) * p2[0] + Math.pow(t, 3) * p3[0];
-          const y = Math.pow(1 - t, 3) * p0[1] + 3 * Math.pow(1 - t, 2) * t * p1[1] + 3 * (1 - t) * Math.pow(t, 2) * p2[1] + Math.pow(t, 3) * p3[1];
+        const cubic = (
+          t: number,
+          p0: [number, number],
+          p1: [number, number],
+          p2: [number, number],
+          p3: [number, number]
+        ) => {
+          const x =
+            Math.pow(1 - t, 3) * p0[0] +
+            3 * Math.pow(1 - t, 2) * t * p1[0] +
+            3 * (1 - t) * Math.pow(t, 2) * p2[0] +
+            Math.pow(t, 3) * p3[0];
+          const y =
+            Math.pow(1 - t, 3) * p0[1] +
+            3 * Math.pow(1 - t, 2) * t * p1[1] +
+            3 * (1 - t) * Math.pow(t, 2) * p2[1] +
+            Math.pow(t, 3) * p3[1];
           return { x, y };
         };
         for (let i = 0; i < count; i++) {
