@@ -285,7 +285,7 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
       const scale = responsiveScaleBase + idx * responsiveScaleStep;
       const rot = idx * p.rotateStep;
       const opa = Math.min(1, p.opacityBase + idx * p.opacityStep);
-      const target = el.closest(".sg-cell") ?? el;
+      const target = (el.closest(".sg-cell") ?? el) as HTMLElement | SVGElement ;
       target.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${scale})`;
       target.style.opacity = `${opa}`;
       target.style.willChange = p.autoWillChange ? "transform, opacity" : "";
@@ -293,7 +293,7 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
 
     return () => {
       items.forEach((el) => {
-        const target = el.closest(".sg-cell") ?? el;
+        const target = (el.closest(".sg-cell") ?? el) as HTMLElement | SVGElement  ;
         target.style.transform = "";
         target.style.opacity = "";
         if (p.autoWillChange) target.style.willChange = "";
@@ -426,8 +426,8 @@ export function SequentialSizeGroup({
         <LayoutOrchestra
           layout="arc"
           config={{ ...config, spacing: 40, }}
-          width={200}
-          height={200}
+          // width={200}
+          // height={200}
           className=" overflow-hidden"
         >
           {React.Children.map(children, (child, i) => {
@@ -436,9 +436,9 @@ export function SequentialSizeGroup({
             // each item is +20px wider and +10px taller
             const width = 20 + i * 10;
             const height = 20 + i * 10;
-            return React.cloneElement(child, {
+            return React.cloneElement(child as React.ReactElement<any>, {
               style: {
-                ...(child.props.style || {}),
+                ...(React.isValidElement(child) && child.props && typeof child.props === "object" ? (child.props as { style?: React.CSSProperties }).style : {}),
                 width,
                 height,
                 // margins remain stable (not affected by scale)
@@ -448,7 +448,7 @@ export function SequentialSizeGroup({
                 borderRadius: "50%",
               },
             });
-          })}
+          }) || []}
         </LayoutOrchestra>
       </LayoutSwitcher>
     </div>

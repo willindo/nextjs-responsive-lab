@@ -134,7 +134,7 @@ export default function Ripples({
         viewBox={`${-padding} ${-padding} ${dims.w + padding * 2} ${dims.h + padding * 2}`}
         preserveAspectRatio="xMidYMid meet"
       >
-        <path ref={pathRef} fill="white" stroke={color} strokeWidth={2} />
+        <path ref={pathRef} fill="none" stroke={color} strokeWidth={2} />
       </svg>
     </div>
   );

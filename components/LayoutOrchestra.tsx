@@ -22,14 +22,14 @@ export interface LayoutConfig {
   spiralStepDeg?: number; // ✅ added for correct spiral stepping
   controlPoints?: [number, number][];
   cols?: number;
-  className?: string;
 }
 
 export interface LayoutOrchestraProps {
   layout: LayoutType;
-  children: ReactNode[];
+  children: ReactNode[] ;
   config?: LayoutConfig;
   groupOffsets?: { group: number[]; dx?: number; dy?: number; rotate?: number }[];
+  className?: string;
 }
 
 const LayoutOrchestra: React.FC<LayoutOrchestraProps> = ({
