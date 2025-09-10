@@ -118,7 +118,7 @@ const ScrollGroup = (props: ScrollGroupProps) => {
     const key = (child as ReactElement).key ?? idx;
 
     // core child clone (preserve className)
-    const coreChild = cloneElement(child as ReactElement, {
+    const coreChild = cloneElement(child as ReactElement | any , {
       className: `${(child.props as any)?.className || ""} sg-item`.trim(),
     });
 
