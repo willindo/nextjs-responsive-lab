@@ -14,7 +14,7 @@ export default function Navbar() {
     { href: "/responsive-grid", label: "Responsive Grid" },
     { href: "/spacing", label: "Spacing" },
     { href: "/playground", label: "Play Ground" },
-    { href: "/terms&policy", label: "policy" },
+    { href: "/terms-policy", label: "policy" },
   ];
 
   return (

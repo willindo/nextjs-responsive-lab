@@ -1,13 +1,14 @@
 import PrivacyPolicy from "@/components/terms&conditions/PrivacyPolicy";
 import Terms from "@/components/terms&conditions/Terms";
 import RefundPolicy from "@/components/terms&conditions/RefundPolicy";
-export const TermsPolicy = () => {
+
+export default function TermsPolicy() {
   return (
     <>
-      <div>TermsConditions</div>
+      <div>Terms and Policy - Conditions</div>
       <PrivacyPolicy />
       <Terms />
       <RefundPolicy />
     </>
   );
-};
+}

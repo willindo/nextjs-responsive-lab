@@ -29,13 +29,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-   
-return (
-  <html lang="en">
-     
+  return (
+    <html lang="en">
       <body>
-        <TransitionProvider preset="cinematic">
-          <ResponsiveScaleProvider>
+        {/* <TransitionProvider preset="cinematic"> */}
+        <ResponsiveScaleProvider>
           <Navbar />
           {/* <Navbar1/> */}
           {/* <PlaygroundSidebar /> */}
@@ -47,8 +45,8 @@ return (
           {/* <FontDebugger /> */}
           {/* <FontSizeOverlay /> */}
           {/* <UnitCheatSheet /> */}
-          </ResponsiveScaleProvider>
-        </TransitionProvider>
+        </ResponsiveScaleProvider>
+        {/* </TransitionProvider> */}
       </body>
     </html>
   );
