@@ -14,6 +14,7 @@ export default function Navbar() {
     { href: "/responsive-grid", label: "Responsive Grid" },
     { href: "/spacing", label: "Spacing" },
     { href: "/playground", label: "Play Ground" },
+    { href: "/terms&policy", label: "policy" },
   ];
 
   return (
@@ -26,8 +27,12 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className=" hidden  nav w-[80%] md:flex ">
-          <AnimatedScope className=" flex justify-end gap-6 w-full " animation="fadeUp" stagger={0.2}>
-          {/* <MotionScopeMath pattern="breath" > */}
+          <AnimatedScope
+            className=" flex justify-end gap-6 w-full "
+            animation="fadeUp"
+            stagger={0.2}
+          >
+            {/* <MotionScopeMath pattern="breath" > */}
 
             {links.map((link) => (
               <a key={link.href} href={link.href} className="  hover:underline">
@@ -53,7 +58,11 @@ export default function Navbar() {
         <div className="flex z-11 flex-col gap-6 md:hidden px-4 py-2">
           <AnimatedScope className="z-11" animation="fadeIn" stagger={0.2}>
             {links.map((link) => (
-              <TransitionLink key={link.href} href={link.href} className="hover:underline">
+              <TransitionLink
+                key={link.href}
+                href={link.href}
+                className="hover:underline"
+              >
                 {link.label}
               </TransitionLink>
             ))}

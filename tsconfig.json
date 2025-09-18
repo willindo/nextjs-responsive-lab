@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -13,7 +17,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "jsxImportSource": "react", // 👈 needed if using new JSX transform
-    "types": ["react", "react-dom", "next"],
+    "types": [
+      "react",
+      "react-dom",
+      "next"
+    ],
     "incremental": true,
     "plugins": [
       {
@@ -22,9 +30,19 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/terms&conditions/PrivacyPolicy.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
