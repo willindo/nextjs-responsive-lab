@@ -34,10 +34,10 @@ export default function Projects() {
       link: "https://nextjs-responsive-lab.vercel.app/responsive-image1",
     },
     {
-      name: "Just Fun",
-      desc: "a buch of trials which may convince some stuff.",
-      tech: "React, r3f, Three.js",
-      link: "/somefun",
+      name: " E-Commerce",
+      desc: "on processing real world e-commerce project where multiple vendors can sell their products .",
+      tech: "nextjs, nestjs, postgresql, prisma, zod, docker, tailwindcss ",
+      link: "https://multy-commerce.vercel.app/",
     },
   ];
 
@@ -92,14 +92,13 @@ export default function Projects() {
               <p className="text-gray-600 text-sm">{p.desc}</p>
               <p className="text-gray-500 mt-4 text-xs">{p.tech}</p>
             </div>
-
           ))}
           <Link
-                href={extraLinks[0].href}
-                className="block p-3 rounded-lg border hover:bg-gray-50"
-              >
-                {extraLinks[0].label}
-              </Link>
+            href={extraLinks[0].href}
+            className="block p-3 rounded-lg border hover:bg-gray-50"
+          >
+            {extraLinks[0].label}
+          </Link>
         </Circle3D>
       )}
     </div>
