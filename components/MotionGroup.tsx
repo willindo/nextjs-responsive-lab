@@ -81,7 +81,9 @@ export default function MotionGroup({
           // width="100%"
           // height="100%"
           className="absolute  pointer-events-none "
-          viewBox={`${-padding} ${-padding} ${dims.w + padding * 2} ${dims.h + padding * 2}`}
+          viewBox={`${-padding} ${-padding} ${dims.w + padding * 2} ${
+            dims.h + padding * 2
+          }`}
           preserveAspectRatio="xMidYMid meet"
         >
           <path
@@ -95,12 +97,7 @@ export default function MotionGroup({
       )}
 
       {items.map((child, i) => (
-        <MotionPath
-          key={i}
-          path={path}
-          duration={duration}
-          delay={i * gap}
-        >
+        <MotionPath key={i} path={path} duration={duration} delay={i * gap}>
           {child}
         </MotionPath>
       ))}
