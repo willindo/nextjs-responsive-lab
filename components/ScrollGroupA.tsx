@@ -99,7 +99,9 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
 
   // measurements
   const [containerWidth, setContainerWidth] = useState<number>(0);
-  const [itemSizes, setItemSizes] = useState<Record<number, { w: number; h: number }>>({});
+  const [itemSizes, setItemSizes] = useState<
+    Record<number, { w: number; h: number }>
+  >({});
 
   // Auto-fit basic computation (returns pixel widths)
   const computeAutoFitBasic = (cw: number) => {
@@ -223,55 +225,75 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
     p.scaleStep * (containerWidth ? containerWidth / 1200 : 1);
 
   // normalized children (attach sg-item etc)
-  const normalizedChildren = React.Children.toArray(p.children).map((child, i) => {
-    const key = React.isValidElement(child) && (child as any).key != null ? (child as any).key : `sg-${i}`;
+  const normalizedChildren = React.Children.toArray(p.children).map(
+    (child, i) => {
+      const key =
+        React.isValidElement(child) && (child as any).key != null
+          ? (child as any).key
+          : `sg-${i}`;
 
-    const coreChild = React.isValidElement(child)
-      ? React.cloneElement(child as React.ReactElement<any>, {
-        key,
-        className: `${(child.props as any)?.className || ""} sg-item`.trim(),
-        "data-sg-index": String(i),
-        style: {
-          boxSizing: "border-box",
-          ...(child && typeof (child as any).props?.style === "object" ? (child as any).props.style : {}),
-        },
-      })
-      : (
-        <div key={key} className="sg-item" data-sg-index={String(i)} style={{ boxSizing: "border-box" }}>
+      const coreChild = React.isValidElement(child) ? (
+        React.cloneElement(child as React.ReactElement<any>, {
+          key,
+          className: `${(child.props as any)?.className || ""} sg-item`.trim(),
+          "data-sg-index": String(i),
+          style: {
+            boxSizing: "border-box",
+            ...(child && typeof (child as any).props?.style === "object"
+              ? (child as any).props.style
+              : {}),
+          },
+        })
+      ) : (
+        <div
+          key={key}
+          className="sg-item"
+          data-sg-index={String(i)}
+          style={{ boxSizing: "border-box" }}
+        >
           {child}
         </div>
       );
 
-    if (p.autoFit) {
-      // cell width - use percentage CSS (keeps responsive) but we still compute offsets in px for animation
-      const pct = 100 / p.itemsPerRow;
-      return (
-        <div
-          key={`fit-${key}`}
-          className="sg-cell"
-          style={{
-            flex: `0 0 ${pct}%`,
-            maxWidth: `${pct}%`,
-            boxSizing: "border-box",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ width: "100%", boxSizing: "border-box", display: "flex", justifyContent: "center", alignItems: "center" }}>
-            {coreChild}
+      if (p.autoFit) {
+        // cell width - use percentage CSS (keeps responsive) but we still compute offsets in px for animation
+        const pct = 100 / p.itemsPerRow;
+        return (
+          <div
+            key={`fit-${key}`}
+            className="sg-cell"
+            style={{
+              flex: `0 0 ${pct}%`,
+              maxWidth: `${pct}%`,
+              boxSizing: "border-box",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                boxSizing: "border-box",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {coreChild}
+            </div>
           </div>
+        );
+      }
+
+      // default
+      return (
+        <div key={`cell-${key}`} style={{ boxSizing: "border-box" }}>
+          {coreChild}
         </div>
       );
     }
-
-    // default
-    return (
-      <div key={`cell-${key}`} style={{ boxSizing: "border-box" }}>
-        {coreChild}
-      </div>
-    );
-  });
+  );
 
   // STATIC mode: apply transforms directly (cumulative offsets used)
   useLayoutEffect(() => {
@@ -285,7 +307,7 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
       const scale = responsiveScaleBase + idx * responsiveScaleStep;
       const rot = idx * p.rotateStep;
       const opa = Math.min(1, p.opacityBase + idx * p.opacityStep);
-      const target = (el.closest(".sg-cell") ?? el) as HTMLElement | SVGElement ;
+      const target = (el.closest(".sg-cell") ?? el) as HTMLElement | SVGElement;
       target.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${scale})`;
       target.style.opacity = `${opa}`;
       target.style.willChange = p.autoWillChange ? "transform, opacity" : "";
@@ -293,7 +315,9 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
 
     return () => {
       items.forEach((el) => {
-        const target = (el.closest(".sg-cell") ?? el) as HTMLElement | SVGElement  ;
+        const target = (el.closest(".sg-cell") ?? el) as
+          | HTMLElement
+          | SVGElement;
         target.style.transform = "";
         target.style.opacity = "";
         if (p.autoWillChange) target.style.willChange = "";
@@ -322,7 +346,8 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
       const items = Array.from(root.querySelectorAll<HTMLElement>(".sg-item"));
       if (!items.length) return;
 
-      if (p.autoWillChange) items.forEach((el) => (el.style.willChange = "transform, opacity"));
+      if (p.autoWillChange)
+        items.forEach((el) => (el.style.willChange = "transform, opacity"));
 
       if (p.useBatch) {
         ScrollTrigger.batch(items as any, {
@@ -333,9 +358,11 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
             gsap.to(batch, {
               x: (ii, el) => cumX[ii as number] ?? 0,
               y: (ii, el) => cumY[ii as number] ?? 0,
-              scale: (ii) => responsiveScaleBase + (ii as number) * responsiveScaleStep,
+              scale: (ii) =>
+                responsiveScaleBase + (ii as number) * responsiveScaleStep,
               rotation: (ii) => (ii as number) * p.rotateStep,
-              opacity: (ii) => Math.min(1, p.opacityBase + (ii as number) * p.opacityStep),
+              opacity: (ii) =>
+                Math.min(1, p.opacityBase + (ii as number) * p.opacityStep),
               stagger: p.stagger,
               duration: p.duration,
               ease: p.ease,
@@ -345,7 +372,9 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
         return;
       }
 
-      const triggerEl = p.triggerSelector ? document.querySelector(p.triggerSelector) : root;
+      const triggerEl = p.triggerSelector
+        ? document.querySelector(p.triggerSelector)
+        : root;
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: triggerEl as Element,
@@ -360,9 +389,11 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
       tl.to(items, {
         x: (ii, el) => cumX[ii as number] ?? 0,
         y: (ii, el) => cumY[ii as number] ?? 0,
-        scale: (ii) => responsiveScaleBase + (ii as number) * responsiveScaleStep,
+        scale: (ii) =>
+          responsiveScaleBase + (ii as number) * responsiveScaleStep,
         rotation: (ii) => (ii as number) * p.rotateStep,
-        opacity: (ii) => Math.min(1, p.opacityBase + (ii as number) * p.opacityStep),
+        opacity: (ii) =>
+          Math.min(1, p.opacityBase + (ii as number) * p.opacityStep),
         stagger: p.stagger,
         duration: p.duration,
         ease: p.ease,
@@ -402,8 +433,16 @@ export default function ScrollGroup(rawProps: ScrollGroupProps) {
   }
 
   return (
-    <div ref={containerRef} className={`scroll-group-root max-w-screen verflow-hidden ${p.className || ""}`}>
-      <div className="sg-list flex flex-wra ustify-center" style={{ alignItems: "stretch", ...listInlineStyle }}>
+    <div
+      ref={containerRef}
+      className={`scroll-group-root max-w-screen verflow-hidden ${
+        p.className || ""
+      }`}
+    >
+      <div
+        className="sg-list flex flex-wra ustify-center"
+        style={{ alignItems: "stretch", ...listInlineStyle }}
+      >
         {normalizedChildren}
       </div>
     </div>
@@ -414,35 +453,54 @@ export function SequentialSizeGroup({
 }: {
   children: React.ReactNode;
 }) {
-  const { config, setConfig } = useLayoutConfig("circle")
+  const { config, setConfig } = useLayoutConfig("circle");
   return (
-    <div className=" " style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+    <div
+      className=" "
+      style={{ display: "flex", gap: "12px", alignItems: "center" }}
+    >
       <DevConfigPanel1
         schema={arcSpiralSchema as ConfigField[]}
-        values={{...config,  }}
-      onChange={setConfig}
+        values={{ ...config }}
+        onChange={setConfig}
       />
       <LayoutSwitcher>
         <LayoutOrchestra
           layout="arc"
-          config={{ ...config, spacing: 40, }}
+          config={{ ...config, spacing: 40 }}
           // width={200}
           // height={200}
           className=" overflow-hidden"
         >
           {React.Children.map(children, (child, i) => {
             if (!React.isValidElement(child)) return child;
-
+            const colors = [
+              "#FF5733",
+              "#33FF57",
+              "#3357FF",
+              "#FF33F5",
+              "#33FFF5",
+              "#F5FF33",
+              "#FF8333",
+              "#8333FF",
+              "#33FF83",
+              "#FF3380",
+            ];
+            const distinctColor = colors[i % colors.length];
             // each item is +20px wider and +10px taller
             const width = 20 + i * 10;
             const height = 20 + i * 10;
             return React.cloneElement(child as React.ReactElement<any>, {
               style: {
-                ...(React.isValidElement(child) && child.props && typeof child.props === "object" ? (child.props as { style?: React.CSSProperties }).style : {}),
+                ...(React.isValidElement(child) &&
+                child.props &&
+                typeof child.props === "object"
+                  ? (child.props as { style?: React.CSSProperties }).style
+                  : {}),
                 width,
                 height,
                 // margins remain stable (not affected by scale)
-                background: "lightblue",
+                background: distinctColor,
                 textAlign: "center",
                 // lineHeight: `${height}px`,
                 borderRadius: "50%",
