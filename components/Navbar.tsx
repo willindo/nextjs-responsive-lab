@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react"; // icons
 import { AnimatedScope } from "./AnimatedScope";
 import { MotionScopeMath } from "./MotionPlayground";
-import { TransitionLink } from "./TransitionProvider";
+import { div } from "framer-motion/client";
+// import { TransitionLink } from "./TransitionProvider";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -58,13 +59,9 @@ export default function Navbar() {
         <div className="flex z-11 flex-col gap-6 md:hidden px-4 py-2">
           <AnimatedScope className="z-11" animation="fadeIn" stagger={0.2}>
             {links.map((link) => (
-              <TransitionLink
-                key={link.href}
-                href={link.href}
-                className="hover:underline"
-              >
+              <a key={link.href} href={link.href} className="  hover:underline">
                 {link.label}
-              </TransitionLink>
+              </a>
             ))}
           </AnimatedScope>
         </div>
