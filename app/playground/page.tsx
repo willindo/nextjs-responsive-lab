@@ -19,18 +19,34 @@ import { techStack } from "@/data/techStack";
 import Image from "next/image";
 import LineClampAutoPage from "@/components/LineClampAutoPage";
 import Ripples from "@/components/ui-tools/Ripples";
-import PortionImage from "@/components/StickyPortion";
 import LayoutOrchestra from "@/components/LayoutOrchestra";
+import CircleCarousel from "@/components/CircleCarousel";
 
 export default function PlayGround() {
-  const { config, setConfig } = useLayoutConfig("circle")
+  const { config, setConfig } = useLayoutConfig("circle");
   return (
     <>
-      <div className=" flex space-x-4 " >
-        <Ripples variant="zigzag" shape="box" className=" bg-[#444444] aspect-square w-full h-full" />
-        <Ripples variant="zigzag" shape="triangle" className=" bg-[#444444] aspect-[1/1] w-[90%] h-[90%] " />
-        <Ripples variant="zigzag" shape="circle" className=" bg-[#444444] aspec-[1/1] w-[90%] h-[90%] " />
-        <Ripples variant="ripple" shape="circle" className=" bg-[#ddda2a] aspec-[1/1] w-[90%] h-[90%] " />
+      <div className=" flex space-x-4 ">
+        <Ripples
+          variant="zigzag"
+          shape="box"
+          className=" bg-[#444444] aspect-square w-full h-full"
+        />
+        <Ripples
+          variant="zigzag"
+          shape="triangle"
+          className=" bg-[#444444] aspect-[1/1] w-[90%] h-[90%] "
+        />
+        <Ripples
+          variant="zigzag"
+          shape="circle"
+          className=" bg-[#444444] aspec-[1/1] w-[90%] h-[90%] "
+        />
+        <Ripples
+          variant="ripple"
+          shape="circle"
+          className=" bg-[#ddda2a] aspec-[1/1] w-[90%] h-[90%] "
+        />
       </div>
       <DevConfigPanel1
         schema={arcSpiralSchema as ConfigField[]}
@@ -40,12 +56,11 @@ export default function PlayGround() {
       <LayoutSwitcher overrides={{ circle: config }} {...config}>
         <LayoutOrchestra
           layout="spiral"
-          config={{ ...config, spacing: 40, }}
+          config={{ ...config, spacing: 40 }}
           // width={200}
           // height={200}
           // className=" overflow-hidden"
         >
-
           {techStack.map((item, i) => (
             <div
               key={i}
@@ -101,8 +116,9 @@ export default function PlayGround() {
           <div className="right-shape"></div>
         </div>
       </div>
-      {/* <ParticleItem /> */}
       <LineClampAutoPage />
+      {/* <ParticleItem /> */}
+      <CircleCarousel />
     </>
   );
 }

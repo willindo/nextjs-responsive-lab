@@ -27,11 +27,11 @@ export default function ResponsiveImagesDemo() {
   const [widthClass, setWidthClass] = useState("w-1/2");
 
   return (
-    <div className="p-6 space-y-12">
-      <h1 className="text-2xl font-bold mb-4">📐 Responsive Images + Container Size Demo</h1>
-
-      {/* Width toggle buttons */}
+    <>
       <div className="space-x-2 mb-6">
+        <h1 className="text-2xl font-bold mb-4">
+          📐 Responsive Images + Container Size Demo
+        </h1>
         <button
           onClick={() => setWidthClass("w-1/4")}
           className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
@@ -52,57 +52,60 @@ export default function ResponsiveImagesDemo() {
         </button>
       </div>
 
-      {/* 1. layout=responsive (16:9 aspect ratio) */}
-      <ResponsiveBox
-        label="1️⃣ layout=responsive (16:9)"
-        src="https://picsum.photos/800/450"
-        type="responsive"
-        width={800}
-        height={450}
-        widthClass={widthClass}
-      />
+      {/* Width toggle buttons */}
+      <div className="p-6 space-y-12 flex flex-row flex-wrap justify-evenly  ">
+        {/* 1. layout=responsive (16:9 aspect ratio) */}
+        <ResponsiveBox
+          label="1️⃣ layout=responsive (16:9)"
+          src="https://picsum.photos/800/450"
+          type="responsive"
+          width={800}
+          height={450}
+          widthClass={widthClass}
+        />
 
-      {/* 2. layout=responsive (4:3 aspect ratio) */}
-      <ResponsiveBox
-        label="2️⃣ layout=responsive (4:3)"
-        src="https://picsum.photos/800/600"
-        type="responsive"
-        width={800}
-        height={600}
-        widthClass={widthClass}
-      />
+        {/* 2. layout=responsive (4:3 aspect ratio) */}
+        <ResponsiveBox
+          label="2️⃣ layout=responsive (4:3)"
+          src="https://picsum.photos/800/600"
+          type="responsive"
+          width={800}
+          height={600}
+          widthClass={widthClass}
+        />
 
-      {/* 3. fill + object-cover */}
-      <ResponsiveBox
-        label="3️⃣ fill + object-cover"
-        src="https://picsum.photos/1200/800"
-        type="fill"
-        widthClass={widthClass}
-      />
+        {/* 3. fill + object-cover */}
+        <ResponsiveBox
+          label="3️⃣ fill + object-cover"
+          src="https://picsum.photos/1200/800"
+          type="fill"
+          widthClass={widthClass}
+        />
 
-      {/* 4. background cover */}
-      <BackgroundBox
-        label="4️⃣ Background Image (cover)"
-        url="https://picsum.photos/1000/600"
-        type="cover"
-        widthClass={widthClass}
-      />
+        {/* 4. background cover */}
+        <BackgroundBox
+          label="4️⃣ Background Image (cover)"
+          url="https://picsum.photos/1000/600"
+          type="cover"
+          widthClass={widthClass}
+        />
 
-      {/* 5. background contain */}
-      <BackgroundBox
-        label="5️⃣ Background Image (contain)"
-        url="https://picsum.photos/600/1000"
-        type="contain"
-        widthClass={widthClass}
-      />
+        {/* 5. background contain */}
+        <BackgroundBox
+          label="5️⃣ Background Image (contain)"
+          url="https://picsum.photos/600/1000"
+          type="contain"
+          widthClass={widthClass}
+        />
 
-      {/* 6. Plain <img> */}
-      <PlainImgBox
-        label="6️⃣ Plain <img> (max-width:100%)"
-        url="https://picsum.photos/900/500"
-        widthClass={widthClass}
-      />
-    </div>
+        {/* 6. Plain <img> */}
+        <PlainImgBox
+          label="6️⃣ Plain <img> (max-width:100%)"
+          url="https://picsum.photos/900/500"
+          widthClass={widthClass}
+        />
+      </div>
+    </>
   );
 }
 
@@ -126,7 +129,13 @@ function ResponsiveBox({
     <div ref={ref} className={`border-2 border-red-500 ${widthClass} relative`}>
       <p className="bg-red-100 text-sm p-1">{label}</p>
       {type === "responsive" && width && height && (
-        <Image src={src} alt={label} width={width} height={height} layout="responsive" />
+        <Image
+          src={src}
+          alt={label}
+          width={width}
+          height={height}
+          layout="responsive"
+        />
       )}
       {type === "fill" && (
         <div className="relative h-64">
@@ -166,7 +175,15 @@ function BackgroundBox({
   );
 }
 
-function PlainImgBox({ label, url, widthClass }: { label: string; url: string; widthClass: string }) {
+function PlainImgBox({
+  label,
+  url,
+  widthClass,
+}: {
+  label: string;
+  url: string;
+  widthClass: string;
+}) {
   const { ref, size } = useContainerSize();
   return (
     <div ref={ref} className={`border-2 border-green-500 ${widthClass}`}>
