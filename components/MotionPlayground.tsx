@@ -4,15 +4,24 @@ import { motion, useAnimationFrame, useMotionValue } from "framer-motion";
 
 /* ----------------------------- math patterns ----------------------------- */
 
-type PatternId = "linearX" | "waveY" | "circle" | "spiral" | "pendulum" | "breath";
+type PatternId =
+  | "linearX"
+  | "waveY"
+  | "circle"
+  | "spiral"
+  | "pendulum"
+  | "breath"
+  | "lissajous"
+  | "chaos";
+
 type Params = {
-  speed?: number;      // time multiplier
-  freq?: number;       // oscillations per second-ish
-  amp?: number;        // amplitude (px or % depending on pattern)
-  phaseGap?: number;   // phase delta between items (radians)
-  radius?: number;     // circle/spiral radius
-  growth?: number;     // spiral radial growth per second
-  angle?: number;      // pendulum max angle in degrees
+  speed?: number; // time multiplier
+  freq?: number; // oscillations per second-ish
+  amp?: number; // amplitude (px or % depending on pattern)
+  phaseGap?: number; // phase delta between items (radians)
+  radius?: number; // circle/spiral radius
+  growth?: number; // spiral radial growth per second
+  angle?: number; // pendulum max angle in degrees
 };
 
 const defaults: Required<Params> = {
@@ -25,7 +34,11 @@ const defaults: Required<Params> = {
   angle: 20,
 };
 
-type PatternFn = (t: number, i: number, p: Required<Params>) => {
+type PatternFn = (
+  t: number,
+  i: number,
+  p: Required<Params>
+) => {
   x?: number;
   y?: number;
   rotate?: number;
@@ -33,19 +46,66 @@ type PatternFn = (t: number, i: number, p: Required<Params>) => {
 };
 
 const patterns: Record<PatternId, PatternFn> = {
-  linearX: (t, i, p) => ({ x: ((t * p.speed * 120) + i * 8) % 360 - 180 }),
-  waveY:   (t, i, p) => ({ y: Math.sin(t * p.freq + i * p.phaseGap) * p.amp }),
-  circle:  (t, i, p) => {
+  linearX: (t, i, p) => ({ x: ((t * p.speed * 120 + i * 8) % 360) - 180 }),
+  waveY: (t, i, p) => ({ y: Math.sin(t * p.freq + i * p.phaseGap) * p.amp }),
+  circle: (t, i, p) => {
     const th = t * p.freq + i * p.phaseGap;
     return { x: Math.cos(th) * p.radius, y: Math.sin(th) * p.radius };
   },
-  spiral:  (t, i, p) => {
-    const th = t * p.freq + i * p.phaseGap;
-    const r  = p.radius + t * p.growth;
-    return { x: Math.cos(th) * r, y: Math.sin(th) * r };
+  spiral: (t, i, p) => {
+    // We create a 'loop' every 10 seconds (adjust as needed)
+    const loopDuration = 10;
+    const iteration = (t + i * p.phaseGap) % loopDuration;
+
+    const th = iteration * p.freq;
+    const r = p.radius + iteration * p.growth;
+
+    return {
+      x: Math.cos(th) * r,
+      y: Math.sin(th) * r,
+      opacity: 1 - iteration / loopDuration, // Fades out as it expands
+    };
   },
-  pendulum: (t, i, p) => ({ rotate: Math.sin(t * p.freq + i * p.phaseGap) * p.angle }),
-  breath:   (t, i, p) => ({ scale: 1 + (p.amp / 100) * Math.sin(t * p.freq + i * p.phaseGap) }),
+  pendulum: (t, i, p) => ({
+    rotate: Math.sin(t * p.freq + i * p.phaseGap) * p.angle,
+  }),
+  breath: (t, i, p) => ({
+    scale: 1 + (p.amp / 100) * Math.sin(t * p.freq + i * p.phaseGap),
+  }),
+  /**
+   * Lissajous: Complex interlocking loops.
+   * x and y move at different frequencies.
+   */
+  lissajous: (t, i, p) => {
+    const time = t * p.speed;
+    const phase = i * p.phaseGap;
+    // We use freq for X and a slightly offset multiplier for Y
+    return {
+      x: Math.sin(time * p.freq + phase) * p.radius,
+      y: Math.cos(time * (p.freq * 0.66) + phase) * p.radius,
+    };
+  },
+
+  /**
+   * Chaos: Pseudo-random organic movement.
+   * Uses "Interference" (summing sines) to mimic natural jitter.
+   */
+  chaos: (t, i, p) => {
+    const time = t * p.speed + i * p.phaseGap;
+    const x =
+      (Math.sin(time * 1.1) * 0.5 +
+        Math.sin(time * 2.3) * 0.3 +
+        Math.sin(time * 3.7) * 0.2) *
+      p.amp;
+
+    const y =
+      (Math.cos(time * 0.9) * 0.5 +
+        Math.cos(time * 1.7) * 0.3 +
+        Math.cos(time * 4.1) * 0.2) *
+      p.amp;
+
+    return { x, y };
+  },
 };
 
 /* --------------------------- motion scope (core) -------------------------- */
@@ -97,7 +157,7 @@ export function MotionScopeMath({
   children: ReactNode;
   pattern?: PatternId;
   params?: Params;
-  className?:String;
+  className?: String;
 }) {
   const p = { ...defaults, ...(params || {}) };
   const fn = patterns[pattern];
@@ -116,7 +176,13 @@ export function MotionScopeMath({
 
 /* ------------------------------- playground ------------------------------- */
 
-export default function MotionPlayground({ children,className }: { children?: ReactNode,className?:String }) {
+export default function MotionPlayground({
+  children,
+  className,
+}: {
+  children?: ReactNode;
+  className?: String;
+}) {
   const [pattern, setPattern] = useState<PatternId>("waveY");
   const [count, setCount] = useState(5);
   const [freq, setFreq] = useState(1.5);
@@ -133,7 +199,7 @@ export default function MotionPlayground({ children,className }: { children?: Re
   );
 
   return (
-    <div className="p-4 space-y-4">
+    <div className=" p-4 space-y-4">
       {/* Controls */}
       <div className="flex flex-wrap gap-3 items-center">
         <select
@@ -147,53 +213,88 @@ export default function MotionPlayground({ children,className }: { children?: Re
           <option value="spiral">spiral</option>
           <option value="pendulum">pendulum</option>
           <option value="breath">breath</option>
+          <option value="lissajous">lissajous</option>
+          <option value="chaos">chaos</option>
         </select>
 
         <label className="text-sm">count</label>
-        <input type="number" min={1} max={24} value={count}
-               onChange={(e) => setCount(parseInt(e.target.value || "1"))}
-               className="w-20 border rounded px-2 py-1" />
+        <input
+          type="number"
+          min={1}
+          max={24}
+          value={count}
+          onChange={(e) => setCount(parseInt(e.target.value || "1"))}
+          className="w-20 border rounded px-2 py-1"
+        />
 
         <label className="text-sm">freq</label>
-        <input type="number" step="0.1" value={freq}
-               onChange={(e) => setFreq(parseFloat(e.target.value || "0"))}
-               className="w-24 border rounded px-2 py-1" />
+        <input
+          type="number"
+          step="0.1"
+          value={freq}
+          onChange={(e) => setFreq(parseFloat(e.target.value || "0"))}
+          className="w-24 border rounded px-2 py-1"
+        />
 
         <label className="text-sm">amp</label>
-        <input type="number" step="1" value={amp}
-               onChange={(e) => setAmp(parseFloat(e.target.value || "0"))}
-               className="w-24 border rounded px-2 py-1" />
+        <input
+          type="number"
+          step="1"
+          value={amp}
+          onChange={(e) => setAmp(parseFloat(e.target.value || "0"))}
+          className="w-24 border rounded px-2 py-1"
+        />
 
         <label className="text-sm">radius</label>
-        <input type="number" step="1" value={radius}
-               onChange={(e) => setRadius(parseFloat(e.target.value || "0"))}
-               className="w-24 border rounded px-2 py-1" />
+        <input
+          type="number"
+          step="1"
+          value={radius}
+          onChange={(e) => setRadius(parseFloat(e.target.value || "0"))}
+          className="w-24 border rounded px-2 py-1"
+        />
 
         <label className="text-sm">phase</label>
-        <input type="number" step="0.1" value={phaseGap}
-               onChange={(e) => setPhaseGap(parseFloat(e.target.value || "0"))}
-               className="w-24 border rounded px-2 py-1" />
+        <input
+          type="number"
+          step="0.1"
+          value={phaseGap}
+          onChange={(e) => setPhaseGap(parseFloat(e.target.value || "0"))}
+          className="w-24 border rounded px-2 py-1"
+        />
 
         <label className="text-sm">speed</label>
-        <input type="number" step="0.1" value={speed}
-               onChange={(e) => setSpeed(parseFloat(e.target.value || "0"))}
-               className="w-24 border rounded px-2 py-1" />
+        <input
+          type="number"
+          step="0.1"
+          value={speed}
+          onChange={(e) => setSpeed(parseFloat(e.target.value || "0"))}
+          className="w-24 border rounded px-2 py-1"
+        />
 
         <label className="text-sm">angle</label>
-        <input type="number" step="1" value={angle}
-               onChange={(e) => setAngle(parseFloat(e.target.value || "0"))}
-               className="w-24 border rounded px-2 py-1" />
+        <input
+          type="number"
+          step="1"
+          value={angle}
+          onChange={(e) => setAngle(parseFloat(e.target.value || "0"))}
+          className="w-24 border rounded px-2 py-1"
+        />
 
         <label className="text-sm">growth</label>
-        <input type="number" step="1" value={growth}
-               onChange={(e) => setGrowth(parseFloat(e.target.value || "0"))}
-               className="w-24 border rounded px-2 py-1" />
+        <input
+          type="number"
+          step="1"
+          value={growth}
+          onChange={(e) => setGrowth(parseFloat(e.target.value || "0"))}
+          className="w-24 border rounded px-2 py-1"
+        />
       </div>
 
       {/* Stage */}
-      <div className="relative h-40 border rounded-lg overflow-hidden p-4">
+      <div className="relative h-[500px] border rounded-lg overflow-hidden p-4">
         <div className="flex items-center gap-3 h-full">
-          <MotionScopeMath pattern={pattern} params={params}  >
+          <MotionScopeMath pattern={pattern} params={params}>
             {/* {Array.from({ length: count }).map((_, i) => (
               <div
                 key={i}

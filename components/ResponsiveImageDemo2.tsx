@@ -1,23 +1,30 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import Image from "next/image";
 
+/**
+ * REFINEMENT: Use ResizeObserver instead of window resize.
+ * This tracks the element's actual size changes (e.g., when the widthClass changes)
+ * even if the window itself doesn't change size.
+ */
 function useContainerSize() {
   const ref = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
-    function update() {
-      if (ref.current) {
+    if (!ref.current) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
         setSize({
-          w: ref.current.offsetWidth,
-          h: ref.current.offsetHeight,
+          w: Math.round(entry.contentRect.width),
+          h: Math.round(entry.contentRect.height),
         });
       }
-    }
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
+    });
+
+    observer.observe(ref.current);
+    return () => observer.disconnect();
   }, []);
 
   return { ref, size };
@@ -27,124 +34,137 @@ export default function ResponsiveImagesDemo() {
   const [widthClass, setWidthClass] = useState("w-1/2");
 
   return (
-    <>
-      <div className="space-x-2 mb-6">
-        <h1 className="text-2xl font-bold mb-4">
-          📐 Responsive Images + Container Size Demo
+    <div className="p-8 max-w-7xl mx-auto">
+      <header className="mb-8 border-b pb-4">
+        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
+          📐 Image Layouts & Container Monitoring
         </h1>
-        <button
-          onClick={() => setWidthClass("w-1/4")}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-        >
-          25%
-        </button>
-        <button
-          onClick={() => setWidthClass("w-1/2")}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-        >
-          50%
-        </button>
-        <button
-          onClick={() => setWidthClass("w-full")}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-        >
-          100%
-        </button>
-      </div>
+        <p className="text-slate-500 mt-2">
+          Testing modern Next.js 13+ Image components.
+        </p>
 
-      {/* Width toggle buttons */}
-      <div className="p-6 space-y-12 flex flex-row flex-wrap justify-evenly  ">
-        {/* 1. layout=responsive (16:9 aspect ratio) */}
+        <div className="flex gap-2 mt-4">
+          {["w-1/4", "w-[45%]", "w-full"].map((cls) => (
+            <button
+              key={cls}
+              onClick={() => setWidthClass(cls)}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                widthClass === cls
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              {cls.replace("w-", "") === "full"
+                ? "100%"
+                : cls.replace("w-1/", "") === "4"
+                ? "25%"
+                : "45%"}
+            </button>
+          ))}
+        </div>
+      </header>
+
+      <div className="flex flex-wrap gap-8 justify-start">
+        {/* Aspect Ratio Controlled Images */}
         <ResponsiveBox
-          label="1️⃣ layout=responsive (16:9)"
+          label="16:9 Aspect Ratio"
           src="https://picsum.photos/800/450"
-          type="responsive"
-          width={800}
-          height={450}
+          aspect="16/9"
           widthClass={widthClass}
         />
 
-        {/* 2. layout=responsive (4:3 aspect ratio) */}
         <ResponsiveBox
-          label="2️⃣ layout=responsive (4:3)"
+          label="4:3 Aspect Ratio"
           src="https://picsum.photos/800/600"
-          type="responsive"
-          width={800}
-          height={600}
+          aspect="4/3"
           widthClass={widthClass}
         />
 
-        {/* 3. fill + object-cover */}
-        <ResponsiveBox
-          label="3️⃣ fill + object-cover"
+        {/* Fill + Object Cover */}
+        <FillBox
+          label="Fill + Object Cover"
           src="https://picsum.photos/1200/800"
-          type="fill"
           widthClass={widthClass}
         />
 
-        {/* 4. background cover */}
+        {/* Background Images */}
         <BackgroundBox
-          label="4️⃣ Background Image (cover)"
+          label="CSS Background (Cover)"
           url="https://picsum.photos/1000/600"
           type="cover"
           widthClass={widthClass}
         />
-
-        {/* 5. background contain */}
-        <BackgroundBox
-          label="5️⃣ Background Image (contain)"
-          url="https://picsum.photos/600/1000"
-          type="contain"
-          widthClass={widthClass}
-        />
-
-        {/* 6. Plain <img> */}
-        <PlainImgBox
-          label="6️⃣ Plain <img> (max-width:100%)"
-          url="https://picsum.photos/900/500"
-          widthClass={widthClass}
-        />
       </div>
-    </>
+    </div>
   );
 }
+
+/* --- SUB-COMPONENTS --- */
 
 function ResponsiveBox({
   label,
   src,
-  type,
-  width,
-  height,
+  aspect,
   widthClass,
 }: {
   label: string;
   src: string;
-  type: "responsive" | "fill";
+  aspect: string;
   widthClass: string;
-  width?: number;
-  height?: number;
 }) {
   const { ref, size } = useContainerSize();
+
   return (
-    <div ref={ref} className={`border-2 border-red-500 ${widthClass} relative`}>
-      <p className="bg-red-100 text-sm p-1">{label}</p>
-      {type === "responsive" && width && height && (
+    <div
+      ref={ref}
+      className={`${widthClass} border border-slate-200 rounded-xl overflow-hidden shadow-sm`}
+    >
+      <div className="bg-slate-50 border-b p-2 text-xs font-bold text-slate-600 uppercase tracking-wider">
+        {label}
+      </div>
+      {/* Modern Next.js Image with Aspect Ratio */}
+      <div style={{ aspectRatio: aspect }} className="relative w-full">
         <Image
           src={src}
           alt={label}
-          width={width}
-          height={height}
-          layout="responsive"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 45%"
         />
-      )}
-      {type === "fill" && (
-        <div className="relative h-64">
-          <Image src={src} alt={label} fill className="object-cover" />
-        </div>
-      )}
-      <p className="text-xs text-gray-700 p-1">
-        📏 Container: {size.w}px × {size.h}px
-      </p>
+      </div>
+      <Stats size={size} />
+    </div>
+  );
+}
+
+function FillBox({
+  label,
+  src,
+  widthClass,
+}: {
+  label: string;
+  src: string;
+  widthClass: string;
+}) {
+  const { ref, size } = useContainerSize();
+  return (
+    <div
+      ref={ref}
+      className={`${widthClass} border border-slate-200 rounded-xl overflow-hidden shadow-sm`}
+    >
+      <div className="bg-slate-50 border-b p-2 text-xs font-bold text-slate-600 uppercase tracking-wider italic">
+        {label}
+      </div>
+      <div className="relative h-64">
+        <Image
+          src={src}
+          alt={label}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 45%"
+        />
+      </div>
+      <Stats size={size} />
     </div>
   );
 }
@@ -161,37 +181,31 @@ function BackgroundBox({
   widthClass: string;
 }) {
   const { ref, size } = useContainerSize();
+
+  // REFINEMENT: Explicitly mapping classes to avoid Tailwind JIT issues with dynamic strings
+  const bgClass = type === "cover" ? "bg-cover" : "bg-contain";
+
   return (
     <div
       ref={ref}
-      className={`${widthClass} h-64 border-2 border-blue-500 rounded-lg bg-${type} bg-center`}
-      style={{ backgroundImage: `url(${url})` }}
+      className={`${widthClass} h-64 border border-slate-200 rounded-xl overflow-hidden shadow-sm flex flex-col`}
     >
-      <p className="bg-blue-100 text-sm p-1">{label}</p>
-      <p className="text-xs text-gray-700 p-1">
-        📏 Container: {size.w}px × {size.h}px
-      </p>
+      <div className="bg-slate-50 border-b p-2 text-xs font-bold text-slate-600 uppercase tracking-wider">
+        {label}
+      </div>
+      <div
+        className={`flex-grow bg-center bg-no-repeat ${bgClass}`}
+        style={{ backgroundImage: `url(${url})` }}
+      />
+      <Stats size={size} />
     </div>
   );
 }
 
-function PlainImgBox({
-  label,
-  url,
-  widthClass,
-}: {
-  label: string;
-  url: string;
-  widthClass: string;
-}) {
-  const { ref, size } = useContainerSize();
+function Stats({ size }: { size: { w: number; h: number } }) {
   return (
-    <div ref={ref} className={`border-2 border-green-500 ${widthClass}`}>
-      <p className="bg-green-100 text-sm p-1">{label}</p>
-      <img src={url} alt={label} className="max-w-full h-auto" />
-      <p className="text-xs text-gray-700 p-1">
-        📏 Container: {size.w}px × {size.h}px
-      </p>
+    <div className="p-2 bg-white text-[10px] font-mono text-slate-400 border-t">
+      CONTAINER: {size.w}px × {size.h}px
     </div>
   );
 }

@@ -13,6 +13,7 @@ import SpacingPage from "../spacing/page";
 import { LayoutSwitcher } from "@/components/LayoutSwitcher";
 import { DevConfigPanel1 } from "@/components/ui-tools/DevConfigPanel1";
 import MotionPlayground from "@/components/MotionPlayground";
+// import MotionPlayground from "@/components/MotionPlayItem";
 import { arcSpiralSchema, ConfigField } from "@/configs/panelSchemas";
 import { useLayoutConfig } from "@/configs/useLayoutConfig";
 import { techStack } from "@/data/techStack";
@@ -53,7 +54,11 @@ export default function PlayGround() {
         values={config}
         onChange={setConfig}
       />
-      <LayoutSwitcher overrides={{ circle: config }} {...config}>
+      <LayoutSwitcher
+        className=" z-20 "
+        overrides={{ circle: config }}
+        {...config}
+      >
         <LayoutOrchestra
           layout="spiral"
           config={{ ...config, spacing: 40 }}
@@ -64,7 +69,7 @@ export default function PlayGround() {
           {techStack.map((item, i) => (
             <div
               key={i}
-              className="h-16 w-16  rounded-full flex items-center justify-center"
+              className=" z-0 h-16 w-16  rounded-full flex items-center justify-center"
             >
               <Image
                 src={item.src}
@@ -80,10 +85,7 @@ export default function PlayGround() {
       </LayoutSwitcher>
       <MotionPlayground>
         {techStack.map((item, i) => (
-          <div
-            key={i}
-            className="h-16 w-16  rounded-full flex items-center justify-center"
-          >
+          <div key={i} className="h-16 w-16  rounded-full ">
             <Image
               src={item.src}
               alt={""}

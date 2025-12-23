@@ -1,7 +1,6 @@
 "use client";
 import BackimageDemo from "@/components/BackimageDemo";
 import BgImageFun from "@/components/BgImageFun";
-import ExplodeStack from "@/components/ExplodeTree";
 import GridFlex from "@/components/GridFlex";
 import MultiBgAnim from "@/components/MultiBgAnim";
 import PortionImage from "@/components/StickyPortion";
@@ -14,12 +13,45 @@ import UniqueClipChoice from "@/components/UniqueClipChoice";
 import { imageList } from "@/data/images";
 import { useState } from "react";
 import StickyPortion from "@/components/StickyPortion";
+import ExplodeStack from "@/components/ExplodeTree";
+import ParallaxSection from "@/components/ParallaxSection";
 
+ParallaxSection;
 export default function ResponsiveGridPage() {
   return (
     <>
       {/* <MultiBgAnim  /> */}
+      <main className="bg-white">
+        {/* Introduction */}
+        <div className=" flex items-center justify-center text-gray-800">
+          <h1 className="text-2xl font-light">
+            Scroll down for the Parallax effect...
+          </h1>
+        </div>
 
+        {/* The Parallax Section */}
+        <ParallaxSection
+          imageUrl="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2070"
+          title="Explore the Heights"
+          subtitle="Where the earth meets the sky in a seamless dance of fixed positioning."
+        />
+
+        {/* Content Gap */}
+        <div className=" -[400px] p-20 flex items-center justify-center text-center">
+          <p className="max-w-md text-gray-600 leading-relaxed">
+            The background in the section above stays static relative to the
+            viewport, while this text and the rest of the page slide right over
+            it. This is achieved via <b>background-attachment: fixed</b>.
+          </p>
+        </div>
+
+        {/* Second Parallax Section for Contrast */}
+        <ParallaxSection
+          imageUrl="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=2070"
+          title="Deep Horizons"
+          height="h-[400px]"
+        />
+      </main>
       <div className=" mx-auto sm:grid sm:grid-rows-auto  sm:grid-cols-[65vw_30vw] md:grid-cols-[70vw_25vw] lg:grid-cols-[60vw_30vw] sm:place-items-center ">
         <UniqueClipChoice
           speed={30}
@@ -83,7 +115,7 @@ export default function ResponsiveGridPage() {
       </div>
       <ResponsiveImagesDemo />
       <BackimageDemo />
-      {/* <ExplodeStack>
+      <ExplodeStack>
         <>
           <div>🍎</div>
           <div>🍌</div>
@@ -100,7 +132,7 @@ export default function ResponsiveGridPage() {
         </>
         <p className="text-xl text-green-400">Logo Text</p>
         <>
-          {Array.from({ length: 6 }).map((_, i) => (
+          {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
               className="h-16 w-16 bg-amber-400 rounded-full flex items-center justify-center"
@@ -118,7 +150,7 @@ export default function ResponsiveGridPage() {
           />
           <p className=" text-green-400">double</p>
         </>
-      </ExplodeStack> */}
+      </ExplodeStack>
       <div>
         <h1 className="text-3xl font-bold">Responsive Grid Demo</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">

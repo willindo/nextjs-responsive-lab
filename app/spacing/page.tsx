@@ -6,34 +6,31 @@ import CircleGallery from "@/components/CircleGallery";
 import PageTurnCarousel from "@/components/PageTurnCarousel";
 import ClippyItem from "@/components/ClippyItem";
 import GridFlex from "@/components/GridFlex";
-import MotionPlayground, { MotionScopeMath } from "@/components/MotionPlayground";
 import ParallaxGroup from "@/components/ParallaxGroup";
 import PathDrivenMotionGroup from "@/components/PathDrivenMotionGroup";
 import ScrollGroupA, { SequentialSizeGroup } from "@/components/ScrollGroupA";
 import Staircase from "@/components/Staircase";
 import StickyPortion from "@/components/StickyPortion";
 import ThreeStepNestedCards from "@/components/ThreeStepNestedCards";
-import { PathControllerPanel, PathProvider } from "@/components/ui-tools/PathControls1";
+import {
+  PathControllerPanel,
+  PathProvider,
+} from "@/components/ui-tools/PathControls1";
 import ScrollGroup from "@/components/ui-tools/ScrollGroup";
 import { useLayoutConfig } from "@/configs/useLayoutConfig";
 import { tr } from "framer-motion/client";
-
-
 export default function SpacingPage() {
-  const {config ,setConfig } = useLayoutConfig("circle")
+  const { config, setConfig } = useLayoutConfig("circle");
   return (
     <>
       <SequentialSizeGroup>
-
-      {/* <MotionScopeMath pattern="waveY" > */}
-        <div className="w-12 h-12 bg-indigo-500 rounded-full" />
-        <div className="w-12 h-12 bg-indigo-500 rounded-full" />
-        <div className="w-12 h-12 bg-indigo-500 rounded-full" />
-        <div className="w-12 h-12 bg-indigo-500 rounded-full" />
-        <div className="w-12 h-12 bg-indigo-500 rounded-full" />
-        <div className="w-12 h-12 bg-indigo-500 rounded-full" />
-        <div className="w-12 h-12 bg-indigo-500 rounded-full" />
-      {/* </MotionScopeMath> */}
+        <div className="w-12 h-12  rounded-full" />
+        <div className="w-12 h-12  rounded-full" />
+        <div className="w-12 h-12  rounded-full" />
+        <div className="w-12 h-12  rounded-full" />
+        <div className="w-12 h-12  rounded-full" />
+        <div className="w-12 h-12  rounded-full" />
+        <div className="w-12 h-12  rounded-full" />
       </SequentialSizeGroup>
       {/* <CircleGallery  /> */}
       <ClippyItem />
@@ -41,24 +38,33 @@ export default function SpacingPage() {
         <PathControllerPanel className="mx-auto md:w-[50vw] " />
         <div className=" mx-auto grid lg:grid-cols-2 ">
           <div className="  h-[300px]  space-y-8">
-            <PathDrivenMotionGroup className="    " duration={8} gap={1.5} >
-
+            <PathDrivenMotionGroup className="    " duration={8} gap={1.5}>
               {/* {[...Array(6)].map((_, i) => (
           <span key={i} className="text-2xl">🌟</span>
           ))} */}
               {/* <div className="w-6 h-6 bg-red-500 rounded-full" />
           <div className="w-6 h-6 bg-blue-500 rounded-full" /> */}
               {["🚗", "h", "🚙", "a", "🚌", "i", "🚛", "🚓"].map((car, i) => (
-                <span key={i} className="text-3xl">{car}</span>
+                <span key={i} className="text-3xl">
+                  {car}
+                </span>
               ))}
             </PathDrivenMotionGroup>
           </div>
           <StickyPortion />
         </div>
       </PathProvider>
-      <Staircase mode="two-side" direction="down" stepY={10} stepX={7} className="   left-10">
-        {[...Array(20)].map((_, i) => (
-          <span key={i} className=" hover:opacity-50 text-2xl">❤️</span>
+      <Staircase
+        mode="two-side"
+        direction="up"
+        stepY={15}
+        stepX={7}
+        className="   left-20"
+      >
+        {[...Array(10)].map((_, i) => (
+          <span key={i} className=" hover:opacity-50 text-2xl">
+            ❤️
+          </span>
         ))}
       </Staircase>
       {/* <div>
@@ -97,4 +103,3 @@ export default function SpacingPage() {
     </>
   );
 }
-
