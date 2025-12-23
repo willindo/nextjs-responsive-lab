@@ -185,7 +185,7 @@ export default function CircleCarousel({
       </div>
       {/* Wireframe orbit ring */}
       <motion.div
-        className="absolute inset-0 rounded-full border border-white/20 pointer-events-none"
+        className="-z-0 absolute inset-0 rounded-full border border-white/20 pointer-events-none"
         style={{ borderStyle: "dashed" }}
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
@@ -193,7 +193,7 @@ export default function CircleCarousel({
 
       {/* Inner pulsating wire circle */}
       <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/30"
+        className="-z-10 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/30"
         style={{ width: "50%", height: "60%" }}
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
