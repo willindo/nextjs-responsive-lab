@@ -31,7 +31,7 @@ function useContainerSize() {
 }
 
 export default function ResponsiveImagesDemo() {
-  const [widthClass, setWidthClass] = useState("w-1/2");
+  const [widthClass, setWidthClass] = useState("w-[45%]");
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
